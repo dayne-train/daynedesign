@@ -716,7 +716,7 @@ footer { background: var(--ink); color: white; padding: 2rem 5rem; display: flex
         <a class="nav-work-item" href="rivet-case-study.html">Rivet</a>
         <a class="nav-work-item" href="strongmind-case-study.html">StrongMind App</a>
         <div class="nav-work-divider"></div>
-        <a class="nav-work-all" href="#studies" id="workSeeAll">See all 14 studies ↓</a>
+        <a class="nav-work-all" href="#studies" id="workSeeAll">Go to case studies</a>
       </div>
     </li>
     <li><a href="#experience">Experience</a></li>
@@ -1705,10 +1705,8 @@ window.addEventListener('DOMContentLoaded', function() {
       link.addEventListener('click', function() { closeMenu(); });
     });
     if (mobileWorkSeeAll) {
-      mobileWorkSeeAll.addEventListener('click', function(e) {
-        e.preventDefault();
+      mobileWorkSeeAll.addEventListener('click', function() {
         closeMenu();
-        openAllStudies();
       });
     }
   }
@@ -1733,10 +1731,8 @@ window.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrop(); });
 
   if (seeAll) {
-    seeAll.addEventListener('click', function(e) {
-      e.preventDefault();
+    seeAll.addEventListener('click', function() {
       closeDrop();
-      openAllStudies();
     });
   }
 })();
@@ -1758,7 +1754,7 @@ function toggleStudies() {
   expanded = !expanded;
   const extras = document.querySelectorAll('.study-card.extra');
   const btn = document.getElementById('showMoreBtn');
-  document.getElementById('studiesCount').textContent = expanded ? 'Showing 8 of 14' : 'Showing 6 of 14';
+  document.getElementById('studiesCount').textContent = expanded ? 'Showing 14 of 14' : 'Showing 6 of 14';
   btn.textContent = expanded ? 'Show less ↑' : 'See all studies ↓';
   extras.forEach((card, i) => {
     if (expanded) {
@@ -1938,7 +1934,7 @@ function openAllStudies() {
     <a class="mobile-work-sub-link" href="software-tools-case-study.html">Software &amp; Tools</a>
     <a class="mobile-work-sub-link" href="rivet-case-study.html">Rivet</a>
     <a class="mobile-work-sub-link" href="strongmind-case-study.html">StrongMind App</a>
-    <a class="mobile-work-sub-link mobile-work-see-all" href="#studies" id="mobileWorkSeeAll">See all 14 →</a>
+    <a class="mobile-work-sub-link mobile-work-see-all" href="#studies" id="mobileWorkSeeAll">Go to case studies</a>
   </div>
   <a class="mobile-link" href="#experience">Experience</a>
   <a class="mobile-link" href="#fish-quiz">Play</a>
