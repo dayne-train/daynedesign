@@ -1415,7 +1415,8 @@ footer { background: var(--ink); color: white; padding: 2rem 5rem; display: flex
 #viewStatsBtn { display: none; }
 #statsPanel { display: none; margin-top: 1.25rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-card); padding: 1.5rem 1.75rem; }
 .quiz-stat-total { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.25rem; }
-.quiz-stat-row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+.quiz-stat-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; column-gap: 0.75rem; row-gap: 0.75rem; }
+.quiz-stat-row { display: contents; }
 .quiz-stat-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.35); display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
 .quiz-stat-you .quiz-stat-label { color: var(--sky); }
 .quiz-stat-you-tag { font-size: 0.55rem; color: var(--sky); }
@@ -1594,7 +1595,7 @@ document.getElementById('viewStatsBtn').addEventListener('click', function() {
     var data = snap.val() || { total: 0, a: 0, b: 0, c: 0, d: 0 };
     var total = data.total || 0;
     var names = { a: 'Rainbow Trout', b: 'Steelhead', c: 'Cutthroat Trout', d: 'Brown Trout' };
-    var html = '<div class="quiz-stat-total">' + (total).toLocaleString() + ' people have taken this quiz</div>';
+    var html = '<div class="quiz-stat-total">' + (total).toLocaleString() + ' people have taken this quiz</div><div class="quiz-stat-grid">';
     ['a', 'b', 'c', 'd'].forEach(function(key) {
       var count = data[key] || 0;
       var pct = total > 0 ? Math.round(count / total * 100) : 0;
@@ -1605,6 +1606,7 @@ document.getElementById('viewStatsBtn').addEventListener('click', function() {
         '<div class="quiz-stat-pct">' + pct + '%</div>' +
         '</div>';
     });
+    html += '</div>';
     panel.innerHTML = html;
     requestAnimationFrame(function() {
       panel.querySelectorAll('.quiz-stat-bar').forEach(function(bar) {
