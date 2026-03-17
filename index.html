@@ -1589,7 +1589,10 @@ function toggleStudies() {
   const INTERVAL = 5000;
   let current    = 0;
   let timer      = null;
-  let paused     = false;
+  let paused     = false;   // explicit tap-pause (mobile)
+  let hovered    = false;   // hover-pause (desktop)
+  let slideStart = 0;       // performance.now() when current slide bar started
+  let elapsed    = 0;       // ms elapsed before last freeze
   let badgeFade  = null;
 
   const PAUSE_SVG = '<svg width="10" height="12" viewBox="0 0 10 12" fill="none"><rect x="0" y="0" width="3" height="12" rx="1" fill="rgba(255,255,255,0.9)"/><rect x="7" y="0" width="3" height="12" rx="1" fill="rgba(255,255,255,0.9)"/></svg>';
@@ -1614,8 +1617,9 @@ function toggleStudies() {
     dot.className = 'quote-dot' + (i === 0 ? ' active' : '');
     dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
     dot.addEventListener('click', () => {
-      if (paused) { paused = false; hideBadge(); }
-      goTo(i); resetAuto();
+      paused = false; hovered = false; hideBadge();
+      goTo(i);
+      schedule(INTERVAL);
     });
     dotsWrap.appendChild(dot);
   });
@@ -1626,35 +1630,68 @@ function toggleStudies() {
     });
   }
 
-  function startBar() {
+  // Start bar from 0 over `dur` ms, reset elapsed tracking
+  function startBar(dur) {
+    elapsed = 0;
     bar.style.transition = 'none';
     bar.style.width = '0%';
     bar.offsetWidth;
-    bar.style.transition = 'width ' + INTERVAL + 'ms linear';
+    bar.style.transition = 'width ' + (dur || INTERVAL) + 'ms linear';
     bar.style.width = '100%';
+    slideStart = performance.now();
   }
+
+  // Freeze bar in place, record how far we are
   function freezeBar() {
-    const w = parseFloat(getComputedStyle(bar).width);
+    elapsed = performance.now() - slideStart;
+    const w  = parseFloat(getComputedStyle(bar).width);
     const pw = parseFloat(getComputedStyle(bar.parentElement).width);
     bar.style.transition = 'none';
     bar.style.width = (pw > 0 ? (w / pw * 100) : 0) + '%';
+  }
+
+  // Resume bar from frozen position, returns remaining ms
+  function resumeBar() {
+    const remaining = Math.max(INTERVAL - elapsed, 300);
+    bar.style.transition = 'none';
+    bar.offsetWidth;
+    bar.style.transition = 'width ' + remaining + 'ms linear';
+    bar.style.width = '100%';
+    slideStart = performance.now() - elapsed;
+    return remaining;
+  }
+
+  // Schedule next auto-advance after `delay` ms
+  function schedule(delay) {
+    clearTimeout(timer);
+    timer = setTimeout(() => { next(); schedule(INTERVAL); }, delay);
   }
 
   function goTo(idx) {
     current = (idx + total) % total;
     track.style.transform = 'translateX(-' + (current * 100) + '%)';
     updateDots();
-    if (!paused) startBar();
+    startBar(INTERVAL);
   }
 
   function next() { goTo(current + 1); }
-  function startAuto() { timer = setInterval(next, INTERVAL); }
-  function resetAuto() { clearInterval(timer); startBar(); startAuto(); }
 
-  // Hover pause (desktop)
+  // Hover pause (desktop) — freeze bar + show badge, resume on leave
   const carousel = document.getElementById('quoteCarousel');
-  carousel.addEventListener('mouseenter', () => { if (!paused) clearInterval(timer); });
-  carousel.addEventListener('mouseleave', () => { if (!paused) resetAuto(); });
+  carousel.addEventListener('mouseenter', () => {
+    if (paused) return;
+    hovered = true;
+    clearTimeout(timer);
+    freezeBar();
+    showBadge(PAUSE_SVG, true);
+  });
+  carousel.addEventListener('mouseleave', () => {
+    if (paused) return;
+    hovered = false;
+    hideBadge();
+    const remaining = resumeBar();
+    schedule(remaining);
+  });
 
   // Touch: swipe to advance, tap to toggle pause
   let touchStartX = 0, touchStartY = 0;
@@ -1667,15 +1704,16 @@ function toggleStudies() {
     const dy = e.changedTouches[0].clientY - touchStartY;
     if (Math.abs(dx) > 40) {
       goTo(current + (dx < 0 ? 1 : -1));
-      if (!paused) resetAuto();
+      if (!paused) schedule(INTERVAL);
     } else if (Math.abs(dx) < 10 && Math.abs(dy) < 10) {
       if (paused) {
         paused = false;
         showBadge(PLAY_SVG, false);
-        resetAuto();
+        const remaining = resumeBar();
+        schedule(remaining);
       } else {
         paused = true;
-        clearInterval(timer);
+        clearTimeout(timer);
         freezeBar();
         showBadge(PAUSE_SVG, true);
       }
@@ -1684,7 +1722,7 @@ function toggleStudies() {
 
   // Kick off
   goTo(0);
-  startAuto();
+  schedule(INTERVAL);
 })();
 
 </script>
