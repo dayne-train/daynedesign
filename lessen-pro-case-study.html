@@ -431,6 +431,68 @@ footer {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
 }
+
+/* ── WORK DROPDOWN — desktop ── */
+.nav-work-wrap { position: relative; }
+.nav-work-btn {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted); background: none;
+  border: none; cursor: pointer; padding: 0; transition: color 0.2s;
+  display: flex; align-items: center; gap: 0.3rem;
+}
+.nav-work-btn:hover { color: var(--sky); }
+.nav-work-chevron { font-size: 0.55rem; transition: transform 0.2s; display: inline-block; line-height: 1; }
+.nav-work-btn[aria-expanded="true"] .nav-work-chevron { transform: rotate(180deg); }
+.nav-work-panel {
+  position: absolute; top: calc(100% + 0.85rem); left: -1rem;
+  background: #fff; border: 1px solid var(--stone);
+  border-radius: var(--radius-card); box-shadow: 0 8px 32px rgba(28,43,58,0.1);
+  padding: 0.5rem; min-width: 200px;
+  opacity: 0; pointer-events: none; transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 9002;
+}
+.nav-work-panel.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.nav-work-item {
+  display: block; padding: 0.5rem 0.75rem;
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none;
+  border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap;
+}
+.nav-work-item:hover { background: var(--sky-lt); color: var(--sky-mid); }
+.nav-work-divider { height: 1px; background: var(--stone); margin: 0.4rem 0.75rem; }
+.nav-work-all {
+  display: block; padding: 0.5rem 0.75rem;
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--sky); text-decoration: none;
+  border-radius: 6px; transition: background 0.15s;
+}
+.nav-work-all:hover { background: var(--sky-lt); }
+/* ── WORK SUB-MENU — mobile ── */
+.mobile-work-btn {
+  font-family: var(--serif); font-size: 3rem; font-weight: 900;
+  color: #fff; background: none; border: none; cursor: pointer;
+  line-height: 1.2; display: flex; align-items: center; gap: 0.4rem;
+}
+.mobile-work-btn:hover { color: var(--sky); }
+.mobile-work-chevron { font-size: 1.4rem; font-family: var(--sans); font-weight: 400; transition: transform 0.25s; display: inline-block; }
+.mobile-work-btn[aria-expanded="true"] .mobile-work-chevron { transform: rotate(180deg); }
+.mobile-work-sub {
+  display: flex; flex-direction: column; align-items: center; gap: 0.55rem;
+  max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+}
+.mobile-work-sub.open { max-height: 460px; }
+.mobile-work-sub-link {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+  text-decoration: none; transition: color 0.15s;
+}
+.mobile-work-sub-link:hover { color: #fff; }
+.mobile-work-see-all {
+  color: var(--sky) !important; margin-top: 0.25rem;
+  padding: 0.45rem 1.25rem; border: 1px solid var(--sky);
+  border-radius: 999px; font-size: 0.7rem;
+}
 </style>
 </head>
 <body>
@@ -442,7 +504,19 @@ footer {
     Dayne Petera
   </a>
   <ul class="nav-links">
-    <li><a href="index.html#studies">Work</a></li>
+    <li class="nav-work-wrap">
+      <button class="nav-work-btn" id="workDropBtn" aria-expanded="false">Work <span class="nav-work-chevron">▾</span></button>
+      <div class="nav-work-panel" id="workDropPanel">
+        <a class="nav-work-item" href="hris-sync-case-study.html">HRIS Sync</a>
+        <a class="nav-work-item" href="lessen-pro-case-study.html">Lessen Pro</a>
+        <a class="nav-work-item" href="veho-case-study.html">Exception Handling</a>
+        <a class="nav-work-item" href="software-tools-case-study.html">Software &amp; Tools</a>
+        <a class="nav-work-item" href="rivet-case-study.html">Rivet</a>
+        <a class="nav-work-item" href="strongmind-case-study.html">StrongMind App</a>
+        <div class="nav-work-divider"></div>
+        <a class="nav-work-all" href="index.html#studies">See all 14 studies ↓</a>
+      </div>
+    </li>
     <li><a href="index.html#experience">Experience</a></li>
     <li><a href="index.html#fish-quiz">Play</a></li>
     <li><a class="nav-cta" href="mailto:dayne@dayne.design">Say hello</a></li>
@@ -833,11 +907,16 @@ window.addEventListener('DOMContentLoaded', function() {
     nav.style.background = '#1c2b3a';
     nav.style.borderBottomColor = 'transparent';
   }
+  var mobileWorkBtn = document.getElementById('mobileWorkBtn');
+  var mobileWorkSub = document.getElementById('mobileWorkSub');
+
   function closeMenu() {
     menu.classList.remove('open');
     btn.classList.remove('open');
     nav.style.background = '';
     nav.style.borderBottomColor = '';
+    if (mobileWorkSub) mobileWorkSub.classList.remove('open');
+    if (mobileWorkBtn) mobileWorkBtn.setAttribute('aria-expanded', 'false');
   }
 
   btn.addEventListener('click', function() {
@@ -849,13 +928,51 @@ window.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeMenu();
   });
+
+  if (mobileWorkBtn && mobileWorkSub) {
+    mobileWorkBtn.addEventListener('click', function() {
+      var isOpen = mobileWorkSub.classList.contains('open');
+      mobileWorkSub.classList.toggle('open', !isOpen);
+      mobileWorkBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+    mobileWorkSub.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() { closeMenu(); });
+    });
+  }
 });
+
+/* ── DESKTOP WORK DROPDOWN ── */
+(function() {
+  var dropBtn = document.getElementById('workDropBtn');
+  var dropPanel = document.getElementById('workDropPanel');
+  if (!dropBtn || !dropPanel) return;
+
+  function openDrop() { dropPanel.classList.add('open'); dropBtn.setAttribute('aria-expanded', 'true'); }
+  function closeDrop() { dropPanel.classList.remove('open'); dropBtn.setAttribute('aria-expanded', 'false'); }
+
+  dropBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    dropPanel.classList.contains('open') ? closeDrop() : openDrop();
+  });
+  document.addEventListener('click', function() { closeDrop(); });
+  dropPanel.addEventListener('click', function(e) { e.stopPropagation(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrop(); });
+})();
 </script>
 
 <!-- MOBILE MENU -->
 
 <div id="mobileMenu">
-  <a class="mobile-link" href="index.html#studies">Work</a>
+  <button class="mobile-work-btn" id="mobileWorkBtn" aria-expanded="false">Work <span class="mobile-work-chevron">▾</span></button>
+  <div class="mobile-work-sub" id="mobileWorkSub">
+    <a class="mobile-work-sub-link" href="hris-sync-case-study.html">HRIS Sync</a>
+    <a class="mobile-work-sub-link" href="lessen-pro-case-study.html">Lessen Pro</a>
+    <a class="mobile-work-sub-link" href="veho-case-study.html">Exception Handling</a>
+    <a class="mobile-work-sub-link" href="software-tools-case-study.html">Software &amp; Tools</a>
+    <a class="mobile-work-sub-link" href="rivet-case-study.html">Rivet</a>
+    <a class="mobile-work-sub-link" href="strongmind-case-study.html">StrongMind App</a>
+    <a class="mobile-work-sub-link mobile-work-see-all" href="index.html#studies">See all 14 →</a>
+  </div>
   <a class="mobile-link" href="index.html#experience">Experience</a>
   <a class="mobile-link" href="index.html#fish-quiz">Play</a>
   <a class="mobile-link mobile-link-cta" href="mailto:dayne@dayne.design">Say hello</a>
