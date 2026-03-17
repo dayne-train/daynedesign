@@ -1299,7 +1299,7 @@ footer { background: var(--ink); color: white; padding: 2rem 5rem; display: flex
         </div>
         <div class="quiz-result-actions">
           <button class="quiz-retake" id="retakeBtn">↺ Try again</button>
-          <button class="quiz-retake quiz-stats-btn" id="viewStatsBtn">◎ View stats</button>
+          <button class="quiz-retake" id="viewStatsBtn"><svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" style="vertical-align:-1px;margin-right:5px"><rect x="0" y="7" width="3" height="5" rx="0.5"/><rect x="4.5" y="4" width="3" height="8" rx="0.5"/><rect x="9" y="1" width="3" height="11" rx="0.5"/></svg>View stats</button>
         </div>
         <div id="statsPanel"></div>
       </div>
@@ -1413,8 +1413,6 @@ footer { background: var(--ink); color: white; padding: 2rem 5rem; display: flex
 /* ── QUIZ STATS ── */
 .quiz-result-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 #viewStatsBtn { display: none; }
-.quiz-stats-btn { border-color: rgba(74,158,221,0.4) !important; color: var(--sky) !important; }
-.quiz-stats-btn:hover { background: rgba(74,158,221,0.08) !important; border-color: var(--sky) !important; }
 #statsPanel { display: none; margin-top: 1.25rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-card); padding: 1.5rem 1.75rem; }
 .quiz-stat-total { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.25rem; }
 .quiz-stat-row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
@@ -1530,7 +1528,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('quiz-questions').style.display = 'block';
     document.getElementById('quiz-result').style.display = 'none';
     document.getElementById('statsPanel').style.display = 'none';
-    document.getElementById('viewStatsBtn').textContent = '◎ View stats';
+    document.getElementById('viewStatsBtn').innerHTML = '<svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" style="vertical-align:-1px;margin-right:5px"><rect x="0" y="7" width="3" height="5" rx="0.5"/><rect x="4.5" y="4" width="3" height="8" rx="0.5"/><rect x="9" y="1" width="3" height="11" rx="0.5"/></svg>View stats';
     updateProgress(0);
   });
 
@@ -1586,12 +1584,12 @@ document.getElementById('viewStatsBtn').addEventListener('click', function() {
   var panel = document.getElementById('statsPanel');
   if (panel.style.display === 'block') {
     panel.style.display = 'none';
-    this.textContent = '◎ View stats';
+    this.innerHTML = '<svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" style="vertical-align:-1px;margin-right:5px"><rect x="0" y="7" width="3" height="5" rx="0.5"/><rect x="4.5" y="4" width="3" height="8" rx="0.5"/><rect x="9" y="1" width="3" height="11" rx="0.5"/></svg>View stats';
     return;
   }
   panel.innerHTML = '<div class="quiz-stat-loading">Loading…</div>';
   panel.style.display = 'block';
-  this.textContent = '✕ Hide stats';
+  this.textContent = '✕  Hide stats';
   _db.ref('quiz-stats').once('value').then(function(snap) {
     var data = snap.val() || { total: 0, a: 0, b: 0, c: 0, d: 0 };
     var total = data.total || 0;
