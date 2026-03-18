@@ -2051,7 +2051,7 @@ function openAllStudies() {
     clicks++;
     if (clicks % 5 === 0) {
       setBadge(phrases[5]);
-      setTimeout(function() { setBadge(phrases[0]); }, 1200);
+      setTimeout(function() { setBadge(phrases[0]); }, 5000);
     } else {
       setBadge(phrases[clicks % 5]);
     }
