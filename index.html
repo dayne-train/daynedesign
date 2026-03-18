@@ -1219,7 +1219,7 @@
 .quiz-fish-desc {
   font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 1.25rem;
 }
-.quiz-fish-traits { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.quiz-fish-traits { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
 .quiz-trait {
   font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em;
   text-transform: uppercase; padding: 0.3rem 0.85rem;
@@ -1272,16 +1272,16 @@ document.addEventListener('DOMContentLoaded', function() {
       traits: ['High energy', 'Quick to act', 'Adaptable', 'Born optimist']
     },
     b: {
-      name: 'Steelhead',
-      latin: 'Oncorhynchus mykiss irideus',
-      img: 'https://upload.wikimedia.org/wikipedia/commons/1/10/Man_holding_a_steelhead_%28Oncorhynchus_mykiss%29_cropped.jpg',
-      desc: `Rare, patient, and worth the wait. You go deep where others stay shallow, and you come back with something nobody else found. You don't need to be the loudest in the room. You just need to be right.`,
-      traits: ['Independent', 'Quietly confident', 'Loves the deep end', 'Hard to rattle']
+      name: 'Brook Trout',
+      latin: 'Salvelinus fontinalis',
+      img: 'https://inaturalist-open-data.s3.amazonaws.com/photos/244460087/large.jpg',
+      desc: `You notice things others walk right past. The details, the craft, the thing that separates genuinely good from just good enough. You work best in clean, distraction-free environments and have quietly high standards for what earns your attention. People don't always see it coming, but they always notice the output.`,
+      traits: ['Detail-oriented', 'Craftsperson', 'Hard to impress', 'Quietly intense']
     },
     c: {
       name: 'Cutthroat Trout',
       latin: 'Oncorhynchus clarkii',
-      img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Trout_cutthroat_fish_oncorhynchus_clarkii_clarkii.jpg/960px-Trout_cutthroat_fish_oncorhynchus_clarkii_clarkii.jpg',
+      img: 'https://inaturalist-open-data.s3.amazonaws.com/photos/435965189/large.jpeg',
       desc: `The one everybody wants on the trip. You make the people around you better without even trying. Warm, sharp, and always good for a laugh, you're the reason a room has energy. People follow you because they want to, not because they have to.`,
       traits: ['Natural connector', 'High EQ', 'Brings the fun', 'Genuinely caring']
     },
@@ -1391,7 +1391,7 @@ if (QUIZ_STATS_ENABLED) {
       s2.onload = function() {
         firebase.initializeApp(firebaseConfig);
         _db = firebase.database();
-        document.getElementById('viewStatsBtn').style.display = 'inline-block';
+        document.getElementById('viewStatsBtn').style.display = 'inline-flex';
       };
       document.head.appendChild(s2);
     };
@@ -1414,16 +1414,16 @@ document.getElementById('viewStatsBtn').addEventListener('click', function() {
   var panel = document.getElementById('statsPanel');
   if (panel.style.display === 'block') {
     panel.style.display = 'none';
-    this.innerHTML = '<svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" style="vertical-align:-1px;margin-right:8px"><rect x="0" y="7" width="3" height="5" rx="0.5"/><rect x="4.5" y="4" width="3" height="8" rx="0.5"/><rect x="9" y="1" width="3" height="11" rx="0.5"/></svg>View stats';
+    this.innerHTML = '<svg viewBox="0 0 12 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="0.5"/><rect x="4.5" y="4" width="3" height="8" rx="0.5"/><rect x="9" y="1" width="3" height="11" rx="0.5"/></svg>View stats';
     return;
   }
   panel.innerHTML = '<div class="quiz-stat-loading">Loading…</div>';
   panel.style.display = 'block';
-  this.innerHTML = '<svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="vertical-align:-1px;margin-right:8px"><line x1="2" y1="2" x2="10" y2="10"/><line x1="10" y1="2" x2="2" y2="10"/></svg>Hide stats';
+  this.innerHTML = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="2" x2="10" y2="10"/><line x1="10" y1="2" x2="2" y2="10"/></svg>Hide stats';
   _db.ref('quiz-stats').once('value').then(function(snap) {
     var data = snap.val() || { total: 0, a: 0, b: 0, c: 0, d: 0 };
     var total = data.total || 0;
-    var names = { a: 'Rainbow Trout', b: 'Steelhead', c: 'Cutthroat Trout', d: 'Brown Trout' };
+    var names = { a: 'Rainbow Trout', b: 'Brook Trout', c: 'Cutthroat Trout', d: 'Brown Trout' };
     var html = '<div class="quiz-stat-total">' + (total).toLocaleString() + ' people have taken this quiz</div><div class="quiz-stat-grid">';
     ['a', 'b', 'c', 'd'].forEach(function(key) {
       var count = data[key] || 0;
