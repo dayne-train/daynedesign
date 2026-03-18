@@ -54,16 +54,6 @@
 .meta-value small { display: block; font-size: 0.8rem; color: var(--muted); font-weight: 400; }
 
 
-/* hero image */
-.hero-img-wrap {
-  margin: 0 -5rem;
-  margin-top: 2rem;
-  overflow: hidden;
-  height: 680px;
-  position: relative;
-}
-.hero-img-wrap img { width: 100vw; height: 100vh; object-fit: cover; object-position: center 38%; display: block; }
-
 /* impact overlay */
 .impact-bar {
   position: absolute;
@@ -266,7 +256,6 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 960px) {
   .study-hero { padding: 4rem 2rem 0; }
-  .hero-img-wrap { margin: 0 -2rem; max-height: 480px; }
   .impact-pill { padding: 1rem 1.25rem; }
   .impact-num { font-size: 1.4rem; }
   .study-body { grid-template-columns: 1fr; padding: 3rem 2rem; gap: 0; }
@@ -282,6 +271,9 @@
   .results-grid { grid-template-columns: 1fr; }
 }
 
+@media (min-width: 961px) {
+  .hero-img-wrap img { object-position: center 25%; }
+}
 
 </style>
 </head>
@@ -351,6 +343,7 @@
 
   <!-- Hero image + impact overlay -->
   <div class="hero-img-wrap hero-animate">
+    <div class="hero-loader"><div class="hero-spinner"></div><span class="hero-loader-text"></span></div>
     <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/pro-hero.png?fit=1568%2C1045&ssl=1" alt="Lessen Pro hero">
     <div class="impact-bar">
       <div class="impact-pill">
@@ -620,6 +613,27 @@
 </div>
 
 <script>
+// Hero image loader
+(function() {
+  var msgs = [
+    'Loading awesomeness...',
+    'Fetching pixels...',
+    'Rendering the good stuff...',
+    'Almost there...',
+    'Cooking something nice...',
+    'Worth the wait, promise.'
+  ];
+  var wrap = document.querySelector('.hero-img-wrap');
+  var img = wrap && wrap.querySelector('img');
+  var text = wrap && wrap.querySelector('.hero-loader-text');
+  if (!wrap || !img) return;
+  if (text) text.textContent = msgs[Math.floor(Math.random() * msgs.length)];
+  function markLoaded() { wrap.classList.add('loaded'); }
+  if (img.complete && img.naturalWidth > 0) { markLoaded(); return; }
+  img.addEventListener('load', markLoaded);
+  img.addEventListener('error', markLoaded);
+})();
+
 // Image skeleton loader
 document.querySelectorAll('.study-img').forEach(function(img) {
   if (img.complete && img.naturalWidth > 0) return;
