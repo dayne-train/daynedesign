@@ -1922,6 +1922,10 @@ function openAllStudies() {
 
   function updateDots() {
     dotsWrap.querySelectorAll('.quote-dot').forEach((d, i) => {
+      if (i !== current) {
+        const fill = d.querySelector('.quote-dot-fill');
+        if (fill) { fill.style.transition = 'none'; fill.style.width = '0%'; }
+      }
       d.classList.toggle('active', i === current);
     });
   }
@@ -1973,7 +1977,7 @@ function openAllStudies() {
     current = (idx + total) % total;
     track.style.transform = 'translateX(-' + (current * 100) + '%)';
     updateDots();
-    startBar(INTERVAL);
+    requestAnimationFrame(() => startBar(INTERVAL));
   }
 
   function next() { goTo(current + 1); }
