@@ -164,7 +164,7 @@
 
 /* ── PRINCIPLES ── */
 .principles {
-  padding: 7rem 5rem;
+  padding: 7rem max(5rem, calc(50vw - 960px));
   background: var(--off);
   display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start;
 }
@@ -180,7 +180,7 @@
 .principle-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
 
 /* ── CASE STUDIES ── */
-.studies { padding: 7rem 5rem; background: var(--white); }
+.studies { padding: 7rem max(5rem, calc(50vw - 960px)); background: var(--white); }
 .studies-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; }
 .studies-count { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 
@@ -188,13 +188,13 @@
 .studies-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: clamp(300px, 38vw, 540px);
   gap: 16px;
 }
 
 .study-card {
   position: relative; overflow: hidden; cursor: pointer; text-decoration: none;
   background: #e8edf2;
-  aspect-ratio: 3/4;
   display: flex; flex-direction: column; justify-content: flex-end;
   border-radius: var(--radius-card);
   border: 1.5px solid var(--stone);
@@ -271,7 +271,7 @@
 
 /* ── EXPERIENCE ── */
 .exp-strip {
-  padding: 7rem 5rem;
+  padding: 7rem max(5rem, calc(50vw - 960px));
   background: var(--ink);
   color: white;
   display: grid; grid-template-columns: 1fr 2fr; gap: 5rem;
@@ -383,7 +383,7 @@
 
 /* ── SKILLS ── */
 .skills-section {
-  padding: 7rem 5rem;
+  padding: 7rem max(5rem, calc(50vw - 960px));
   background: var(--off);
   display: grid; grid-template-columns: 420px 1fr; gap: 5rem; align-items: center;
   min-width: 0; overflow: hidden;
@@ -458,7 +458,7 @@
 
 /* ── INTERACTIVE SECTION ── */
 .interactive-section {
-  padding: 8rem 5rem;
+  padding: 8rem max(5rem, calc(50vw - 960px));
   background: var(--ink);
   color: white; text-align: center; overflow: hidden; position: relative;
 }
@@ -476,7 +476,7 @@
 
 /* ── CONTACT ── */
 .contact-section {
-  padding: 8rem 5rem;
+  padding: 8rem max(5rem, calc(50vw - 960px));
   background: var(--white);
   display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
 }
@@ -513,7 +513,6 @@
 }
 @media (max-width: 600px) {
   .studies-grid { grid-template-columns: 1fr; }
-  .study-card { aspect-ratio: 3/2; }
   .quote-card { padding: 1.4rem; }
   .quote-text { font-size: 0.9rem; }
   .quote-card::before { font-size: 5rem; top: -0.3rem; left: 1rem; }
