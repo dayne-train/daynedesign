@@ -1846,16 +1846,16 @@ function openAllStudies() {
 
   function next() { goTo(current + 1); }
 
-  // Hover pause (desktop) — freeze bar + show badge, resume on leave
-  const carousel = document.getElementById('quoteCarousel');
-  carousel.addEventListener('mouseenter', () => {
+  // Hover pause (desktop) — only the card track area, not the dots row
+  const cardArea = document.querySelector('#quoteCarousel .quote-track-outer');
+  cardArea.addEventListener('mouseenter', () => {
     if (paused) return;
     hovered = true;
     clearTimeout(timer);
     freezeBar();
     showBadge(PAUSE_SVG, true);
   });
-  carousel.addEventListener('mouseleave', () => {
+  cardArea.addEventListener('mouseleave', () => {
     if (paused) return;
     hovered = false;
     hideBadge();
