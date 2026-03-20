@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design Sprint – Dayne Petera</title>
-<meta name="description" content="A 5-day Google Ventures Design Sprint to answer the question: how do you engage the disengaged learner?">
-<meta property="og:title" content="Design Sprint – Dayne Petera">
-<meta property="og:description" content="A 5-day Google Ventures Design Sprint to answer the question: how do you engage the disengaged learner?">
-<meta property="og:image" content="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/sprint1.png?fit=1200,630&ssl=1">
-<meta property="og:url" content="https://dayne.design/sprint-case-study.html">
+<title>Vlogger App – Dayne Petera</title>
+<meta name="description" content="A 24-hour hackathon app that puts a human face on online teaching, helping students know their teacher is a real person, not just a name on a screen.">
+<meta property="og:title" content="Vlogger App – Dayne Petera">
+<meta property="og:description" content="A 24-hour hackathon app that puts a human face on online teaching, helping students know their teacher is a real person, not just a name on a screen.">
+<meta property="og:image" content="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_4.png?fit=1200,630&ssl=1">
+<meta property="og:url" content="https://dayne.design/vlogger.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Design Sprint – Dayne Petera">
-<meta name="twitter:description" content="A 5-day Google Ventures Design Sprint to answer the question: how do you engage the disengaged learner?">
-<meta name="twitter:image" content="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/sprint1.png?fit=1200,630&ssl=1">
-<link rel="canonical" href="https://dayne.design/sprint-case-study.html">
+<meta name="twitter:title" content="Vlogger App – Dayne Petera">
+<meta name="twitter:description" content="A 24-hour hackathon app that puts a human face on online teaching, helping students know their teacher is a real person, not just a name on a screen.">
+<meta name="twitter:image" content="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_4.png?fit=1200,630&ssl=1">
+<link rel="canonical" href="https://dayne.design/vlogger.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -57,6 +57,11 @@
 .img-caption{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--slate);text-align:center;margin-top:-0.8rem;margin-bottom:1.5rem;}
 .img-2col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
 .img-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin:1.5rem 0;}
+.results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0;}
+.result-card{background:var(--white);border:1px solid var(--stone);border-radius:var(--radius-card);padding:1.5rem;transition:border-color 0.2s,transform 0.2s;}
+.result-card:hover{border-color:var(--sky);transform:translateY(-2px);}
+.result-num{font-family:var(--serif);font-size:2.5rem;font-weight:900;color:var(--sky);line-height:1;margin-bottom:0.4rem;}
+.result-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
 .learning-list{list-style:none;margin:1rem 0;}
 .learning-list li{display:flex;align-items:flex-start;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(200,212,220,0.4);font-size:0.95rem;color:var(--muted);line-height:1.7;}
 .learning-list li:last-child{border-bottom:none;}
@@ -69,33 +74,24 @@
 .toc-link.active{color:var(--sky-mid);border-left-color:var(--sky);font-weight:500;}
 .toc-progress{height:2px;background:var(--stone);border-radius:1px;margin-bottom:1.2rem;overflow:hidden;}
 .toc-progress-fill{height:100%;background:var(--sky);border-radius:1px;width:0%;transition:width 0.1s;}
-/* sprint day badges */
-.day-badge{display:inline-block;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--ink);color:white;padding:0.25rem 0.75rem;border-radius:var(--radius);margin-bottom:0.8rem;}
-@media(max-width:960px){
-  .study-hero{padding:4rem 2rem 0;}
-  .study-body{grid-template-columns:1fr;padding:3rem 2rem;gap:0;}
-  .study-toc{display:none;}
-  footer{padding:2rem;flex-direction:column;text-align:center;}
-  .img-3col{grid-template-columns:1fr;}
-}
-@media(max-width:600px){.study-meta{gap:1.5rem;}.img-2col{grid-template-columns:1fr;}}
+@media(max-width:960px){.study-hero{padding:4rem 2rem 0;}.study-body{grid-template-columns:1fr;padding:3rem 2rem;gap:0;}.study-toc{display:none;}footer{padding:2rem;flex-direction:column;text-align:center;}.img-3col{grid-template-columns:1fr;}.results-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.study-meta{gap:1.5rem;}.img-2col{grid-template-columns:1fr;}.results-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
-
 <nav id="mainNav">
   <a class="nav-logo" href="index.html"><img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/dp_logo_overlap.png" alt="Dayne Petera" class="nav-logo-img">Dayne Petera</a>
   <ul class="nav-links">
     <li class="nav-work-wrap">
       <button class="nav-work-btn" id="workDropBtn" aria-expanded="false">Work <span class="nav-work-chevron">▾</span></button>
       <div class="nav-work-panel" id="workDropPanel">
-        <a class="nav-work-item" href="hris-sync-case-study.html">HRIS Sync</a>
-        <a class="nav-work-item" href="lessen-pro-case-study.html">Lessen Pro</a>
-        <a class="nav-work-item" href="veho-case-study.html">Exception Handling</a>
-        <a class="nav-work-item" href="software-tools-case-study.html">Software &amp; Tools</a>
-        <a class="nav-work-item" href="rivet-case-study.html">Rivet</a>
-        <a class="nav-work-item" href="strongmind-case-study.html">StrongMind App</a>
+        <a class="nav-work-item" href="hris-sync.html">HRIS Sync</a>
+        <a class="nav-work-item" href="lessen-pro.html">Lessen Pro</a>
+        <a class="nav-work-item" href="veho.html">Exception Handling</a>
+        <a class="nav-work-item" href="software-tools.html">Software &amp; Tools</a>
+        <a class="nav-work-item" href="rivet.html">Rivet</a>
+        <a class="nav-work-item" href="strongmind.html">StrongMind App</a>
         <div class="nav-work-divider"></div>
         <a class="nav-work-all" href="index.html#studies">Go to case studies</a>
       </div>
@@ -108,146 +104,84 @@
 </nav>
 
 <section class="study-hero">
-  <div class="hero-animate"><a class="study-back" href="index.html#studies"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L6 8l4 5"/></svg>All Work</a></div>
+  <a class="study-back" href="index.html#studies"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L6 8l4 5"/></svg>All Work</a>
   <div class="hero-animate">
-    <div class="study-label">Design Discovery · StrongMind</div>
-    <h1 class="study-title">SPRINT</h1>
-    <p class="study-tagline">A 5-day Google Ventures Design Sprint to answer the question: how do you engage the disengaged learner?</p>
+    <div class="study-label">Project Showcase &middot; StrongMind Hackathon</div>
+    <h1 class="study-title">Vlogger</h1>
+    <p class="study-tagline">A 24-hour hackathon app that puts a human face on online teaching, helping students know their teacher is a real person, not just a name on a screen.</p>
   </div>
   <div class="study-meta hero-animate">
-    <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">UX Designer<small>Facilitation · Research · Prototyping</small></div></div>
-    <div class="meta-item"><div class="meta-label">Company</div><div class="meta-value">StrongMind<small>In-house · EdTech</small></div></div>
-    <div class="meta-item"><div class="meta-label">Format</div><div class="meta-value">5-Day Sprint<small>Google Ventures Methodology</small></div></div>
-    <div class="meta-item"><div class="meta-label">Tools</div><div class="meta-value">Balsamiq · Whiteboard<small>User Interviews · Dot Voting</small></div></div>
+    <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">UX / UI Designer<small>Research &middot; Visual Design</small></div></div>
+    <div class="meta-item"><div class="meta-label">Company</div><div class="meta-value">StrongMind<small>Internal Hackathon</small></div></div>
+    <div class="meta-item"><div class="meta-label">Platform</div><div class="meta-value">Mobile &middot; iOS<small>Ionic Framework</small></div></div>
+    <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">24 Hours<small>Company Hackathon</small></div></div>
   </div>
   <div class="hero-img-wrap hero-animate">
     <div class="hero-loader"><div class="hero-spinner"></div><span class="hero-loader-text"></span></div>
-    <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/sprint1.png" alt="Design Sprint">
+    <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_4.png" alt="Vlogger App">
   </div>
 </section>
 
 <div class="study-body" id="main-content">
   <main class="study-content">
-
     <section class="content-section animate" id="about">
       <div class="section-eyebrow">Background</div>
-      <h2 class="section-heading">From idea to <em>validated prototype</em> in 5 days</h2>
-      <p class="body-text">A Design Sprint is a five-day process for answering critical business questions through design, prototyping, and testing with real customers, a process coined by Google Ventures. StrongMind was developing a new product and needed to rapidly validate a central question: <strong>how do you engage the disengaged learner?</strong></p>
-      <div class="callout"><p>I have never seen something go from idea to execution as quickly as I have within a design sprint.</p></div>
+      <h2 class="section-heading">Humanizing the <em>teacher</em></h2>
+      <p class="body-text">Teachers have a difficult job. Even more so when they never physically meet their students. Students log on and do their work, seeing words typed by a faceless "Mrs. Thompson." <strong>Wouldn't it be great to add a face to a name? To add emotions and reality behind knowing who your teacher is?</strong></p>
+      <p class="body-text">That was the core goal of Vlogger: help students know their teacher isn't just another person, but another human being. The result: higher student ownership, retention, and engagement.</p>
+      <div class="callout"><p><strong>Hypothesis:</strong> Students who feel a human connection to their teacher will demonstrate stronger ownership of their school work, raising retention rates and grades.</p></div>
       <div class="tool-grid">
-        <span class="tool-chip">Design Sprint</span>
-        <span class="tool-chip">Balsamiq</span>
-        <span class="tool-chip">User Interviews</span>
-        <span class="tool-chip">Dot Voting</span>
-        <span class="tool-chip">Affinity Mapping</span>
-        <span class="tool-chip">Prototyping</span>
+        <span class="tool-chip">Ionic Framework</span>
+        <span class="tool-chip">Mobile UI Design</span>
+        <span class="tool-chip">Video Streaming</span>
+        <span class="tool-chip">Hackathon</span>
       </div>
     </section>
-
     <hr class="content-divider">
-
-    <section class="content-section animate" id="day1">
-      <div class="section-eyebrow">Day 1</div>
-      <h2 class="section-heading">Framing the problem with <em>How Might We's</em></h2>
-      <p class="body-text">The whole group, designers, developers, marketers, and leadership, wrote "How Might We" statements and affinity mapped them into categories. This collaborative framing exercise surfaced hundreds of potential questions and problems and set a shared focus for the week.</p>
-      <div class="img-3col">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/failure-areas.jpg" alt="Failure areas" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/goals.jpg" alt="Goals" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/goals-failures-hmws-target.jpg" alt="Goals, failures, HMWs" class="study-img" style="margin:0">
-      </div>
+    <section class="content-section animate" id="process">
+      <div class="section-eyebrow">Process</div>
+      <h2 class="section-heading">Idea to screens in <em>seven hours</em></h2>
+      <p class="body-text">The project kicked off with an hour-long session bringing together Product Development, Marketing, and the CEO to align on product vision and expectations. After whiteboard brainstorming, engineers started the Ionic framework foundation while I designed the screens, 7 hours from whiteboard sketches and market research to the UI you see here.</p>
+      <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_4.png" alt="Vlogger dashboard" class="study-img">
+      <p class="img-caption">Vlogger's dashboard, where students find their teacher's latest videos</p>
+      <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_1.png" alt="Vlogger teacher info" class="study-img">
+      <p class="img-caption">Easy-to-access teacher info and video content that facilitates learning and discussion</p>
+    </section>
+    <hr class="content-divider">
+    <section class="content-section animate" id="features">
+      <div class="section-eyebrow">Features</div>
+      <h2 class="section-heading">What shipped in <em>24 hours</em></h2>
+      <ul class="study-list">
+        <li>Dashboard with full menu functionality</li>
+        <li>Teacher video uploading and viewing</li>
+        <li>Dashboard updating dynamically on video upload</li>
+        <li>Live stream functionality</li>
+        <li>Mobile-first responsive layout</li>
+      </ul>
       <div class="img-2col">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/img_1023.jpg" alt="Sprint session" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/affinity-mapped.jpg" alt="Affinity mapped" class="study-img" style="margin:0">
+        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_2.png" alt="Vlogger flow" class="study-img" style="margin:0">
+        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_3.png" alt="Vlogger detail" class="study-img" style="margin:0">
       </div>
-      <p class="img-caption">How Might We's written by the whole group and affinity mapped to categories</p>
+      <p class="img-caption">Complete experience flow and nuanced power of the teacher profile in detail</p>
     </section>
-
     <hr class="content-divider">
-
-    <section class="content-section animate" id="day2">
-      <div class="section-eyebrow">Day 2</div>
-      <h2 class="section-heading">User research and <em>market inspiration</em></h2>
-      <p class="body-text">Day two focused on interviewing users, gathering data, and drawing inspiration from existing solutions in the market. We explored what we wanted students to feel, what teachers currently do, and what comparable experiences existed elsewhere.</p>
-      <div class="img-2col">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/what-we-want-students-to-feel.jpg" alt="What we want students to feel" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/what-teacher-currently-does.jpg" alt="What teacher currently does" class="study-img" style="margin:0">
-      </div>
-      <div class="img-2col">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/sites.jpg" alt="Competitive sites" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/sites2.jpg" alt="Competitive sites continued" class="study-img" style="margin:0">
-      </div>
-      <p class="img-caption">User and market research, inspiration gathering, and initial design exploration</p>
-    </section>
-
-    <hr class="content-divider">
-
-    <section class="content-section animate" id="day3">
-      <div class="section-eyebrow">Day 3</div>
-      <h2 class="section-heading">Everyone designs, <em>dot voting decides</em></h2>
-      <p class="body-text">One of the most powerful aspects of the sprint: everyone from designers to developers to managers sketched solutions. No one's ideas were off limits. Specific elements were then dot voted on, and the winning pieces were compiled into a composite direction for the prototype.</p>
-      <div class="img-3col">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/img_1036.jpg" alt="Design sketches" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/img_1037.jpg" alt="Design sketches" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/img_1038.jpg" alt="Design sketches" class="study-img" style="margin:0">
-      </div>
-      <div class="img-2col">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/img_1041.jpg" alt="More sketches" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/img_1040.jpg" alt="More sketches" class="study-img" style="margin:0">
-      </div>
-      <p class="img-caption">Cross-functional design solutions with dot voting to identify winning elements</p>
-    </section>
-
-    <hr class="content-divider">
-
-    <section class="content-section animate" id="day4">
-      <div class="section-eyebrow">Day 4</div>
-      <h2 class="section-heading">Rapid prototyping with <em>Balsamiq</em></h2>
-      <p class="body-text">Voted elements were pulled together into an initial design and rapidly translated into a clickable prototype using Balsamiq. The goal wasn't polish; it was something real enough to test with users the following day.</p>
-      <div class="img-2col">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/img_1053.jpg" alt="Prototype planning" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/prortyping.jpg" alt="Prototyping" class="study-img" style="margin:0">
-      </div>
-      <p class="img-caption">Elements from dot voting taken to create an initial design, then built rapidly in Balsamiq</p>
-    </section>
-
-    <hr class="content-divider">
-
-    <section class="content-section animate" id="day5">
-      <div class="section-eyebrow">Day 5</div>
-      <h2 class="section-heading">Testing with <em>real users</em></h2>
-      <p class="body-text">The final day was all observation. We ran the prototype with live users and recorded trends, both positive and negative, into an actionable list of findings. Seeing real users interact with something built in four days was both humbling and invaluable.</p>
-      <div class="img-3col">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/first-run.jpg" alt="User testing" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/testing.jpg" alt="Observation session" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/img_1062.jpg" alt="Testing notes" class="study-img" style="margin:0">
-      </div>
-      <p class="img-caption">Observations combined into trends ranging from positive to negative net results</p>
-    </section>
-
-    <hr class="content-divider">
-
     <section class="content-section animate" id="reflection">
       <div class="section-eyebrow">Reflection</div>
       <h2 class="section-heading">What I <em>learned</em></h2>
-      <p class="body-text">This sprint was fruitful; we discovered a large problem, rallied around it, and created an amazing array of solutions in days rather than months.</p>
       <ul class="learning-list">
-        <li><span class="learning-num">1</span>Cross-functional participation produces better ideas. When developers and managers sketch alongside designers, the range of solutions is richer and buys broader buy-in.</li>
-        <li><span class="learning-num">2</span>Constraints breed creativity. The five-day time box forced decisions that would otherwise drag on for weeks in a traditional process.</li>
-        <li><span class="learning-num">3</span>Even a rough prototype teaches you things a whiteboard never can. Watching users navigate something tangible surfaces issues that no amount of internal debate will find.</li>
+        <li><span class="learning-num">1</span>Speed doesn't mean sloppy. Constraints forced sharp decisions about what mattered most; the result was a focused, coherent product rather than a bloated one.</li>
+        <li><span class="learning-num">2</span>A clear emotional problem makes design faster. When you know exactly what feeling you're designing for (connection, humanity), decisions snap into place.</li>
+        <li><span class="learning-num">3</span>Hackathons are one of the best forcing functions for cross-functional collaboration. Walls between roles dissolve when everyone is building something together under pressure.</li>
       </ul>
     </section>
-
   </main>
   <aside class="study-toc">
     <div class="toc-progress"><div class="toc-progress-fill" id="tocProgress"></div></div>
     <div class="toc-label">On this page</div>
     <ul class="toc-list">
       <li><a class="toc-link" href="#about">Background</a></li>
-      <li><a class="toc-link" href="#day1">Day 1</a></li>
-      <li><a class="toc-link" href="#day2">Day 2</a></li>
-      <li><a class="toc-link" href="#day3">Day 3</a></li>
-      <li><a class="toc-link" href="#day4">Day 4</a></li>
-      <li><a class="toc-link" href="#day5">Day 5</a></li>
+      <li><a class="toc-link" href="#process">Process</a></li>
+      <li><a class="toc-link" href="#features">Features</a></li>
       <li><a class="toc-link" href="#reflection">Reflection</a></li>
     </ul>
   </aside>
@@ -447,12 +381,12 @@ window.addEventListener('DOMContentLoaded', function() {
   <div>
   <button class="mobile-work-btn" id="mobileWorkBtn" aria-expanded="false">Work <span class="mobile-work-chevron">▾</span></button>
   <div class="mobile-work-sub" id="mobileWorkSub">
-    <a class="mobile-work-sub-link" href="hris-sync-case-study.html">HRIS Sync</a>
-    <a class="mobile-work-sub-link" href="lessen-pro-case-study.html">Lessen Pro</a>
-    <a class="mobile-work-sub-link" href="veho-case-study.html">Exception Handling</a>
-    <a class="mobile-work-sub-link" href="software-tools-case-study.html">Software &amp; Tools</a>
-    <a class="mobile-work-sub-link" href="rivet-case-study.html">Rivet</a>
-    <a class="mobile-work-sub-link" href="strongmind-case-study.html">StrongMind App</a>
+    <a class="mobile-work-sub-link" href="hris-sync.html">HRIS Sync</a>
+    <a class="mobile-work-sub-link" href="lessen-pro.html">Lessen Pro</a>
+    <a class="mobile-work-sub-link" href="veho.html">Exception Handling</a>
+    <a class="mobile-work-sub-link" href="software-tools.html">Software &amp; Tools</a>
+    <a class="mobile-work-sub-link" href="rivet.html">Rivet</a>
+    <a class="mobile-work-sub-link" href="strongmind.html">StrongMind App</a>
     <a class="mobile-work-sub-link mobile-work-see-all" href="index.html#studies">Go to case studies</a>
   </div>
   </div>
