@@ -2358,13 +2358,13 @@ function triggerGalaga() {
     'Something is about to happen...',
     'Ok. You asked for it.',
   ];
-  var clicks = 0, resetTimer = null;
+  var clicks = 0, resetTimer = null, scrolledPast = false;
   function setBadge(text) {
     badge.innerHTML = '<span class="hero-badge-dot"></span>' + text;
   }
   function resetBadge() {
     clicks = 0;
-    setBadge(phrases[0]);
+    setBadge(scrolledPast ? 'Wait, where are you going?' : phrases[0]);
     resetTimer = null;
   }
   function armTimer() {
@@ -2390,6 +2390,27 @@ function triggerGalaga() {
     if (text) setBadge(text);
     armTimer();
   });
+  /* scroll hook — "almost past it" = badge bottom within 60px of viewport top */
+  var returnTimer = null;
+  window.addEventListener('scroll', function() {
+    var rect = badge.getBoundingClientRect();
+    var past = rect.bottom < 60;
+    if (past !== scrolledPast) {
+      scrolledPast = past;
+      if (past) {
+        if (returnTimer) { clearTimeout(returnTimer); returnTimer = null; }
+        if (resetTimer) { clearTimeout(resetTimer); resetTimer = null; }
+        clicks = 0;
+        setBadge('Wait, where are you going?');
+      } else if (clicks === 0) {
+        setBadge('Hello there!');
+        returnTimer = setTimeout(function() {
+          if (clicks === 0) setBadge(phrases[0]);
+          returnTimer = null;
+        }, 3000);
+      }
+    }
+  }, { passive: true });
 })();
 
 </script>
