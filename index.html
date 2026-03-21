@@ -222,7 +222,7 @@
   position: absolute; inset: 0;
   border-radius: var(--radius-card);
   background-size: cover; background-position: center;
-  opacity: 0.4;
+  opacity: 0.55;
   transition: opacity 0.4s ease, transform 0.55s ease;
 }
 .study-card:hover .study-card-bg {
@@ -241,14 +241,17 @@
 }
 .study-card:hover::after { opacity: 1; }
 .study-card-info {
-  position: relative; z-index: 2; padding: 1.6rem;
-  background: linear-gradient(to top, rgba(20,36,52,0.95) 0%, rgba(20,36,52,0.5) 65%, transparent 100%);
-  color: white;
+  position: relative; z-index: 2; padding: 1.4rem 1.6rem 1.6rem;
+  background: rgba(245, 249, 252, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255,255,255,0.6);
+  color: var(--ink);
   border-radius: 0 0 var(--radius-card) var(--radius-card);
 }
-.study-platform { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 0.35rem; }
-.study-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.35rem; line-height: 1.2; }
-.study-desc { font-size: 0.8rem; color: rgba(255,255,255,0.65); line-height: 1.5; }
+.study-platform { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+.study-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.35rem; line-height: 1.2; color: var(--ink); }
+.study-desc { font-size: 0.8rem; color: var(--slate); line-height: 1.5; }
 .study-chip {
   display: inline-flex; margin-top: 0.75rem;
   font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em;
@@ -261,6 +264,8 @@
 .study-chip svg { width: 1.1em; height: 1.1em; flex-shrink: 0; }
 
 /* extra cards */
+.study-card.batch2 { display: none; }
+.study-card.batch2.shown { display: flex; }
 .study-card.extra { display: none; }
 .study-card.extra.shown { display: flex; }
 .show-more-row { display: flex; justify-content: center; margin-top: 2.5rem; gap: 1rem; }
@@ -532,7 +537,7 @@
   .principles-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
-  .studies-grid { grid-template-columns: 1fr; }
+  .studies-grid { grid-template-columns: 1fr; grid-auto-rows: 420px; }
   .quote-card { padding: 1.4rem; }
   .quote-text { font-size: 0.9rem; }
   .quote-card::before { font-size: 5rem; top: -0.3rem; left: 1rem; }
@@ -638,10 +643,10 @@
 <section class="studies" id="studies">
   <div class="studies-header reveal">
     <div>
-      <div class="section-label">Selected work</div>
-      <h2 class="section-title">Case Studies</h2>
+      <div class="section-label">Case Studies &amp; Features</div>
+      <h2 class="section-title">Selected Works</h2>
     </div>
-    <div class="studies-count" id="studiesCount">Showing 6 of 14</div>
+    <div class="studies-count" id="studiesCount">Showing 3 of 14</div>
   </div>
 
   <div class="studies-grid reveal-stagger" id="studiesGrid">
@@ -676,7 +681,7 @@
       </div>
     </a>
 
-    <a class="study-card c-sw" href="software-tools.html">
+    <a class="study-card c-sw batch2" href="software-tools.html">
       <div class="study-card-bg"></div>
       <div class="study-card-info">
         <div class="study-platform">Trainual · Web &amp; Desktop</div>
@@ -686,7 +691,7 @@
       </div>
     </a>
 
-    <a class="study-card c-rivet" href="rivet.html">
+    <a class="study-card c-rivet batch2" href="rivet.html">
       <div class="study-card-bg"></div>
       <div class="study-card-info">
         <div class="study-platform">Lessen · Design System</div>
@@ -696,7 +701,7 @@
       </div>
     </a>
 
-    <a class="study-card c-sm" href="strongmind.html">
+    <a class="study-card c-sm batch2" href="strongmind.html">
       <div class="study-card-bg"></div>
       <div class="study-card-info">
         <div class="study-platform">StrongMind · iOS &amp; Android</div>
@@ -790,7 +795,9 @@
   </div>
 
   <div class="show-more-row reveal">
-    <button class="btn btn-outline" id="showMoreBtn" onclick="toggleStudies()">See all studies <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v10M4 8l4 4 4-4"/></svg></button>
+    <button class="btn btn-outline" id="showLessBtn" onclick="studiesCollapse()" style="display:none">Show less <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M3 8h10"/></svg></button>
+    <button class="btn btn-outline" id="showMoreBtn" onclick="studiesMore()">Show more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></button>
+    <button class="btn btn-outline" id="showAllBtn" onclick="studiesAll()" style="display:none">Show all <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg></button>
   </div>
 </section>
 
@@ -1726,33 +1733,72 @@ function toggleRow(id) {
   if (!isOpen) row.classList.add('open');
 }
 
-/* Show more studies */
-let expanded = false;
-function toggleStudies() {
-  expanded = !expanded;
-  const extras = document.querySelectorAll('.study-card.extra');
-  const btn = document.getElementById('showMoreBtn');
-  document.getElementById('studiesCount').textContent = expanded ? 'Showing 14 of 14' : 'Showing 6 of 14';
-  btn.innerHTML = expanded
-    ? 'Show less <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14V4M4 8l4-4 4 4"/></svg>'
-    : 'See all studies <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v10M4 8l4 4 4-4"/></svg>';
-  extras.forEach((card, i) => {
-    if (expanded) {
-      card.classList.add('shown');
-      card.style.opacity = '0'; card.style.transform = 'translateY(20px)';
-      setTimeout(() => { card.style.transition = 'opacity 0.4s ease, transform 0.4s ease'; card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, i * 80);
-    } else {
-      card.classList.remove('shown');
-    
-    }
+/* Show more studies — 3 states: 0=3 shown, 1=6 shown, 2=14 shown */
+let studiesState = 0;
+const ARROW_DOWN = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v10M4 8l4 4 4-4"/></svg>';
+const ARROW_UP   = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14V4M4 8l4-4 4 4"/></svg>';
+
+function studiesSetButtons() {
+  const more = document.getElementById('showMoreBtn');
+  const all  = document.getElementById('showAllBtn');
+  const less = document.getElementById('showLessBtn');
+  if (studiesState === 0) {
+    more.style.display = ''; all.style.display = 'none'; less.style.display = 'none';
+  } else if (studiesState === 1) {
+    more.style.display = 'none'; all.style.display = ''; less.style.display = '';
+  } else {
+    more.style.display = 'none'; all.style.display = 'none'; less.style.display = '';
+  }
+  const counts = ['Showing 3 of 14', 'Showing 6 of 14', 'Showing 14 of 14'];
+  document.getElementById('studiesCount').textContent = counts[studiesState];
+}
+
+function studiesReveal(cards, offset) {
+  cards.forEach((card, i) => {
+    card.classList.add('shown');
+    card.style.opacity = '0'; card.style.transform = 'translateY(20px)';
+    setTimeout(() => { card.style.transition = 'opacity 0.4s ease, transform 0.4s ease'; card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, (offset + i) * 80);
   });
 }
+
+function studiesMore() {
+  studiesState = 1;
+  studiesReveal(document.querySelectorAll('.study-card.batch2'), 0);
+  studiesSetButtons();
+}
+
+function studiesAll() {
+  studiesState = 2;
+  studiesReveal(document.querySelectorAll('.study-card.extra'), 0);
+  studiesSetButtons();
+}
+
+function studiesCollapse() {
+  if (studiesState === 2) {
+    studiesState = 1;
+    document.querySelectorAll('.study-card.extra').forEach(c => {
+      c.classList.remove('shown');
+      c.style.transition = ''; c.style.opacity = ''; c.style.transform = '';
+    });
+  } else {
+    studiesState = 0;
+    document.querySelectorAll('.study-card.batch2, .study-card.extra').forEach(c => {
+      c.classList.remove('shown');
+      c.style.transition = ''; c.style.opacity = ''; c.style.transform = '';
+    });
+  }
+  studiesSetButtons();
+}
+
 function openAllStudies() {
-  if (!expanded) toggleStudies();
+  if (studiesState < 1) studiesMore();
+  if (studiesState < 2) studiesAll();
   setTimeout(function() {
     document.getElementById('studies').scrollIntoView({ behavior: 'smooth' });
   }, 50);
 }
+
+function toggleStudies() { studiesMore(); } /* legacy alias */
 
 /* ── TESTIMONIAL CAROUSEL ── */
 (function() {
