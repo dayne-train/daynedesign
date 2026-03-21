@@ -1788,6 +1788,7 @@ function studiesCollapse() {
     });
   }
   studiesSetButtons();
+  setTimeout(() => document.querySelector('.show-more-row').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
 }
 
 function openAllStudies() {
