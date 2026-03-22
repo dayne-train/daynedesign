@@ -273,7 +273,11 @@ window.addEventListener('load', function() {
   color: var(--ink);
   border-radius: 0 0 var(--radius-card) var(--radius-card);
 }
-.study-platform { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+.study-card-badges { position: absolute; top: 1.4rem; left: 1.6rem; display: flex; gap: 0.4rem; z-index: 2; }
+.study-badge { display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(245,249,252,0.82); backdrop-filter: blur(14px); padding: 0.25rem 0.55rem 0.25rem 0.3rem; border-radius: 8px; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink); white-space: nowrap; border: 1px solid rgba(28,43,58,0.1); }
+.study-badge img { width: 14px; height: 14px; border-radius: 4px; object-fit: contain; flex-shrink: 0; }
+.badge-icon-circle { width: 14px; height: 14px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; }
+.badge-icon-circle svg { width: 8px; height: 8px; }
 .study-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.35rem; line-height: 1.2; color: var(--ink); }
 .study-desc { font-size: 0.8rem; color: var(--slate); line-height: 1.5; }
 .study-chip {
@@ -677,18 +681,24 @@ window.addEventListener('load', function() {
 
     <a class="study-card c-hris" href="hris-sync.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/trainual_logo.png" alt="">Trainual</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#4a9edd;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1.5" width="10" height="7" rx="1"/><path d="M4 11h4M6 8.5V11"/></svg></span>Web App</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Trainual · Web &amp; Desktop</div>
         <div class="study-title">HRIS Sync</div>
-        <div class="study-desc">Rebuilt a broken integration. Client adoption jumped from 5% → 35% within one month of launch.</div>
+        <div class="study-desc">Rebuilt a broken HR integration from the ground up. Client adoption jumped from 5% to 35% within one month of launch.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
     <a class="study-card c-lessen" href="lessen-pro.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/lessen_logo.png" alt="">Lessen</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#8b5cf6;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="1" width="5" height="10" rx="1.5"/><path d="M5.5 9.5h1"/></svg></span>iOS &amp; Android</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Lessen · iOS &amp; Android</div>
         <div class="study-title">Lessen Pro</div>
         <div class="study-desc">4.9★ across both app stores. 940 downloads and 400+ work orders weekly within 3 months.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
@@ -697,28 +707,37 @@ window.addEventListener('load', function() {
 
     <a class="study-card c-veho" href="veho.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/veho_logo.png" alt="">Veho</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#8b5cf6;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="1" width="5" height="10" rx="1.5"/><path d="M5.5 9.5h1"/></svg></span>Android &amp; Web</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Veho · Web &amp; Mobile</div>
         <div class="study-title">Exception Handling</div>
-        <div class="study-desc">Reduced package triage time by 87%, from 8 minutes down to under 1.</div>
+        <div class="study-desc">A mobile tool for resolving damaged and delayed package exceptions in the field. Cut triage time by 87%, from 8 minutes down to under 1.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
     <a class="study-card c-sw batch2" href="software-tools.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/trainual_logo.png" alt="">Trainual</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#4a9edd;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1.5" width="10" height="7" rx="1"/><path d="M4 11h4M6 8.5V11"/></svg></span>Web App</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Trainual · Web &amp; Desktop</div>
         <div class="study-title">Software &amp; Tools</div>
-        <div class="study-desc">Centralized software tracking hub. Supports 7,000+ unique entries across customer orgs.</div>
+        <div class="study-desc">A centralized hub for managing software licenses and tools across an organization. Supports 7,000+ unique entries across customer orgs.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
     <a class="study-card c-rivet batch2" href="rivet.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/lessen_logo.png" alt="">Lessen</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#f97316;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="4" height="4" rx="0.75"/><rect x="7" y="1" width="4" height="4" rx="0.75"/><rect x="1" y="7" width="4" height="4" rx="0.75"/><rect x="7" y="7" width="4" height="4" rx="0.75"/></svg></span>Design System</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Lessen · Design System</div>
         <div class="study-title">Rivet</div>
         <div class="study-desc">100+ components with 1:1 design-to-code parity. Reuse hit 40%+ across product teams.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
@@ -727,10 +746,13 @@ window.addEventListener('load', function() {
 
     <a class="study-card c-sm batch2" href="strongmind.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/strongmind_logo.png" alt="">StrongMind</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#8b5cf6;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="1" width="5" height="10" rx="1.5"/><path d="M5.5 9.5h1"/></svg></span>iOS &amp; Android</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">StrongMind · iOS &amp; Android</div>
         <div class="study-title">StrongMind App</div>
-        <div class="study-desc">Student + parent mobile app. Boosted seat time by 5% and course completion by 12%.</div>
+        <div class="study-desc">A companion app keeping students and parents connected to coursework and progress. Boosted seat time by 5% and course completion by 12%.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -738,8 +760,11 @@ window.addEventListener('load', function() {
     <!-- EXTRA -->
     <a class="study-card c-lm extra" href="loudmouth.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/strongmind_logo.png" alt="">StrongMind</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#22c55e;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 2a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H4L1.5 10V2z"/></svg></span>Web &amp; SMS</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">StrongMind · Web</div>
         <div class="study-title">LoudMouth</div>
         <div class="study-desc">Delivered 2 million+ personalized messages to 50,000+ students and parents, with a 98% opt-in rate.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
@@ -748,71 +773,92 @@ window.addEventListener('load', function() {
 
     <a class="study-card c-realize extra" href="realize.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/pearson_logo.png" alt="">Pearson</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#4a9edd;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1.5" width="10" height="7" rx="1"/><path d="M4 11h4M6 8.5V11"/></svg></span>Web App</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Pearson · EdTech LMS</div>
         <div class="study-title">Realize LMS</div>
         <div class="study-desc">Pearson's flagship K–12 LMS used by over 6.5 million students. My first professional product design role.</div>
-        <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
+        <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
     <a class="study-card c-sprint extra" href="sprint.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/strongmind_logo.png" alt="">StrongMind</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#f59e0b;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1A3.5 3.5 0 0 0 2.5 4.5c0 1.5.8 2.8 2 3.5V9h3v-1c1.2-.7 2-2 2-3.5A3.5 3.5 0 0 0 6 1zM4.5 9.5h3M5 11h2"/></svg></span>Design Sprint</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">StrongMind · Design Sprint</div>
         <div class="study-title">SPRINT</div>
-        <div class="study-desc">A 5-day Google Ventures Design Sprint to answer: how do you engage the disengaged learner?</div>
-        <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
+        <div class="study-desc">A 5-day Google Ventures Design Sprint tackling one question: how do you re-engage the disengaged online learner?</div>
+        <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
     <a class="study-card c-k12 extra" href="k12.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/pearson_logo.png" alt="">Pearson</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#f97316;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="4" height="4" rx="0.75"/><rect x="7" y="1" width="4" height="4" rx="0.75"/><rect x="1" y="7" width="4" height="4" rx="0.75"/><rect x="7" y="7" width="4" height="4" rx="0.75"/></svg></span>Design System</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Pearson · Design System</div>
         <div class="study-title">K12 Style Guide</div>
         <div class="study-desc">A living design system built to drive consistency and developer efficiency across all Pearson K–12 products.</div>
-        <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
+        <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
     <a class="study-card c-scout extra" href="scout.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/pearson_logo.png" alt="">Pearson</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#8b5cf6;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="1" width="5" height="10" rx="1.5"/><path d="M5.5 9.5h1"/></svg></span>iOS</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Pearson · iPad</div>
         <div class="study-title">Scout</div>
         <div class="study-desc">Observational assessment tool for teachers to track student progress and attach media, all from an iPad.</div>
-        <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
+        <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
     <a class="study-card c-drive extra" href="drive.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/pearson_logo.png" alt="">Pearson</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#ef4444;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1.5L3.5 6.5H6L5 10.5l5.5-6H8z"/></svg></span>Hackathon</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Pearson · Hackathon</div>
         <div class="study-title">DRIVE Portal</div>
         <div class="study-desc">Winner of the 2016 Pearson hackathon, a parent-student portal keeping students, parents, and teachers connected.</div>
-        <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
+        <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
     <a class="study-card c-easybridge extra" href="easybridge.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/pearson_logo.png" alt="">Pearson</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#4a9edd;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1.5" width="10" height="7" rx="1"/><path d="M4 11h4M6 8.5V11"/></svg></span>Web App</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Pearson · Web</div>
         <div class="study-title">EasyBridge</div>
         <div class="study-desc">Pearson's school rostering and administration tool used by every K–12 customer across the platform ecosystem.</div>
-        <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
+        <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
     <a class="study-card c-vlogger extra" href="vlogger.html">
       <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/strongmind_logo.png" alt="">StrongMind</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#ef4444;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1.5L3.5 6.5H6L5 10.5l5.5-6H8z"/></svg></span>Hackathon</span>
+      </div>
       <div class="study-card-info">
-        <div class="study-platform">Hackathon · iOS</div>
         <div class="study-title">Vlogger</div>
         <div class="study-desc">A 24-hour hackathon app putting a human face on online teaching, helping students see their teacher as a real person.</div>
-        <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
+        <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
