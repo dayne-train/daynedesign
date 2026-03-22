@@ -242,7 +242,7 @@ window.addEventListener('load', function() {
 /* EQUAL 3-col grid — no hero */
 .studies-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: clamp(300px, 38vw, 540px);
   gap: 16px;
 }
@@ -321,7 +321,7 @@ window.addEventListener('load', function() {
 .c-sw     .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/software-and-tools-hero-1.png?fit=1568%2C907&ssl=1'); }
 .c-veho   .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2024/02/showcase.reg_.png?fit=1568%2C847&ssl=1'); }
 .c-lessen .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/pro-hero.png?fit=1568%2C1045&ssl=1'); }
-.c-rivet  .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/thumbnail-preview.png?fit=1568%2C811&ssl=1'); }
+.c-rivet  .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/screenshot-2023-02-09-at-6.29.15-pm.png'); }
 .c-sm     .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/splash.png?fit=1568%2C851&ssl=1'); }
 .c-lm       .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/artboard.png?fit=1568%2C1401&ssl=1'); }
 .c-realize  .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/realize1.png?fit=1150%2C750&ssl=1'); }
@@ -594,13 +594,18 @@ window.addEventListener('load', function() {
   .principles { grid-template-columns: 1fr; gap: 2.5rem; padding: 5rem 5rem; }
   .principles-grid { grid-template-columns: repeat(3, 1fr); }
 }
+@media (max-width: 1440px) {
+  .studies-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 740px) {
+  .studies-grid { grid-template-columns: 1fr; grid-auto-rows: 420px; }
+}
 @media (max-width: 960px) {
   .hero, .principles, .exp-strip, .skills-section, .contact-section { grid-template-columns: 1fr; }
   .hero { padding: 0 2rem; padding-top: 72px; }
   .hero-deco { display: none; }
   .hero-left { padding: 4rem 0; }
   .principles, .studies, .exp-strip, .skills-section, .contact-section, .interactive-section { padding: 4rem 2rem; }
-  .studies-grid { grid-template-columns: 1fr 1fr; }
   .principles-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
   footer { padding: 2rem; flex-direction: column; gap: 1rem; text-align: center; }
   .quote-carousel, .quote-track-outer { width: 100%; max-width: 100%; }
@@ -609,9 +614,11 @@ window.addEventListener('load', function() {
 @media (max-width: 720px) {
   .principles-grid { grid-template-columns: 1fr; }
   .principle-card:hover { box-shadow: none; transform: none; }
+  .principle-card.active::before { transform: scaleX(1); }
+  .principle-card.active { box-shadow: 0 12px 40px rgba(74,158,221,0.16); border-color: rgba(74,158,221,0.3); }
+  .principle-card.active h3 { color: var(--sky); }
 }
-@media (max-width: 600px) {
-  .studies-grid { grid-template-columns: 1fr; grid-auto-rows: 420px; }
+@media (max-width: 740px) {
   .quote-card { padding: 1.4rem; }
   .quote-text { font-size: 0.9rem; }
   .quote-card::before { font-size: 5rem; top: -0.3rem; left: 1rem; }
@@ -634,25 +641,27 @@ html.dark {
 html.dark body { background: var(--off); color: var(--ink); }
 
 /* Nav — desktop default (full-width bar) and scrolled (pill) */
-html.dark nav { background: rgba(10,20,30,0.80); }
-html.dark nav.scrolled { background: rgba(10,20,30,0.82); box-shadow: 0 2px 12px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.2); }
+@media (min-width: 961px) {
+  html.dark nav { background: rgba(10,20,30,0.80); }
+  html.dark nav.scrolled { background: rgba(4,16,52,0.93); box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.3); }
+}
 
 /* Nav transition animations — dark palette versions */
 @keyframes nav-detach-dark {
   0%   { top: 0; left: 0; right: 0; padding: 1.1rem 4rem; border-radius: 0; background: rgba(10,20,30,0.80); backdrop-filter: blur(16px); box-shadow: 0 2px 16px rgba(0,0,0,0.2), 0 8px 32px rgba(0,0,0,0); border-bottom-color: transparent; animation-timing-function: cubic-bezier(0.55,0,0.9,0.5); }
-  42%  { top: 0; left: 4rem; right: 4rem; padding: 1rem; border-radius: 999px; background: rgba(10,20,30,0.82); backdrop-filter: blur(28px); box-shadow: 0 2px 12px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.2); border-bottom-color: transparent; animation-timing-function: cubic-bezier(0.34,1.6,0.64,1); }
-  100% { top: 12px; left: 4rem; right: 4rem; padding: 1rem; border-radius: 999px; background: rgba(10,20,30,0.82); backdrop-filter: blur(28px); box-shadow: 0 2px 12px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.2); border-bottom-color: transparent; }
+  42%  { top: 0; left: 4rem; right: 4rem; padding: 1rem; border-radius: 999px; background: rgba(4,16,52,0.93); backdrop-filter: blur(28px); box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.3); border-bottom-color: transparent; animation-timing-function: cubic-bezier(0.34,1.6,0.64,1); }
+  100% { top: 12px; left: 4rem; right: 4rem; padding: 1rem; border-radius: 999px; background: rgba(4,16,52,0.93); backdrop-filter: blur(28px); box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.3); border-bottom-color: transparent; }
 }
 @keyframes nav-attach-dark {
-  0%   { top: 12px; left: 4rem; right: 4rem; padding: 1rem; border-radius: 999px; background: rgba(10,20,30,0.82); backdrop-filter: blur(28px); box-shadow: 0 2px 12px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.2); border-bottom-color: transparent; animation-timing-function: cubic-bezier(0.55,0,0.9,0.5); }
-  42%  { top: 0; left: 4rem; right: 4rem; padding: 1rem; border-radius: 999px; background: rgba(10,20,30,0.82); backdrop-filter: blur(28px); box-shadow: 0 2px 12px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.2); border-bottom-color: transparent; animation-timing-function: cubic-bezier(0.34,1.6,0.64,1); }
+  0%   { top: 12px; left: 4rem; right: 4rem; padding: 1rem; border-radius: 999px; background: rgba(4,16,52,0.93); backdrop-filter: blur(28px); box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.3); border-bottom-color: transparent; animation-timing-function: cubic-bezier(0.55,0,0.9,0.5); }
+  42%  { top: 0; left: 4rem; right: 4rem; padding: 1rem; border-radius: 999px; background: rgba(4,16,52,0.93); backdrop-filter: blur(28px); box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.3); border-bottom-color: transparent; animation-timing-function: cubic-bezier(0.34,1.6,0.64,1); }
   100% { top: 0; left: 0; right: 0; padding: 1.1rem 4rem; border-radius: 0; background: rgba(10,20,30,0.80); backdrop-filter: blur(16px); box-shadow: 0 2px 16px rgba(0,0,0,0.2), 0 8px 32px rgba(0,0,0,0); border-bottom-color: transparent; }
 }
 html.dark nav.detaching { animation-name: nav-detach-dark; }
 html.dark nav.attaching { animation-name: nav-attach-dark; }
 
-/* Nav — mobile ::before is the pill bg */
-html.dark nav::before { background: rgba(10,20,30,0.88); }
+/* Nav — scrolled pill bg */
+html.dark nav::before { background: rgba(4,16,52,0.93); }
 
 /* Work dropdown panel */
 html.dark .nav-work-panel { background: var(--surface); border-color: var(--stone); }
@@ -661,6 +670,8 @@ html.dark .nav-work-panel a:hover { color: var(--sky); }
 
 /* Mobile menu */
 html.dark #mobileMenu { background: #0a1520; }
+html.dark .hero-badge,
+html.dark .exp-badge { color: var(--sky); }
 
 /* Footer stays dark (var(--ink) flips light in dark mode) */
 html.dark footer { background: var(--ink-section); }
@@ -768,7 +779,7 @@ html.dark footer { background: var(--ink-section); }
       <div class="section-label">Case Studies &amp; Features</div>
       <h2 class="section-title">Selected Works</h2>
     </div>
-    <div class="studies-count" id="studiesCount">Showing 3 of 14</div>
+    <div class="studies-count" id="studiesCount">Showing 4 of 14</div>
   </div>
 
   <div class="studies-grid reveal-stagger" id="studiesGrid">
@@ -781,7 +792,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">HRIS Sync</div>
-        <div class="study-desc">Rebuilt a broken HR integration from the ground up. Client adoption jumped from 5% to 35% within one month of launch.</div>
+        <div class="study-desc">HR integration rebuilt end-to-end for Trainual. Adoption jumped from 5% to 35% in one month.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -794,7 +805,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">Lessen Pro</div>
-        <div class="study-desc">4.9★ across both app stores. 940 downloads and 400+ work orders weekly within 3 months.</div>
+        <div class="study-desc">Two-sided marketplace for home service vendors. 4.9★ on both stores, 400+ work orders completed weekly.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -807,7 +818,20 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">Exception Handling</div>
-        <div class="study-desc">A mobile tool for resolving damaged and delayed package exceptions in the field. Cut triage time by 87%, from 8 minutes down to under 1.</div>
+        <div class="study-desc">Mobile tool for resolving package exceptions in the field. Cut triage time 87%, from 8 minutes to under 1.</div>
+        <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
+      </div>
+    </a>
+
+    <a class="study-card c-rivet" href="rivet.html">
+      <div class="study-card-bg"></div>
+      <div class="study-card-badges">
+        <span class="study-badge"><img src="assets/logos/lessen_logo.png" alt="">Lessen</span>
+        <span class="study-badge"><span class="badge-icon-circle" style="background:#f97316;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="4" height="4" rx="0.75"/><rect x="7" y="1" width="4" height="4" rx="0.75"/><rect x="1" y="7" width="4" height="4" rx="0.75"/><rect x="7" y="7" width="4" height="4" rx="0.75"/></svg></span>Design System</span>
+      </div>
+      <div class="study-card-info">
+        <div class="study-title">Rivet</div>
+        <div class="study-desc">Lessen's design system, built from the ground up. 140+ components, 70% reuse across product teams.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -820,20 +844,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">Software &amp; Tools</div>
-        <div class="study-desc">A centralized hub for managing software licenses and tools across an organization. Supports 7,000+ unique entries across customer orgs.</div>
-        <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
-      </div>
-    </a>
-
-    <a class="study-card c-rivet batch2" href="rivet.html">
-      <div class="study-card-bg"></div>
-      <div class="study-card-badges">
-        <span class="study-badge"><img src="assets/logos/lessen_logo.png" alt="">Lessen</span>
-        <span class="study-badge"><span class="badge-icon-circle" style="background:#f97316;"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="4" height="4" rx="0.75"/><rect x="7" y="1" width="4" height="4" rx="0.75"/><rect x="1" y="7" width="4" height="4" rx="0.75"/><rect x="7" y="7" width="4" height="4" rx="0.75"/></svg></span>Design System</span>
-      </div>
-      <div class="study-card-info">
-        <div class="study-title">Rivet</div>
-        <div class="study-desc">100+ components with 1:1 design-to-code parity. Reuse hit 40%+ across product teams.</div>
+        <div class="study-desc">Feature cataloging software, ownership, and content to inform integration strategy. 7,000+ entries across customer orgs.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -846,13 +857,13 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">StrongMind App</div>
-        <div class="study-desc">A companion app keeping students and parents connected to coursework and progress. Boosted seat time by 5% and course completion by 12%.</div>
+        <div class="study-desc">App connecting students and parents to coursework and progress. Boosted seat time 5%, course completion 12%.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
     <!-- EXTRA -->
-    <a class="study-card c-lm extra" href="loudmouth.html">
+    <a class="study-card c-lm batch2" href="loudmouth.html">
       <div class="study-card-bg"></div>
       <div class="study-card-badges">
         <span class="study-badge"><img src="assets/logos/strongmind_logo.png" alt="">StrongMind</span>
@@ -860,12 +871,12 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">LoudMouth</div>
-        <div class="study-desc">Delivered 2 million+ personalized messages to 50,000+ students and parents, with a 98% opt-in rate.</div>
+        <div class="study-desc">K–12 SMS and web communication platform. 2M+ personalized messages delivered with a 98% opt-in rate.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
 
-    <a class="study-card c-realize extra" href="realize.html">
+    <a class="study-card c-realize batch2" href="realize.html">
       <div class="study-card-bg"></div>
       <div class="study-card-badges">
         <span class="study-badge"><img src="assets/logos/pearson_logo.png" alt="">Pearson</span>
@@ -873,7 +884,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">Realize LMS</div>
-        <div class="study-desc">Pearson's flagship K–12 LMS used by over 6.5 million students. My first professional product design role.</div>
+        <div class="study-desc">Pearson's flagship K–12 LMS redesigned for modern classrooms. Used by over 6.5 million students.</div>
         <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -886,7 +897,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">SPRINT</div>
-        <div class="study-desc">A 5-day Google Ventures Design Sprint tackling one question: how do you re-engage the disengaged online learner?</div>
+        <div class="study-desc">5-day Google Ventures Design Sprint on re-engaging disengaged online learners.</div>
         <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -899,7 +910,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">K12 Style Guide</div>
-        <div class="study-desc">A living design system built to drive consistency and developer efficiency across all Pearson K–12 products.</div>
+        <div class="study-desc">Design system spanning all Pearson K–12 products. Drove consistency across a portfolio of 6+ tools.</div>
         <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -912,7 +923,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">Scout</div>
-        <div class="study-desc">Observational assessment tool for teachers to track student progress and attach media, all from an iPad.</div>
+        <div class="study-desc">iPad tool for teachers to track student progress and attach media. Brought observational grading off paper.</div>
         <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -925,7 +936,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">DRIVE Portal</div>
-        <div class="study-desc">Winner of the 2016 Pearson hackathon, a parent-student portal keeping students, parents, and teachers connected.</div>
+        <div class="study-desc">Parent-student portal keeping students, parents, and teachers connected. Won the 2016 Pearson hackathon.</div>
         <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -938,7 +949,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">EasyBridge</div>
-        <div class="study-desc">Pearson's school rostering and administration tool used by every K–12 customer across the platform ecosystem.</div>
+        <div class="study-desc">School rostering and admin tool for Pearson's K–12 platform. Used by every customer in the ecosystem.</div>
         <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -951,7 +962,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">Vlogger</div>
-        <div class="study-desc">A 24-hour hackathon app putting a human face on online teaching, helping students see their teacher as a real person.</div>
+        <div class="study-desc">24-hour hackathon app humanizing online teaching through teacher video profiles.</div>
         <span class="study-chip">View work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
@@ -1820,6 +1831,39 @@ if ('IntersectionObserver' in window) {
   revealEls.forEach(el => ro.observe(el));
 }
 
+/* Principle cards — scroll-active on mobile */
+(function() {
+  var mq = window.matchMedia('(max-width: 720px)');
+  var cards = document.querySelectorAll('.principle-card');
+  var observer;
+  function setupObserver() {
+    if (mq.matches) {
+      if (observer) return;
+      observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            cards.forEach(function(c) { c.classList.remove('active'); });
+            e.target.classList.add('active');
+          } else {
+            e.target.classList.remove('active');
+          }
+        });
+      }, { threshold: 0, rootMargin: '-38% 0px -38% 0px' });
+      var lastCard = cards[cards.length - 1];
+      cards.forEach(function(c) { observer.observe(c); });
+      // Last card has no sibling to trigger its deactivation — use a tighter top inset so it clears earlier
+      var lastObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (!e.isIntersecting) e.target.classList.remove('active'); });
+      }, { threshold: 0, rootMargin: '-52% 0px -38% 0px' });
+      lastObserver.observe(lastCard);
+    } else {
+      if (observer) { cards.forEach(function(c) { observer.unobserve(c); c.classList.remove('active'); }); observer = null; }
+    }
+  }
+  setupObserver();
+  mq.addEventListener('change', setupObserver);
+})();
+
 /* ── MOBILE NAV ── */
 window.addEventListener('DOMContentLoaded', function() {
   var btn = document.getElementById('navHamburger');
@@ -1933,7 +1977,7 @@ function studiesSetButtons() {
   } else {
     more.style.display = 'none'; all.style.display = 'none'; less.style.display = '';
   }
-  const counts = ['Showing 3 of 14', 'Showing 6 of 14', 'Showing 14 of 14'];
+  const counts = ['Showing 4 of 14', 'Showing 8 of 14', 'Showing 14 of 14'];
   document.getElementById('studiesCount').textContent = counts[studiesState];
 }
 
