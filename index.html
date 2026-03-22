@@ -297,7 +297,7 @@ window.addEventListener('load', function() {
 .badge-icon-circle { width: 14px; height: 14px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; }
 .badge-icon-circle svg { width: 8px; height: 8px; }
 .study-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.35rem; line-height: 1.2; color: var(--ink); }
-.study-desc { font-size: 0.8rem; color: var(--slate); line-height: 1.5; }
+.study-desc { font-size: 0.8rem; color: var(--slate); line-height: 1.5; text-wrap: pretty; }
 .study-chip {
   display: inline-flex; margin-top: 0.75rem;
   font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em;
@@ -672,6 +672,7 @@ html.dark .nav-work-panel a:hover { color: var(--sky); }
 html.dark #mobileMenu { background: #0a1520; }
 html.dark .hero-badge,
 html.dark .exp-badge { color: var(--sky); }
+html.dark .study-card-info { border-top-color: rgba(255,255,255,0.08); }
 
 /* Footer stays dark (var(--ink) flips light in dark mode) */
 html.dark footer { background: var(--ink-section); }
@@ -805,7 +806,7 @@ html.dark footer { background: var(--ink-section); }
       </div>
       <div class="study-card-info">
         <div class="study-title">Lessen Pro</div>
-        <div class="study-desc">Two-sided marketplace for home service vendors. 4.9★ on both stores, 400+ work orders completed weekly.</div>
+        <div class="study-desc">Two-sided marketplace for home service vendors. 4.9★ on both stores, 400+ work orders weekly.</div>
         <span class="study-chip">View study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></span>
       </div>
     </a>
