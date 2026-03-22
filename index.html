@@ -209,11 +209,20 @@ window.addEventListener('load', function() {
 .principle-card {
   background: var(--white); border-radius: var(--radius-card);
   padding: 2rem; border: 1px solid var(--stone);
-  transition: box-shadow 0.25s, transform 0.25s;
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  position: relative; overflow: hidden;
 }
-.principle-card:hover { box-shadow: 0 8px 28px rgba(74,158,221,0.1); transform: translateY(-3px); }
+.principle-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--sky);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2);
+}
+.principle-card:hover::before { transform: scaleX(1); }
+.principle-card:hover { box-shadow: 0 12px 40px rgba(74,158,221,0.16); transform: translateY(-4px); border-color: rgba(74,158,221,0.3); }
 .principle-num { font-family: var(--mono); font-size: 0.65rem; color: var(--sky); letter-spacing: 0.1em; margin-bottom: 0.9rem; }
-.principle-card h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; font-style: italic; margin-bottom: 0.6rem; color: var(--ink); }
+.principle-card h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; font-style: italic; margin-bottom: 0.6rem; color: var(--ink); transition: color 0.3s; }
+.principle-card:hover h3 { color: var(--sky); }
 .principle-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
 
 /* ── CASE STUDIES ── */
@@ -321,7 +330,7 @@ window.addEventListener('load', function() {
   padding: 7rem max(5rem, calc(50vw - 960px));
   background: var(--ink);
   color: white;
-  display: grid; grid-template-columns: 1fr 2fr; gap: 5rem;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 4rem;
 }
 .exp-heading { font-family: var(--serif); font-size: 2.8rem; font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1rem; }
 .exp-subtext { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
@@ -438,7 +447,7 @@ window.addEventListener('load', function() {
 .skills-section {
   padding: 7rem max(5rem, calc(50vw - 960px));
   background: var(--off);
-  display: grid; grid-template-columns: 420px 1fr; gap: 5rem; align-items: center;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center;
   min-width: 0; overflow: hidden;
 }
 .quote-carousel { min-width: 0; width: 100%; max-width: 100%; position: relative; }
@@ -448,9 +457,36 @@ window.addEventListener('load', function() {
 .chip {
   font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase;
   padding: 0.45rem 1.1rem; border: 1.5px solid var(--stone); border-radius: var(--radius);
-  background: var(--white); color: var(--muted); cursor: default;
+  background: var(--white); color: var(--muted); cursor: pointer;
+  position: relative; transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
+.chip:hover { border-color: var(--sky); color: var(--sky); }
 .chip.active { background: var(--sky-lt); border-color: var(--sky); color: var(--sky-mid); }
+
+.skill-popover {
+  position: fixed; z-index: 9000;
+  background: var(--white); border: 1px solid var(--stone);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 32px rgba(28,43,58,0.14);
+  padding: 1rem 1.25rem; max-width: 260px; min-width: 180px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.18s, transform 0.18s;
+  transform: translateY(6px);
+}
+.skill-popover.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.skill-popover::after {
+  content: ''; position: absolute; bottom: -5px; left: var(--caret-left, 50%);
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px; height: 8px;
+  background: var(--white); border-right: 1px solid var(--stone); border-bottom: 1px solid var(--stone);
+}
+.skill-popover.below::after { bottom: auto; top: -5px; left: var(--caret-left, 50%); border-right: none; border-bottom: none; border-left: 1px solid var(--stone); border-top: 1px solid var(--stone); }
+.skill-detail-proof { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.6rem; }
+.skill-detail-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); margin-bottom: 0.45rem; }
+.skill-detail-links { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.skill-link-btn { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding: 0.3rem 0.7rem; border: 1.5px solid var(--stone); border-radius: 100px; transition: border-color 0.2s, color 0.2s; white-space: nowrap; }
+.skill-link-btn svg { width: 0.9em; height: 0.9em; flex-shrink: 0; }
+.skill-link-btn:hover { border-color: var(--sky); color: var(--sky); }
 
 .quote-track-outer {
   overflow: hidden;
@@ -563,6 +599,7 @@ window.addEventListener('load', function() {
 }
 @media (max-width: 720px) {
   .principles-grid { grid-template-columns: 1fr; }
+  .principle-card:hover { box-shadow: none; transform: none; }
 }
 @media (max-width: 600px) {
   .studies-grid { grid-template-columns: 1fr; grid-auto-rows: 420px; }
@@ -1105,16 +1142,16 @@ window.addEventListener('load', function() {
     <h2 class="skills-heading">What I bring.</h2>
     <p class="skills-sub">I wear a lot of hats, sometimes literally, while building my fishing journal app solo as PM, designer, and engineer.</p>
     <div class="skills-chips">
-      <span class="chip">Product Design</span>
-      <span class="chip">Figma / FigJam</span>
-      <span class="chip">Design Systems</span>
-      <span class="chip">Visual Design</span>
-      <span class="chip">Rapid Prototyping</span>
-      <span class="chip">Usability Research</span>
-      <span class="chip">Whiteboarding</span>
-      <span class="chip">HTML · CSS</span>
-      <span class="chip">Product Definition</span>
-      <span class="chip">AI Tooling</span>
+      <span class="chip" data-key="product-design" data-proof="The core of every project: research, flows, prototypes, and polish.">Product Design</span>
+      <span class="chip" data-key="figma" data-proof="Every deliverable, flow, and workshop lives in Figma.">Figma / FigJam</span>
+      <span class="chip" data-key="design-systems" data-proof="Built two from scratch: Rivet at Lessen, K12 Style Guide at Pearson.">Design Systems</span>
+      <span class="chip" data-key="visual-design" data-proof="Polish is never an afterthought; it's baked into every deliverable.">Visual Design</span>
+      <span class="chip" data-key="rapid-prototyping" data-proof="HRIS Sync went from whiteboard to interactive prototype in days.">Rapid Prototyping</span>
+      <span class="chip" data-key="usability-research" data-proof="Led 12+ user interviews and synthesis sessions across HRIS and Veho.">Usability Research</span>
+      <span class="chip" data-key="whiteboarding" data-proof="Facilitated cross-functional sprints with eng, product, and ops teams.">Whiteboarding</span>
+      <span class="chip" data-key="html-css" data-proof="Fluent in HTML, CSS, and modern frameworks. Shipped code at StrongMind, Lessen, Veho, and Trainual.">HTML · CSS</span>
+      <span class="chip" data-key="product-definition" data-proof="Wrote PRDs, shaped roadmaps, and defined success metrics at Trainual and Lessen.">Product Definition</span>
+      <span class="chip" data-key="ai-tooling" data-proof="Integrated AI into workflow and built a solo app as PM, designer, and engineer.">AI Tooling</span>
     </div>
   </div>
   <div class="reveal">
@@ -1590,6 +1627,12 @@ document.getElementById('viewStatsBtn').addEventListener('click', function() {
   </div>
   <div class="footer-right"><a href="https://maps.app.goo.gl/c1PoGoBUCVr2QkoL8" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">Medford, Oregon</a> · <span style="position:relative;display:inline-block;" id="yearMenuWrap"><button id="yearBtn" onclick="toggleYearMenu(event)" style="background:none;border:none;padding:0;color:inherit;font:inherit;cursor:pointer;text-decoration:none;">2026</button><div id="yearMenu" style="display:none;position:absolute;bottom:calc(100% + 8px);right:0;background:#1c2b3a;border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.35rem;min-width:190px;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,0.4);"></div></span></div>
 </footer>
+
+<div class="skill-popover" id="skillPopover">
+  <p class="skill-detail-proof" id="skillProof"></p>
+  <p class="skill-detail-label">Primary examples</p>
+  <div class="skill-detail-links" id="skillLinks"></div>
+</div>
 
 <script>
 /* NAV */
@@ -2814,6 +2857,184 @@ function triggerGalaga() {
   };
 })();
 
+/* SKILL CHIPS */
+(function() {
+  var chipData = {
+    'product-design': {
+      proof: 'The core of every project: research, flows, prototypes, and polish across 4 companies.',
+      projects: [
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+        { label: 'StrongMind App', url: 'strongmind.html' },
+      ]
+    },
+    'figma': {
+      proof: 'Every deliverable, flow, and workshop lives in Figma. FigJam for cross-functional sessions.',
+      projects: [
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'StrongMind App', url: 'strongmind.html' },
+        { label: 'LoudMouth', url: 'loudmouth.html' },
+        { label: 'SPRINT', url: 'sprint.html' },
+        { label: 'Vlogger', url: 'vlogger.html' },
+      ]
+    },
+    'design-systems': {
+      proof: 'Built two from scratch: Rivet at Lessen and the K12 Style Guide at Pearson.',
+      projects: [
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'K12 Style Guide', url: 'k12.html' },
+      ]
+    },
+    'visual-design': {
+      proof: 'Aesthetics are never an afterthought. Polish is baked into every consumer-facing product I have shipped.',
+      projects: [
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'StrongMind App', url: 'strongmind.html' },
+        { label: 'LoudMouth', url: 'loudmouth.html' },
+        { label: 'Scout', url: 'scout.html' },
+        { label: 'Vlogger', url: 'vlogger.html' },
+      ]
+    },
+    'rapid-prototyping': {
+      proof: 'Relied on for every project. Prototypes are how I communicate design intent to engineering before a line of code is written.',
+      projects: [
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+        { label: 'StrongMind App', url: 'strongmind.html' },
+      ]
+    },
+    'usability-research': {
+      proof: 'Led and participated in research throughout my career: interviews, synthesis, and usability testing across every company.',
+      projects: [
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'Realize LMS', url: 'realize.html' },
+        { label: 'Scout', url: 'scout.html' },
+        { label: 'EasyBridge', url: 'easybridge.html' },
+      ]
+    },
+    'whiteboarding': {
+      proof: 'How I get stakeholders aligned before committing to a direction. A go-to in every role since Lessen.',
+      projects: [
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'SPRINT', url: 'sprint.html' },
+      ]
+    },
+    'html-css': {
+      proof: 'Fluent in HTML, CSS, and modern frameworks. Shipped front-end code at StrongMind, Lessen, Veho, and Trainual.',
+      projects: [
+        { label: 'StrongMind App', url: 'strongmind.html' },
+        { label: 'LoudMouth', url: 'loudmouth.html' },
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+      ]
+    },
+    'product-definition': {
+      proof: 'Wrote PRDs, shaped roadmaps, and defined success metrics at Trainual and Lessen.',
+      projects: [
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+      ]
+    },
+    'ai-tooling': {
+      proof: 'Integrated AI into my design workflow and built a solo app as PM, designer, and engineer.',
+      projects: [
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Riffle', url: 'https://riffle.run', external: true },
+      ]
+    },
+  };
+
+  var chips = document.querySelectorAll('.chip[data-key]');
+  var popover = document.getElementById('skillPopover');
+  var proofEl = document.getElementById('skillProof');
+  var linksEl = document.getElementById('skillLinks');
+  var activeKey = null;
+  var arrow = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg>';
+
+  function closePopover() {
+    popover.classList.remove('open');
+    chips.forEach(function(c) { c.classList.remove('active'); });
+    activeKey = null;
+  }
+
+  function positionPopover(chip) {
+    var rect = chip.getBoundingClientRect();
+    var pw = popover.offsetWidth || 260;
+    var ph = popover.offsetHeight || 120;
+    var gap = 10;
+    var left = rect.left + rect.width / 2 - pw / 2;
+    // clamp horizontally
+    left = Math.max(8, Math.min(left, window.innerWidth - pw - 8));
+    var topAbove = rect.top - ph - gap;
+    if (topAbove >= 8) {
+      popover.classList.remove('below');
+      popover.style.top = topAbove + 'px';
+    } else {
+      popover.classList.add('below');
+      popover.style.top = (rect.bottom + gap) + 'px';
+    }
+    // position caret horizontally over chip center
+    var caretLeft = rect.left + rect.width / 2 - left;
+    popover.style.left = left + 'px';
+    popover.style.setProperty('--caret-left', caretLeft + 'px');
+  }
+
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var key = chip.dataset.key;
+      if (activeKey === key) { closePopover(); return; }
+      chips.forEach(function(c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      activeKey = key;
+      var data = chipData[key];
+      proofEl.textContent = data.proof;
+      linksEl.innerHTML = data.projects.map(function(p) {
+        var attrs = p.external ? ' target="_blank" rel="noopener noreferrer"' : '';
+        return '<a class="skill-link-btn" href="' + p.url + '"' + attrs + '>' + p.label + ' ' + arrow + '</a>';
+      }).join('');
+      // Move off-screen and open without transition so we can measure real dimensions,
+      // then snap to correct position and re-enable transitions for the fade-in
+      popover.style.transition = 'none';
+      popover.style.top = '-9999px';
+      popover.style.left = '-9999px';
+      popover.classList.add('open');
+      requestAnimationFrame(function() {
+        positionPopover(chip);
+        popover.style.transition = '';
+      });
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!popover.contains(e.target)) closePopover();
+  });
+
+  window.addEventListener('scroll', function() { if (activeKey) closePopover(); }, { passive: true });
+})();
+
 </script>
 
 <div id="mobileMenu">
@@ -2834,6 +3055,7 @@ function triggerGalaga() {
   <a class="mobile-link" href="#fish-quiz">Play</a>
   <a class="mobile-link mobile-link-cta" href="mailto:dayne@dayne.design">Say hello</a>
 </div>
+
 
 </body>
 </html>
