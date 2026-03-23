@@ -133,8 +133,8 @@ nav.attaching { animation: nav-attach 0.65s linear forwards; }
 .nav-logo-img { width: 28px; height: 28px; border-radius: 50%; display: block; flex-shrink: 0; }
 .nav-links { display: flex; align-items: center; gap: 0.75rem; list-style: none; }
 .nav-links li { display: flex; align-items: center; }
-.nav-links a { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s, background 0.2s; line-height: 1; padding: 0.35rem 0.6rem; border-radius: 999px; }
-.nav-links a:hover { color: var(--sky); background: rgba(74,158,221,0.08); }
+.nav-links a:not(.nav-work-item):not(.nav-work-all):not(.nav-cta) { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s, background 0.2s; line-height: 1; padding: 0.5rem 0.75rem; border-radius: 999px; }
+.nav-links a:not(.nav-work-item):not(.nav-work-all):not(.nav-cta):hover { color: var(--sky); background: rgba(74,158,221,0.08); }
 .nav-sep { width: 1px; height: 1.1rem; background: var(--stone); opacity: 0.6; margin: 0 0.25rem; }
 /* ── BUTTON ICON SIZES ── */
 .btn svg { width: 1.1em; height: 1.1em; flex-shrink: 0; }
@@ -148,7 +148,7 @@ a.nav-cta:hover { background: var(--sky-mid); color: #fff !important; transform:
 .nav-work-btn {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--muted); background: none;
-  border: none; cursor: pointer; padding: 0.35rem 0.6rem; transition: color 0.2s, background 0.2s;
+  border: none; cursor: pointer; padding: 0.5rem 0.75rem; transition: color 0.2s, background 0.2s;
   display: flex; align-items: center; gap: 0.3rem; line-height: 1;
   border-radius: 999px; -webkit-appearance: none; appearance: none;
 }
@@ -169,7 +169,7 @@ a.nav-cta:hover { background: var(--sky-mid); color: #fff !important; transform:
   display: block; padding: 0.5rem 0.75rem;
   font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--muted); text-decoration: none;
-  border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap;
+  border-radius: 999px; transition: background 0.15s, color 0.15s; white-space: nowrap;
 }
 .nav-work-item:hover { background: var(--sky-lt); color: var(--sky-mid); }
 .nav-work-divider { height: 1px; background: var(--stone); margin: 0.4rem 0.75rem; }
@@ -177,7 +177,7 @@ a.nav-cta:hover { background: var(--sky-mid); color: #fff !important; transform:
   display: block; padding: 0.5rem 0.75rem;
   font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--sky); text-decoration: none;
-  border-radius: 6px; transition: background 0.15s;
+  border-radius: 999px; transition: background 0.15s;
 }
 .nav-work-all:hover { background: var(--sky-lt); }
 
