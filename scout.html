@@ -389,7 +389,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   function openMenu() {
     nav.style.transition = 'none';
-    nav.style.background = document.documentElement.classList.contains('dark') ? 'rgba(4,16,52,0.93)' : '#1c2b3a';
+    nav.style.background = document.documentElement.classList.contains('dark') ? 'rgba(7,15,24,0.95)' : '#1c2b3a';
     nav.style.borderBottomColor = 'transparent';
     menu.classList.add('open');
     btn.classList.add('open');
@@ -449,7 +449,7 @@ window.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrop(); });
 })();
 /* ── DARK TOGGLE ── */
-document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.dark-toggle').forEach(function(b){b.addEventListener('click',function(){var d=document.documentElement.classList.toggle('dark');localStorage.setItem('darkMode',d);var _m=document.getElementById('mobileMenu'),_n=document.getElementById('mainNav');if(_m&&_m.classList.contains('open')&&_n)_n.style.background=d?'rgba(4,16,52,0.93)':'#1c2b3a';});});});
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.dark-toggle').forEach(function(b){b.addEventListener('click',function(){var d=document.documentElement.classList.toggle('dark');localStorage.setItem('darkMode',d);var _m=document.getElementById('mobileMenu'),_n=document.getElementById('mainNav');if(_m&&_m.classList.contains('open')&&_n)_n.style.background=d?'rgba(7,15,24,0.95)':'#1c2b3a';});});});
 // ── MOBILE TOC PILL ──
 (function(){
   var wrap=document.getElementById('mobileTocWrap'),pill=document.getElementById('mobileTocPill'),menu=document.getElementById('mobileTocMenu'),label=document.getElementById('mobileTocLabel');
