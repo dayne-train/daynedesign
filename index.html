@@ -2703,6 +2703,180 @@ function triggerGalaga() {
   }, { passive: true });
 })();
 
+/* SKILL CHIPS */
+(function() {
+  var chipData = {
+    'product-design': {
+      proof: 'The core of every project: research, flows, prototypes, and polish across 4 companies.',
+      projects: [
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+        { label: 'StrongMind App', url: 'strongmind.html' },
+      ]
+    },
+    'figma': {
+      proof: 'Every deliverable, flow, and workshop lives in Figma. FigJam for cross-functional sessions.',
+      projects: [
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'StrongMind App', url: 'strongmind.html' },
+        { label: 'LoudMouth', url: 'loudmouth.html' },
+        { label: 'SPRINT', url: 'sprint.html' },
+        { label: 'Vlogger', url: 'vlogger.html' },
+      ]
+    },
+    'design-systems': {
+      proof: 'Built two from scratch: Rivet at Lessen and the K12 Style Guide at Pearson.',
+      projects: [
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'K12 Style Guide', url: 'k12.html' },
+      ]
+    },
+    'visual-design': {
+      proof: 'Aesthetics are never an afterthought. Polish is baked into every consumer-facing product I have shipped.',
+      projects: [
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'StrongMind App', url: 'strongmind.html' },
+        { label: 'LoudMouth', url: 'loudmouth.html' },
+        { label: 'Scout', url: 'scout.html' },
+        { label: 'Vlogger', url: 'vlogger.html' },
+      ]
+    },
+    'rapid-prototyping': {
+      proof: 'Relied on for every project. Prototypes are how I communicate design intent to engineering before a line of code is written.',
+      projects: [
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+        { label: 'StrongMind App', url: 'strongmind.html' },
+      ]
+    },
+    'usability-research': {
+      proof: 'Led and participated in research throughout my career: interviews, synthesis, and usability testing across every company.',
+      projects: [
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'Realize LMS', url: 'realize.html' },
+        { label: 'Scout', url: 'scout.html' },
+        { label: 'EasyBridge', url: 'easybridge.html' },
+      ]
+    },
+    'whiteboarding': {
+      proof: 'How I get stakeholders aligned before committing to a direction. A go-to in every role since Lessen.',
+      projects: [
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'SPRINT', url: 'sprint.html' },
+      ]
+    },
+    'html-css': {
+      proof: 'Fluent in HTML, CSS, and modern frameworks. Shipped front-end code at StrongMind, Lessen, Veho, and Trainual.',
+      projects: [
+        { label: 'StrongMind App', url: 'strongmind.html' },
+        { label: 'LoudMouth', url: 'loudmouth.html' },
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Rivet', url: 'rivet.html' },
+        { label: 'Exception Handling', url: 'veho.html' },
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+      ]
+    },
+    'product-definition': {
+      proof: 'Wrote PRDs, shaped roadmaps, and defined success metrics at Trainual and Lessen.',
+      projects: [
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Lessen Pro', url: 'lessen-pro.html' },
+        { label: 'Software & Tools', url: 'software-tools.html' },
+      ]
+    },
+    'ai-tooling': {
+      proof: 'Integrated AI into my design workflow and built a solo app as PM, designer, and engineer.',
+      projects: [
+        { label: 'HRIS Sync', url: 'hris-sync.html' },
+        { label: 'Riffle', url: 'https://riffle.run', external: true },
+      ]
+    },
+  };
+
+  var chips = document.querySelectorAll('.chip[data-key]');
+  var popover = document.getElementById('skillPopover');
+  var proofEl = document.getElementById('skillProof');
+  var linksEl = document.getElementById('skillLinks');
+  var activeKey = null;
+  var arrow = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg>';
+
+  function closePopover() {
+    popover.classList.remove('open');
+    chips.forEach(function(c) { c.classList.remove('active'); });
+    activeKey = null;
+  }
+
+  function positionPopover(chip) {
+    var rect = chip.getBoundingClientRect();
+    var pw = popover.offsetWidth || 260;
+    var ph = popover.offsetHeight || 120;
+    var gap = 10;
+    var left = rect.left + rect.width / 2 - pw / 2;
+    left = Math.max(8, Math.min(left, window.innerWidth - pw - 8));
+    var topAbove = rect.top - ph - gap;
+    if (topAbove >= 8) {
+      popover.classList.remove('below');
+      popover.style.top = topAbove + 'px';
+    } else {
+      popover.classList.add('below');
+      popover.style.top = (rect.bottom + gap) + 'px';
+    }
+    var caretLeft = rect.left + rect.width / 2 - left;
+    popover.style.left = left + 'px';
+    popover.style.setProperty('--caret-left', caretLeft + 'px');
+  }
+
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var key = chip.dataset.key;
+      if (activeKey === key) { closePopover(); return; }
+      chips.forEach(function(c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      activeKey = key;
+      var data = chipData[key];
+      proofEl.textContent = data.proof;
+      linksEl.innerHTML = data.projects.map(function(p) {
+        var attrs = p.external ? ' target="_blank" rel="noopener noreferrer"' : '';
+        return '<a class="skill-link-btn" href="' + p.url + '"' + attrs + '>' + p.label + ' ' + arrow + '</a>';
+      }).join('');
+      popover.style.transition = 'none';
+      popover.style.top = '-9999px';
+      popover.style.left = '-9999px';
+      popover.classList.add('open');
+      requestAnimationFrame(function() {
+        positionPopover(chip);
+        popover.style.transition = '';
+      });
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!popover.contains(e.target)) closePopover();
+  });
+
+  window.addEventListener('scroll', function() { if (activeKey) closePopover(); }, { passive: true });
+})();
+
 </script>
 <script src="footer-easter-egg.js"></script>
 
