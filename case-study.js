@@ -233,7 +233,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var trigger=document.querySelector('#learnings')||related;
   if(!trigger)return;
   new IntersectionObserver(function(entries){
-    wrap.classList.toggle('back-top-visible',entries[0].isIntersecting);
+    var e=entries[0];
+    if(e.isIntersecting){wrap.classList.add('back-top-visible');}
+    else if(e.boundingClientRect.top>0){wrap.classList.remove('back-top-visible');}
+    // top < 0 means scrolled past — stay visible
   },{threshold:0}).observe(trigger);
 
   var scrollTimer=null;
