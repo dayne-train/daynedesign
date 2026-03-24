@@ -743,7 +743,7 @@ footer {
   .footer-links { justify-content: center; }
   .hero-img-wrap { margin: 0 -2rem; max-height: 480px; }
   .img-progression.two-up,
-  .img-progression.three-up { grid-template-columns: 1fr; }
+  .img-progression.three-up,
   .img-progression.four-up  { grid-template-columns: 1fr 1fr; }
 }
 
