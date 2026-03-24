@@ -323,12 +323,35 @@ window.addEventListener('load', function() {
 .exp-subtext { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
 .exp-roles { display: flex; flex-direction: column; }
 
-/* ── EXPERIENCE ROW — enhanced with accordion ── */
+/* ── EXPERIENCE ROW — card lift + spotlight ── */
 .exp-row {
   border-top: 1px solid rgba(255,255,255,0.1);
-  transition: background 0.2s cubic-bezier(0, 0, 0.2, 1);
+  position: relative;
+  transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-radius 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              margin 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .exp-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+/* open card: lifts, gains radius + left accent via inset shadow */
+.exp-row.open {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2), 0 0 0 1px rgba(74,158,221,0.14), inset 3px 0 0 var(--sky);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  margin: 0.5rem 0;
+  padding: 0 1.25rem;
+}
+/* hide divider immediately after open card */
+.exp-row.open + .exp-row { border-top-color: transparent; }
+
+/* spotlight: dim siblings */
+.exp-roles.has-open .exp-row:not(.open) { opacity: 0.75; }
 
 .exp-row-header {
   padding: 1.4rem 0;
@@ -339,16 +362,20 @@ window.addEventListener('load', function() {
   transition: padding-left 0.2s cubic-bezier(0, 0, 0.2, 1);
 }
 @media (hover: hover) {
-  .exp-row:hover { background: rgba(74,158,221,0.06); }
-  .exp-row:hover .exp-row-header { padding-left: 0.5rem; }
+  .exp-row:not(.open):hover { background: rgba(74,158,221,0.06); }
+  .exp-row:not(.open):hover .exp-row-header { padding-left: 0.5rem; }
 }
 
 .exp-company { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; }
 .exp-role { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.1rem; }
-.exp-date { font-family: var(--mono); font-size: var(--font-label); color: var(--slate); letter-spacing: 0.06em; text-align: right; }
-.exp-badge { display: inline-block; background: var(--sky-lt); color: var(--sky-mid); font-family: var(--mono); font-size: var(--font-badge); letter-spacing: var(--tracking-wide); padding: 0.25rem 0.7rem; margin-top: 0.35rem; text-transform: uppercase; border-radius: 8px; }
+.exp-date { font-family: var(--mono); font-size: var(--font-label); color: var(--slate); letter-spacing: 0.06em; }
+.exp-date .date-full { display: none; }
+.exp-row.open .date-short { display: none; }
+.exp-row.open .date-full { display: inline; }
+.exp-badge { display: inline-block; background: var(--sky-lt); color: var(--sky-mid); font-family: var(--mono); font-size: var(--font-badge); letter-spacing: var(--tracking-wide); padding: 0.18rem 0.55rem; text-transform: uppercase; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0,0,0.2,1); }
+.exp-row.open .exp-badge { opacity: 1; pointer-events: auto; }
 
-.exp-row-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.55rem; }
+.exp-row-right { display: flex; flex-direction: row; align-items: center; gap: 1rem; }
 
 /* + toggle button */
 .exp-toggle {
@@ -362,7 +389,7 @@ window.addEventListener('load', function() {
 .exp-toggle svg { width: 12px; height: 12px; }
 .exp-row.open .exp-toggle {
   background: var(--sky); border-color: var(--sky);
-  color: white; transform: rotate(45deg);
+  color: white; transform: rotate(-45deg);
 }
 
 /* accordion drawer */
@@ -571,7 +598,8 @@ window.addEventListener('load', function() {
 .contact-link:hover .cl-arrow { transform: translateX(4px); color: var(--sky); }
 .cl-label { font-family: var(--mono); font-size: var(--font-label); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.1rem; transition: color 0.2s cubic-bezier(0, 0, 0.2, 1); }
 .contact-link:hover .cl-label { color: var(--sky); }
-.cl-value { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; }
+.cl-value { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; color: var(--ink); transition: color 0.2s cubic-bezier(0, 0, 0.2, 1); }
+.contact-link:hover .cl-value { color: var(--sky); }
 .cl-arrow { margin-left: auto; font-size: 1.1rem; transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1), color 0.2s cubic-bezier(0, 0, 0.2, 1); color: var(--muted); display: flex; }
 .cl-arrow svg { width: 1em; height: 1em; }
 
@@ -970,12 +998,14 @@ html.dark footer { background: var(--section-dark); }
     <div class="exp-row" id="row-trainual">
       <button class="exp-row-header" onclick="toggleRow('trainual')" aria-expanded="false" aria-controls="drawer-trainual">
         <div>
-          <div class="exp-company">Trainual</div>
+          <div style="display:flex;align-items:center;gap:0.5rem">
+            <div class="exp-company">Trainual</div>
+            <span class="exp-badge">Most recent</span>
+          </div>
           <div class="exp-role">Senior Product Designer</div>
-          <span class="exp-badge">Most recent</span>
         </div>
         <div class="exp-row-right">
-          <div class="exp-date">Jul 2024 – Jan 2026</div>
+          <div class="exp-date"><span class="date-short">2024 – 2026</span><span class="date-full">Jul 2024 – Jan 2026</span></div>
           <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></div>
         </div>
       </button>
@@ -1018,7 +1048,7 @@ html.dark footer { background: var(--section-dark); }
           <div class="exp-role">Senior Product Designer</div>
         </div>
         <div class="exp-row-right">
-          <div class="exp-date">Apr 2023 – Jan 2024</div>
+          <div class="exp-date"><span class="date-short">2023 – 2024</span><span class="date-full">Apr 2023 – Jan 2024</span></div>
           <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></div>
         </div>
       </button>
@@ -1061,7 +1091,7 @@ html.dark footer { background: var(--section-dark); }
           <div class="exp-role">Senior Product Designer</div>
         </div>
         <div class="exp-row-right">
-          <div class="exp-date">Nov 2020 – Jan 2023</div>
+          <div class="exp-date"><span class="date-short">2020 – 2023</span><span class="date-full">Nov 2020 – Jan 2023</span></div>
           <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></div>
         </div>
       </button>
@@ -1104,7 +1134,7 @@ html.dark footer { background: var(--section-dark); }
           <div class="exp-role">UI / UX Designer</div>
         </div>
         <div class="exp-row-right">
-          <div class="exp-date">May 2017 – Nov 2020</div>
+          <div class="exp-date"><span class="date-short">2017 – 2020</span><span class="date-full">May 2017 – Nov 2020</span></div>
           <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></div>
         </div>
       </button>
@@ -1146,7 +1176,7 @@ html.dark footer { background: var(--section-dark); }
           <div class="exp-role">UI / UX Designer</div>
         </div>
         <div class="exp-row-right">
-          <div class="exp-date">May 2015 – May 2017</div>
+          <div class="exp-date"><span class="date-short">2015 – 2017</span><span class="date-full">May 2015 – May 2017</span></div>
           <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></div>
         </div>
       </button>
@@ -2010,6 +2040,9 @@ function toggleRow(id) {
     const btn = row.querySelector('.exp-row-header');
     if (btn) btn.setAttribute('aria-expanded', 'true');
   }
+  // Spotlight: mark roles container when any row is open
+  const roles = document.querySelector('.exp-roles');
+  if (roles) roles.classList.toggle('has-open', !isOpen);
 }
 
 /* Show more studies — 3 states: 0=3 shown, 1=6 shown, 2=14 shown */
