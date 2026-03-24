@@ -602,6 +602,21 @@ window.addEventListener('load', function() {
 }
 @media (max-width: 740px) {
   .studies-grid { grid-template-columns: 1fr; grid-auto-rows: 420px; }
+  /* Suppress CSS hover; scroll-active JS handles it instead */
+  .study-card:hover { transform: none; box-shadow: none; border-color: var(--stone); }
+  .study-card:hover .study-card-bg { opacity: 0.55; transform: none; }
+  .study-card:hover::after { opacity: 0; }
+  /* Active state mirrors desktop hover */
+  .study-card.active { transform: scale(1.03); box-shadow: 0 28px 60px rgba(28,43,58,0.18); border-color: var(--sky); }
+  .study-card.active .study-card-bg { opacity: 1; transform: scale(1.05); }
+  .study-card.active::after { opacity: 1; }
+  .study-card.active .study-chip { background: var(--sky); }
+  /* Badge collapse/unfurl on mobile */
+  .study-card .study-badge {
+    max-width: 1.6rem; overflow: hidden; padding-right: 0.3rem;
+    transition: max-width 0.38s cubic-bezier(0.34, 1.04, 0.64, 1), padding-right 0.38s cubic-bezier(0.34, 1.04, 0.64, 1);
+  }
+  .study-card.active .study-badge { max-width: 9rem; padding-right: 0.55rem; }
 }
 @media (max-width: 960px) {
   .hero, .principles, .exp-strip, .skills-section, .contact-section { grid-template-columns: 1fr; }
@@ -1838,6 +1853,45 @@ if ('IntersectionObserver' in window) {
     cards.forEach(function(c) {
       c.classList.toggle('active', c === best);
     });
+  }
+
+  function onScroll() {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(update);
+  }
+
+  function setup() {
+    if (mq.matches) {
+      window.addEventListener('scroll', onScroll, { passive: true });
+      update();
+    } else {
+      window.removeEventListener('scroll', onScroll);
+      cards.forEach(function(c) { c.classList.remove('active'); });
+    }
+  }
+
+  setup();
+  mq.addEventListener('change', setup);
+})();
+
+/* Study cards — scroll-active on mobile */
+(function() {
+  var mq = window.matchMedia('(max-width: 740px)');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.study-card'));
+  var raf;
+
+  function update() {
+    var vh = window.innerHeight;
+    var zoneTop = vh * 0.40;
+    var zoneBot = vh * 0.65;
+    var best = null, bestOverlap = 0;
+    cards.forEach(function(c) {
+      if (c.offsetParent === null) return;
+      var r = c.getBoundingClientRect();
+      var overlap = Math.max(0, Math.min(r.bottom, zoneBot) - Math.max(r.top, zoneTop));
+      if (overlap > bestOverlap) { bestOverlap = overlap; best = c; }
+    });
+    cards.forEach(function(c) { c.classList.toggle('active', c === best); });
   }
 
   function onScroll() {
