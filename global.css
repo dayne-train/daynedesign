@@ -56,6 +56,7 @@
 
 /* ── FOCUS STYLES ── */
 :focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; border-radius: 4px; }
+* { -webkit-tap-highlight-color: transparent; }
 a.nav-cta:focus-visible, .btn:focus-visible, .mobile-link-cta:focus-visible, .skip-link:focus-visible { border-radius: var(--radius); }
 
 /* ── RESET ── */
@@ -596,6 +597,8 @@ footer {
   .related-card:hover .related-card-bg { opacity: 0.55; transform: none; }
   .related-card:hover .related-chip { background: rgba(74,158,221,0.6); }
   .btn-primary:hover, .btn-outline:hover, .btn-ghost-dark:hover, a.nav-cta:hover { transform: none; box-shadow: none; }
+  .mobile-link-cta:hover { background: transparent; color: var(--sky) !important; }
+  .mobile-work-see-all:hover { background: transparent; color: var(--sky) !important; }
 }
 
 /* ── REDUCED MOTION ── */
