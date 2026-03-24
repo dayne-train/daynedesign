@@ -322,6 +322,9 @@ window.addEventListener('load', function() {
   display: grid; grid-template-columns: 1fr 2fr; gap: 5rem;
 }
 .exp-subtext { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+.exp-hint { display: flex; align-items: center; gap: 0.4rem; }
+.exp-hint-arrow { width: 1em; height: 1em; flex-shrink: 0; transform: rotate(0deg); transition: transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1); }
+@media (max-width: 960px) { .exp-hint-arrow { transform: rotate(90deg); } }
 .exp-roles { display: flex; flex-direction: column; }
 
 /* ── EXPERIENCE ROW — card lift + spotlight ── */
@@ -1104,7 +1107,7 @@ html.dark footer { background: var(--section-dark); }
     <div class="section-label" style="color:var(--sky)">Where I've been</div>
     <h2 class="section-title" style="margin-bottom:1rem;color:#fff">10 years.<br>Real impact.</h2>
     <p class="exp-subtext">From seed-stage startups to scaling platforms, I've shipped work that creates real change for real people.</p>
-    <p class="exp-subtext" style="margin-top:1.2rem;font-size:0.78rem;color:rgba(255,255,255,0.25)">↓ Tap any role to expand</p>
+    <p class="exp-subtext exp-hint" style="margin-top:1.2rem;font-size:0.78rem;color:rgba(255,255,255,0.25)"><svg class="exp-hint-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg> Tap any role to expand</p>
   </div>
   <div class="exp-roles reveal-fade">
 
