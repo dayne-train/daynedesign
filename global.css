@@ -62,7 +62,7 @@ a.nav-cta:focus-visible, .btn:focus-visible, .mobile-link-cta:focus-visible, .sk
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-gutter: stable; }
 
 body {
   background: var(--off);
@@ -459,16 +459,46 @@ html.dark .mobile-link { color: #fff; }
   text-decoration: none;
 }
 .mobile-link-cta:hover { background: var(--sky); color: white !important; }
-.nav-mobile-right { display: none; align-items: center; gap: 0.75rem; }
+.nav-mobile-right { display: none; align-items: center; gap: 0.75rem; position: relative; }
 .mobile-dark-btn.mobile-dark-btn {
-  background: none; border: none; cursor: pointer;
-  padding: 8px; color: #fff; border-radius: 999px;
-  align-items: center; flex-shrink: 0;
+  width: 52px; height: 28px;
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  position: absolute; /* out of flow — hamburger never shifts */
+  right: calc(38px + 0.75rem); /* hamburger width + gap */
+  top: 50%; transform: translateY(-50%);
+  padding: 0; cursor: pointer; flex-shrink: 0;
+  grid-template-columns: 1fr;
+  transition: background 0.35s, border-color 0.35s;
+  color: #1c2b3a;
 }
-.mobile-dark-btn.mobile-dark-btn svg { width: 22px; height: 22px; }
-.mobile-dark-btn.mobile-dark-btn .sun-icon { display: none; }
-html.dark .mobile-dark-btn.mobile-dark-btn .moon-icon { display: none; }
-html.dark .mobile-dark-btn.mobile-dark-btn .sun-icon { display: block; }
+html.dark .mobile-dark-btn.mobile-dark-btn {
+  background: rgba(74,158,221,0.4);
+  border-color: rgba(74,158,221,0.5);
+}
+/* Sliding white thumb */
+.mobile-dark-btn.mobile-dark-btn::after {
+  content: '';
+  position: absolute;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  top: 2px; left: 2px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.1, 0.64, 1);
+  pointer-events: none;
+}
+html.dark .mobile-dark-btn.mobile-dark-btn::after {
+  transform: translateX(24px);
+}
+/* Icons: absolutely positioned, follow the thumb left↔right */
+.mobile-dark-btn.mobile-dark-btn svg { width: 13px; height: 13px; position: absolute; top: 50%; left: 50%; z-index: 1; }
+/* Light mode: both icons at left thumb center (14px) */
+.mobile-dark-btn.mobile-dark-btn .moon-icon { transform: translate(calc(-50% - 12px), -50%) rotate(0deg) scale(1); }
+.mobile-dark-btn.mobile-dark-btn .sun-icon  { transform: translate(calc(-50% - 12px), -50%) rotate(-180deg) scale(0.5); }
+/* Dark mode: both icons at right thumb center (38px) */
+html.dark .mobile-dark-btn.mobile-dark-btn .moon-icon { transform: translate(calc(-50% + 12px), -50%) rotate(180deg) scale(0.5); }
+html.dark .mobile-dark-btn.mobile-dark-btn .sun-icon  { transform: translate(calc(-50% + 12px), -50%) rotate(0deg) scale(1); }
 
 /* ── WORK SUB-MENU — mobile ── */
 .mobile-work-btn {
@@ -794,14 +824,19 @@ html.dark .result-card { background: #162030; border-color: var(--stone); }
 .dark-toggle {
   background: none; border: none; cursor: pointer;
   padding: 0.4rem; color: var(--muted);
-  border-radius: 999px; display: flex; align-items: center;
+  border-radius: 999px; display: grid; place-items: center;
   transition: color 0.2s, background 0.2s; flex-shrink: 0;
 }
 @media (hover: hover) { .dark-toggle:hover { color: var(--sky); background: var(--sky-hover-bg); } }
-.dark-toggle svg { width: 1.1rem; height: 1.1rem; display: block; }
-.dark-toggle .sun-icon { display: none; }
-html.dark .dark-toggle .moon-icon { display: none; }
-html.dark .dark-toggle .sun-icon { display: block; }
+.dark-toggle svg {
+  width: 1.1rem; height: 1.1rem; display: block;
+  grid-area: 1 / 1;
+  transition: opacity 0.25s, transform 0.4s cubic-bezier(0.34, 1.1, 0.64, 1);
+}
+.dark-toggle .moon-icon { opacity: 1; transform: rotate(0deg) scale(1); }
+.dark-toggle .sun-icon  { opacity: 0; transform: rotate(-180deg) scale(0.5); }
+html.dark .dark-toggle .moon-icon { opacity: 0; transform: rotate(180deg) scale(0.5); }
+html.dark .dark-toggle .sun-icon  { opacity: 1; transform: rotate(0deg) scale(1); }
 
 /* ════════════════════════════════════════════════════════════
    CASE STUDY PAGES — shared across all 14 study pages
