@@ -3246,10 +3246,18 @@ document.querySelectorAll('.contact-link').forEach(link => {
 
 // Mobile ghost watermark — show on scroll-into-view (touch only)
 if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+  const ghostRows = document.querySelectorAll('.exp-row');
   const ghostObs = new IntersectionObserver(entries => {
-    entries.forEach(e => e.target.classList.toggle('scroll-active', e.isIntersecting));
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        ghostRows.forEach(r => r.classList.remove('scroll-active'));
+        e.target.classList.add('scroll-active');
+      } else {
+        e.target.classList.remove('scroll-active');
+      }
+    });
   }, { rootMargin: '-38% 0px -38% 0px', threshold: 0 });
-  document.querySelectorAll('.exp-row').forEach(r => ghostObs.observe(r));
+  ghostRows.forEach(r => ghostObs.observe(r));
 }
 
 // Drawer study "more" menu toggle
