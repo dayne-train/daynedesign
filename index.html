@@ -434,7 +434,9 @@ window.addEventListener('load', function() {
 }
 .exp-logo { width: 100%; height: 100%; object-fit: contain; display: block; }
 @media (hover: hover) {
-  .exp-row:not(.open):not(.ghost-locked):hover .exp-logo-wrap { opacity: 0.13; }
+  .exp-row:not(.open):not(.ghost-locked).ghost-active .exp-logo-wrap { opacity: 0.13; pointer-events: auto; }
+  .exp-row:not(.open):not(.ghost-locked).ghost-active .exp-logo-wrap:hover { opacity: 0.88; }
+  .exp-row:not(.open):not(.ghost-locked).ghost-active .exp-logo-wrap:hover .exp-logo-arrow { opacity: 1; }
 }
 @media (hover: none) {
   .exp-row:not(.open).scroll-active .exp-logo-wrap { opacity: 0.1; }
@@ -547,21 +549,21 @@ window.addEventListener('load', function() {
 .drawer-study-more-btn span { display: block; width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
 .drawer-study-more-menu {
   position: absolute; bottom: calc(100% + 8px); right: 0;
-  background: rgba(8,18,32,0.98); border: 1px solid rgba(74,158,221,0.2);
-  border-radius: 8px; padding: 0.35rem; min-width: 210px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.55);
+  background: #162030; border: 1px solid var(--stone);
+  border-radius: var(--radius-card); padding: 0.5rem; min-width: 210px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   opacity: 0; transform: translateY(5px); pointer-events: none;
-  transition: opacity 0.15s ease, transform 0.15s ease; z-index: 200;
+  transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
 }
 .drawer-study-more-menu.open { opacity: 1; transform: none; pointer-events: auto; }
 .drawer-study-more-link {
   display: flex; align-items: center; gap: 0.55rem;
-  padding: 0.5rem 0.65rem; border-radius: 5px;
-  text-decoration: none; color: rgba(255,255,255,0.65);
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase;
-  transition: background 0.12s, color 0.12s; white-space: nowrap;
+  padding: 0.5rem 0.75rem; border-radius: 999px;
+  text-decoration: none; color: rgba(255,255,255,0.6);
+  font-family: var(--mono); font-size: var(--font-label); letter-spacing: 0.06em; text-transform: uppercase;
+  transition: background 0.15s, color 0.15s; white-space: nowrap;
 }
-.drawer-study-more-link:hover { background: rgba(74,158,221,0.1); color: rgba(255,255,255,0.9); }
+.drawer-study-more-link:hover { background: rgba(74,158,221,0.12); color: rgba(255,255,255,0.9); }
 .drawer-study-more-thumb {
   width: 30px; height: 22px; border-radius: 4px; overflow: hidden; flex-shrink: 0; position: relative;
   background: rgba(255,255,255,0.07);
@@ -698,9 +700,10 @@ window.addEventListener('load', function() {
 /* Override reveal-stagger's generic transition so hover color + indent animate */
 .reveal-stagger > .contact-link,
 .js-reveal .reveal-stagger > .contact-link {
-  transition: opacity 0.6s var(--ease-spring), transform 0.6s var(--ease-spring), color 0.2s cubic-bezier(0, 0, 0.2, 1), padding-left 0.2s cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.15s cubic-bezier(0, 0, 0.2, 1);
 }
-.contact-link:hover { color: var(--sky); padding-left: 0.4rem; }
+.contact-link:hover,
+.js-reveal .reveal-stagger.visible > .contact-link:hover { color: var(--sky); transform: translateX(6px); transition-delay: 0s; }
 .contact-link:hover .cl-arrow { transform: translateX(4px); color: var(--sky); }
 .cl-label { font-family: var(--mono); font-size: var(--font-label); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.1rem; transition: color 0.2s cubic-bezier(0, 0, 0.2, 1); }
 .contact-link:hover .cl-label { color: var(--sky); }
@@ -757,7 +760,7 @@ window.addEventListener('load', function() {
   .principles-grid { grid-template-columns: 1fr; }
 }
 @media (hover: none) and (pointer: coarse) {
-  .contact-link:hover { padding-left: 0; color: var(--ink); }
+  .contact-link:hover { transform: none; color: var(--ink); }
   .contact-link:hover .cl-label { color: var(--muted); }
   .contact-link:hover .cl-value { color: var(--ink); }
   .contact-link:hover .cl-arrow { transform: none; color: var(--muted); }
@@ -1887,7 +1890,7 @@ document.getElementById('viewStatsBtn').addEventListener('click', function() {
     <a href="https://www.linkedin.com/in/daynep/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     <a href="https://github.com/dayne-train" target="_blank" rel="noopener noreferrer">GitHub</a>
   </div>
-  <div class="footer-right"><span style="position:relative;display:inline-block;" id="medfordMenuWrap"><button id="medfordBtn" style="background:none;border:none;padding:0;color:inherit;font:inherit;cursor:pointer;text-decoration:none;text-transform:inherit;">Medford, Oregon</button><div id="medfordMenu" style="display:none;position:absolute;bottom:calc(100% + 8px);right:0;background:#1c2b3a;border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.35rem;min-width:210px;max-width:calc(100vw - 16px);z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,0.4);"></div></span> ·<span style="position:relative;display:inline-block;" id="yearMenuWrap"><button id="yearBtn" onclick="toggleYearMenu(event)" style="background:none;border:none;padding:0;color:inherit;font:inherit;cursor:pointer;text-decoration:none;">2026</button><div id="yearMenu" style="display:none;position:absolute;bottom:calc(100% + 8px);right:0;background:#1c2b3a;border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.35rem;min-width:190px;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,0.4);"></div></span></div>
+  <div class="footer-right"><span style="position:relative;display:inline-block;" id="medfordMenuWrap"><button id="medfordBtn" style="background:none;border:none;padding:0;color:inherit;font:inherit;cursor:pointer;text-decoration:none;text-transform:inherit;">Medford, Oregon</button><div id="medfordMenu" style="display:none;position:absolute;bottom:calc(100% + 8px);right:0;background:#162030;border:1px solid #c8d4dc;border-radius:16px;padding:0.5rem;min-width:210px;max-width:calc(100vw - 16px);z-index:99999;box-shadow:0 8px 32px rgba(28,43,58,0.18);"></div></span> ·<span style="position:relative;display:inline-block;" id="yearMenuWrap"><button id="yearBtn" onclick="toggleYearMenu(event)" style="background:none;border:none;padding:0;color:inherit;font:inherit;cursor:pointer;text-decoration:none;">2026</button><div id="yearMenu" style="display:none;position:absolute;bottom:calc(100% + 8px);right:0;background:#162030;border:1px solid #c8d4dc;border-radius:16px;padding:0.5rem;min-width:190px;z-index:99999;box-shadow:0 8px 32px rgba(28,43,58,0.18);"></div></span></div>
 </footer>
 
 <div id="expPreview" role="tooltip">
@@ -3217,6 +3220,23 @@ function triggerGalaga() {
     // Dismiss when expanding a row
     row.querySelector('.exp-row-header').addEventListener('click', dismiss);
   });
+})();
+
+// Ghost watermark — only one visible at a time
+(function() {
+  const rows = document.querySelectorAll('.exp-row');
+  const roles = document.querySelector('.exp-roles');
+  rows.forEach(row => {
+    row.addEventListener('mouseenter', () => {
+      rows.forEach(r => r.classList.remove('ghost-active'));
+      row.classList.add('ghost-active');
+    });
+  });
+  if (roles) {
+    roles.addEventListener('mouseleave', () => {
+      rows.forEach(r => r.classList.remove('ghost-active'));
+    });
+  }
 })();
 
 // Mobile ghost watermark — show on scroll-into-view (touch only)
