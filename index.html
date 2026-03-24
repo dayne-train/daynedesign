@@ -144,7 +144,7 @@ window.addEventListener('load', function() {
 .rotate-word { display: inline-block; font-style: italic; color: var(--sky); transition: opacity 0.3s, transform 0.35s; }
 
 .hero-desc {
-  font-size: 1.1rem; color: var(--muted); max-width: 460px; line-height: 1.78; margin-bottom: 2.5rem;
+  font-size: 1.1rem; color: var(--muted); max-width: 580px; line-height: 1.78; margin-bottom: 2.5rem;
   opacity: 0; animation: fadeUp 0.7s 0.42s forwards;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s 0.56s forwards; }
@@ -328,6 +328,7 @@ window.addEventListener('load', function() {
 .exp-row {
   border-top: 1px solid rgba(255,255,255,0.1);
   position: relative;
+  overflow: hidden;
   transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               border-radius 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
@@ -335,6 +336,21 @@ window.addEventListener('load', function() {
               padding 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .exp-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+/* role hover preview card */
+#expPreview {
+  position: fixed; z-index: 9500; pointer-events: none;
+  background: rgba(10,22,36,0.96); border: 1px solid rgba(74,158,221,0.22);
+  border-radius: 10px; padding: 0.75rem 1rem;
+  max-width: 280px; min-width: 180px;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  opacity: 0; transform: translateY(4px) translateX(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+#expPreview.visible { opacity: 1; transform: translateY(0) translateX(0); }
+#expPreview .ep-context { font-size: 0.7rem; font-family: var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--sky); margin-bottom: 0.35rem; white-space: nowrap; }
+#expPreview .ep-impact { font-size: 0.82rem; color: rgba(255,255,255,0.78); line-height: 1.5; }
 
 /* open card: lifts, gains radius + left accent via inset shadow */
 .exp-row.open {
@@ -375,7 +391,7 @@ window.addEventListener('load', function() {
 .exp-date .date-full { display: none; }
 .exp-row.open .date-short { display: none; }
 .exp-row.open .date-full { display: inline; }
-.exp-badge { display: inline-block; background: var(--sky-lt); color: var(--sky-mid); font-family: var(--mono); font-size: var(--font-badge); letter-spacing: var(--tracking-wide); padding: 0.18rem 0.55rem; text-transform: uppercase; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0,0,0.2,1); }
+.exp-badge { display: inline-block; background: rgba(74,158,221,0.08); color: rgba(74,158,221,0.65); font-family: var(--mono); font-size: var(--font-badge); letter-spacing: var(--tracking-wide); padding: 0.18rem 0.55rem; text-transform: uppercase; border-radius: 5px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0,0,0.2,1); }
 .exp-row.open .exp-badge { opacity: 1; pointer-events: auto; }
 
 .exp-row-right { display: flex; flex-direction: row; align-items: center; gap: 1rem; }
@@ -408,21 +424,50 @@ window.addEventListener('load', function() {
   border-top: 1px solid rgba(255,255,255,0.07);
 }
 
-/* company header inside drawer */
+/* ghost watermark wrap — bottom-left, fades in on row hover, clickable to visit site */
+.exp-logo-wrap {
+  position: absolute; left: 10%; bottom: -40px;
+  width: 140px; height: 140px;
+  border-radius: 16px; overflow: hidden;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.exp-logo { width: 100%; height: 100%; object-fit: contain; display: block; }
+@media (hover: hover) {
+  .exp-row:not(.open):not(.ghost-locked):hover .exp-logo-wrap { opacity: 0.13; }
+}
+.exp-row.open .exp-logo-wrap,
+.exp-row.ghost-locked .exp-logo-wrap { opacity: 0 !important; pointer-events: none; }
+
+/* inline logo shown next to text when row is open — clickable */
+.exp-header-inner { display: flex; align-items: center; gap: 0.75rem; }
+.exp-logo-open-wrap {
+  display: none; position: relative;
+  width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: 8px; overflow: hidden; cursor: pointer;
+}
+.exp-row.open .exp-logo-open-wrap { display: block; }
+.exp-logo-open { width: 100%; height: 100%; object-fit: contain; display: block; }
+.exp-logo-open-arrow {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.45); color: #fff;
+  opacity: 0; transition: opacity 0.18s ease;
+}
+.exp-logo-open-arrow svg { width: 16px; height: 16px; }
+@media (hover: hover) {
+  .exp-logo-open-wrap:hover .exp-logo-open-arrow { opacity: 1; }
+}
+
 .drawer-co-header {
-  display: flex; align-items: center; gap: 1rem;
+  display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;
   padding: 1.2rem 0 1.1rem;
 }
-.drawer-logo {
-  width: 42px; height: 42px; border-radius: 9px;
-  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 1.1rem; font-weight: 900; color: var(--sky);
-  overflow: hidden; flex-shrink: 0;
+.drawer-type-badge {
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase;
+  background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.55);
+  border-radius: 5px; padding: 0.18rem 0.55rem;
 }
-.drawer-logo img { width: 100%; height: 100%; object-fit: cover; }
-.drawer-co-name { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; }
-.drawer-co-tag  { font-size: 0.78rem; color: rgba(255,255,255,0.38); margin-top: 0.1rem; }
 .drawer-visit {
   margin-left: auto; flex-shrink: 0;
   display: inline-flex; align-items: center; gap: 0.35rem;
@@ -455,11 +500,11 @@ window.addEventListener('load', function() {
 .drawer-list li strong { color: rgba(255,255,255,0.95); font-weight: 500; }
 
 /* stat pills */
-.drawer-stats { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.drawer-stats { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1rem; }
 .drawer-stat {
-  font-family: var(--mono); font-size: var(--font-badge); letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--sky); padding: 0.3rem 0.85rem; border-radius: var(--radius);
-  background: rgba(74,158,221,0.1); border: 1px solid rgba(74,158,221,0.22);
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase;
+  background: rgba(74,158,221,0.08); color: rgba(74,158,221,0.65);
+  border-radius: 5px; padding: 0.18rem 0.55rem;
 }
 .drawer-promo { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.55; margin-bottom: 1.2rem; }
 
@@ -1003,15 +1048,24 @@ html.dark footer { background: var(--section-dark); }
   <div class="exp-roles reveal-fade">
 
     <!-- TRAINUAL -->
-    <div class="exp-row" id="row-trainual">
+    <div class="exp-row" id="row-trainual" data-preview-context="SaaS · Product Design" data-preview-impact="HRIS Sync grew adoption 5%→30% in 2 months. Software &amp; Tools reached 7,000+ entries across customer orgs.">
       <button class="exp-row-header" onclick="toggleRow('trainual')" aria-expanded="false" aria-controls="drawer-trainual">
-        <div>
-          <div style="display:flex;align-items:center;gap:0.5rem">
-            <div class="exp-company">Trainual</div>
-            <span class="exp-badge">Most recent</span>
+        <div class="exp-logo-wrap">
+          <img class="exp-logo" src="assets/logos/trainual_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="exp-header-inner">
+          <div class="exp-logo-open-wrap">
+            <img class="exp-logo-open" src="assets/logos/trainual_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+            <span class="exp-logo-open-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
           </div>
-          <div class="exp-role">Senior Product Designer</div>
-          <div class="exp-date"><span class="date-short">2024 – 2026</span><span class="date-full">Jul 2024 – Jan 2026</span></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:0.5rem">
+              <div class="exp-company">Trainual</div>
+              <span class="exp-badge">Most recent</span>
+            </div>
+            <div class="exp-role">Senior Product Designer</div>
+            <div class="exp-date"><span class="date-short">2024 – 2026</span><span class="date-full">Jul 2024 – Jan 2026</span></div>
+          </div>
         </div>
         <div class="exp-row-right">
           <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></div>
@@ -1020,14 +1074,9 @@ html.dark footer { background: var(--section-dark); }
       <div class="exp-drawer" id="drawer-trainual">
         <div class="exp-drawer-inner">
           <div class="drawer-co-header">
-            <div class="drawer-logo">
-              <img src="assets/logos/trainual_logo.png" alt="Trainual" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='T'">
-            </div>
-            <div>
-              <div class="drawer-co-name">Trainual</div>
-              <div class="drawer-co-tag">SaaS · Business playbook &amp; onboarding platform</div>
-            </div>
-            <a class="drawer-visit" href="https://trainual.com" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></a>
+            <span class="drawer-type-badge">Startup</span>
+            <span class="drawer-type-badge">SaaS</span>
+            <span class="drawer-type-badge">Playbook &amp; Onboarding</span>
           </div>
           <div class="drawer-section-label">Key accomplishments</div>
           <ul class="drawer-list">
@@ -1049,12 +1098,21 @@ html.dark footer { background: var(--section-dark); }
     </div>
 
     <!-- VEHO -->
-    <div class="exp-row" id="row-veho">
+    <div class="exp-row" id="row-veho" data-preview-context="Logistics Startup · Product Design" data-preview-impact="Redesigned exception handling, cutting resolution time 87% — from 8 min to under 1 across 30+ facilities.">
       <button class="exp-row-header" onclick="toggleRow('veho')" aria-expanded="false" aria-controls="drawer-veho">
-        <div>
-          <div class="exp-company">Veho</div>
-          <div class="exp-role">Senior Product Designer</div>
-          <div class="exp-date"><span class="date-short">2023 – 2024</span><span class="date-full">Apr 2023 – Jan 2024</span></div>
+        <div class="exp-logo-wrap">
+          <img class="exp-logo" src="assets/logos/veho_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="exp-header-inner">
+          <div class="exp-logo-open-wrap">
+            <img class="exp-logo-open" src="assets/logos/veho_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+            <span class="exp-logo-open-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
+          </div>
+          <div>
+            <div class="exp-company">Veho</div>
+            <div class="exp-role">Senior Product Designer</div>
+            <div class="exp-date"><span class="date-short">2023 – 2024</span><span class="date-full">Apr 2023 – Jan 2024</span></div>
+          </div>
         </div>
         <div class="exp-row-right">
           <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></div>
@@ -1063,14 +1121,8 @@ html.dark footer { background: var(--section-dark); }
       <div class="exp-drawer" id="drawer-veho">
         <div class="exp-drawer-inner">
           <div class="drawer-co-header">
-            <div class="drawer-logo">
-              <img src="assets/logos/veho_logo.png" alt="Veho" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='V'">
-            </div>
-            <div>
-              <div class="drawer-co-name">Veho</div>
-              <div class="drawer-co-tag">Startup · Shipping &amp; logistics disruption</div>
-            </div>
-            <a class="drawer-visit" href="https://shipveho.com" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></a>
+            <span class="drawer-type-badge">Startup</span>
+            <span class="drawer-type-badge">Shipping &amp; Logistics</span>
           </div>
           <div class="drawer-section-label">Key accomplishments</div>
           <ul class="drawer-list">
@@ -1092,12 +1144,21 @@ html.dark footer { background: var(--section-dark); }
     </div>
 
     <!-- LESSEN -->
-    <div class="exp-row" id="row-lessen">
+    <div class="exp-row" id="row-lessen" data-preview-context="PropTech Startup · Product Design" data-preview-impact="Launched Lessen Pro app to 4.9★ with 940 downloads in 3 months. Built Rivet, a 100+ component design system.">
       <button class="exp-row-header" onclick="toggleRow('lessen')" aria-expanded="false" aria-controls="drawer-lessen">
-        <div>
-          <div class="exp-company">Lessen</div>
-          <div class="exp-role">Senior Product Designer</div>
-          <div class="exp-date"><span class="date-short">2020 – 2023</span><span class="date-full">Nov 2020 – Jan 2023</span></div>
+        <div class="exp-logo-wrap">
+          <img class="exp-logo" src="assets/logos/lessen_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="exp-header-inner">
+          <div class="exp-logo-open-wrap">
+            <img class="exp-logo-open" src="assets/logos/lessen_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+            <span class="exp-logo-open-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
+          </div>
+          <div>
+            <div class="exp-company">Lessen</div>
+            <div class="exp-role">Senior Product Designer</div>
+            <div class="exp-date"><span class="date-short">2020 – 2023</span><span class="date-full">Nov 2020 – Jan 2023</span></div>
+          </div>
         </div>
         <div class="exp-row-right">
           <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></div>
@@ -1106,14 +1167,9 @@ html.dark footer { background: var(--section-dark); }
       <div class="exp-drawer" id="drawer-lessen">
         <div class="exp-drawer-inner">
           <div class="drawer-co-header">
-            <div class="drawer-logo">
-              <img src="assets/logos/lessen_logo.png" alt="Lessen" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='L'">
-            </div>
-            <div>
-              <div class="drawer-co-name">Lessen</div>
-              <div class="drawer-co-tag">Startup · Rental property services at scale · $2B valuation</div>
-            </div>
-            <a class="drawer-visit" href="https://lessen.com" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></a>
+            <span class="drawer-type-badge">Startup</span>
+            <span class="drawer-type-badge">PropTech</span>
+            <span class="drawer-type-badge">$2B Valuation</span>
           </div>
           <div class="drawer-section-label">Key accomplishments</div>
           <ul class="drawer-list">
@@ -1135,12 +1191,21 @@ html.dark footer { background: var(--section-dark); }
     </div>
 
     <!-- STRONGMIND -->
-    <div class="exp-row" id="row-strongmind">
+    <div class="exp-row" id="row-strongmind" data-preview-context="EdTech · UI/UX Design" data-preview-impact="+12% course completion, +5% seat time. SXSW EDU 2020 finalist. Drove decisions with PowerBI &amp; SQL.">
       <button class="exp-row-header" onclick="toggleRow('strongmind')" aria-expanded="false" aria-controls="drawer-strongmind">
-        <div>
-          <div class="exp-company">StrongMind</div>
-          <div class="exp-role">UI / UX Designer</div>
-          <div class="exp-date"><span class="date-short">2017 – 2020</span><span class="date-full">May 2017 – Nov 2020</span></div>
+        <div class="exp-logo-wrap">
+          <img class="exp-logo" src="assets/logos/strongmind_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="exp-header-inner">
+          <div class="exp-logo-open-wrap">
+            <img class="exp-logo-open" src="assets/logos/strongmind_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+            <span class="exp-logo-open-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
+          </div>
+          <div>
+            <div class="exp-company">StrongMind</div>
+            <div class="exp-role">UI / UX Designer</div>
+            <div class="exp-date"><span class="date-short">2017 – 2020</span><span class="date-full">May 2017 – Nov 2020</span></div>
+          </div>
         </div>
         <div class="exp-row-right">
           <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></div>
@@ -1149,14 +1214,8 @@ html.dark footer { background: var(--section-dark); }
       <div class="exp-drawer" id="drawer-strongmind">
         <div class="exp-drawer-inner">
           <div class="drawer-co-header">
-            <div class="drawer-logo">
-              <img src="assets/logos/strongmind_logo.png" alt="StrongMind" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='S'">
-            </div>
-            <div>
-              <div class="drawer-co-name">StrongMind</div>
-              <div class="drawer-co-tag">EdTech · Democratizing education through innovative learning</div>
-            </div>
-            <a class="drawer-visit" href="https://strongmind.com" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></a>
+            <span class="drawer-type-badge">EdTech</span>
+            <span class="drawer-type-badge">K-12 Education</span>
           </div>
           <div class="drawer-section-label">Key accomplishments</div>
           <ul class="drawer-list">
@@ -1177,12 +1236,21 @@ html.dark footer { background: var(--section-dark); }
     </div>
 
     <!-- PEARSON -->
-    <div class="exp-row" id="row-pearson">
+    <div class="exp-row" id="row-pearson" data-preview-context="Global EdTech · UI/UX Design" data-preview-impact="Designed for 8M+ daily students. Built a K-12 style guide, 120+ custom icons, and ran monthly usability testing.">
       <button class="exp-row-header" onclick="toggleRow('pearson')" aria-expanded="false" aria-controls="drawer-pearson">
-        <div>
-          <div class="exp-company">Pearson Education</div>
-          <div class="exp-role">UI / UX Designer</div>
-          <div class="exp-date"><span class="date-short">2015 – 2017</span><span class="date-full">May 2015 – May 2017</span></div>
+        <div class="exp-logo-wrap">
+          <img class="exp-logo" src="assets/logos/pearson_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="exp-header-inner">
+          <div class="exp-logo-open-wrap">
+            <img class="exp-logo-open" src="assets/logos/pearson_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+            <span class="exp-logo-open-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
+          </div>
+          <div>
+            <div class="exp-company">Pearson</div>
+            <div class="exp-role">UI / UX Designer</div>
+            <div class="exp-date"><span class="date-short">2015 – 2017</span><span class="date-full">May 2015 – May 2017</span></div>
+          </div>
         </div>
         <div class="exp-row-right">
           <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></div>
@@ -1191,14 +1259,8 @@ html.dark footer { background: var(--section-dark); }
       <div class="exp-drawer" id="drawer-pearson">
         <div class="exp-drawer-inner">
           <div class="drawer-co-header">
-            <div class="drawer-logo">
-              <img src="assets/logos/pearson_logo.png" alt="Pearson" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='P'">
-            </div>
-            <div>
-              <div class="drawer-co-name">Pearson Education</div>
-              <div class="drawer-co-tag">Global EdTech · K-12 Learning Services</div>
-            </div>
-            <a class="drawer-visit" href="https://pearson.com/en-us.html" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></a>
+            <span class="drawer-type-badge">Global EdTech</span>
+            <span class="drawer-type-badge">K-12 Services</span>
           </div>
           <div class="drawer-section-label">Key accomplishments</div>
           <ul class="drawer-list">
@@ -1714,6 +1776,11 @@ document.getElementById('viewStatsBtn').addEventListener('click', function() {
   <div class="footer-right"><span style="position:relative;display:inline-block;" id="medfordMenuWrap"><button id="medfordBtn" style="background:none;border:none;padding:0;color:inherit;font:inherit;cursor:pointer;text-decoration:none;text-transform:inherit;">Medford, Oregon</button><div id="medfordMenu" style="display:none;position:absolute;bottom:calc(100% + 8px);right:0;background:#1c2b3a;border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.35rem;min-width:210px;max-width:calc(100vw - 16px);z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,0.4);"></div></span> ·<span style="position:relative;display:inline-block;" id="yearMenuWrap"><button id="yearBtn" onclick="toggleYearMenu(event)" style="background:none;border:none;padding:0;color:inherit;font:inherit;cursor:pointer;text-decoration:none;">2026</button><div id="yearMenu" style="display:none;position:absolute;bottom:calc(100% + 8px);right:0;background:#1c2b3a;border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.35rem;min-width:190px;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,0.4);"></div></span></div>
 </footer>
 
+<div id="expPreview" role="tooltip">
+  <div class="ep-context" id="epContext"></div>
+  <div class="ep-impact" id="epImpact"></div>
+</div>
+
 <div class="skill-popover" id="skillPopover">
   <p class="skill-detail-proof" id="skillProof"></p>
   <p class="skill-detail-label">Primary examples</p>
@@ -2065,14 +2132,19 @@ function toggleRow(id) {
   const row = document.getElementById('row-' + id);
   if (!row) return;
   const isOpen = row.classList.contains('open');
-  // Close all rows + reset aria-expanded
+  // Close all rows + lock ghost until drawer finishes closing (480ms)
   document.querySelectorAll('.exp-row.open').forEach(r => {
     r.classList.remove('open');
     const btn = r.querySelector('.exp-row-header');
     if (btn) btn.setAttribute('aria-expanded', 'false');
+    r.classList.add('ghost-locked');
+    clearTimeout(r._ghostTimer);
+    r._ghostTimer = setTimeout(() => r.classList.remove('ghost-locked'), 480);
   });
   // Open clicked one if it wasn't already open
   if (!isOpen) {
+    row.classList.remove('ghost-locked');
+    clearTimeout(row._ghostTimer);
     row.classList.add('open');
     const btn = row.querySelector('.exp-row-header');
     if (btn) btn.setAttribute('aria-expanded', 'true');
@@ -2976,6 +3048,79 @@ function triggerGalaga() {
 
   window.addEventListener('scroll', function() { if (activeKey) closePopover(); }, { passive: true });
 })();
+
+/* ── EXP ROW HOVER PREVIEW ── */
+(function() {
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  const card = document.getElementById('expPreview');
+  const ctxEl = document.getElementById('epContext');
+  const impEl = document.getElementById('epImpact');
+  if (!card) return;
+  let showTimer, hideTimer, resetTimer, unlocked = false;
+
+  function showCard(row) {
+    unlocked = true;
+    ctxEl.textContent = row.dataset.previewContext;
+    impEl.textContent = row.dataset.previewImpact;
+    card.style.transition = 'none';
+    card.style.opacity = '0';
+    requestAnimationFrame(() => {
+      const r = row.getBoundingClientRect();
+      const cardH = card.offsetHeight;
+      let top = r.top + (r.height / 2) - (cardH / 2);
+      let left = r.right + 14;
+      top = Math.max(8, Math.min(top, window.innerHeight - cardH - 8));
+      if (left + card.offsetWidth > window.innerWidth - 8) left = r.left - card.offsetWidth - 14;
+      card.style.top = top + 'px';
+      card.style.left = left + 'px';
+      card.style.transition = '';
+      card.style.opacity = '';
+      card.classList.add('visible');
+    });
+  }
+
+  function dismiss() {
+    clearTimeout(showTimer);
+    card.classList.remove('visible');
+  }
+
+  document.querySelectorAll('.exp-row').forEach(row => {
+    if (!row.dataset.previewContext) return;
+
+    row.addEventListener('mouseenter', () => {
+      if (row.classList.contains('open')) return;
+      clearTimeout(hideTimer);
+      clearTimeout(resetTimer);
+      showTimer = setTimeout(() => showCard(row), unlocked ? 0 : 2000);
+    });
+
+    row.addEventListener('mouseleave', () => {
+      clearTimeout(showTimer);
+      hideTimer = setTimeout(() => card.classList.remove('visible'), 120);
+      resetTimer = setTimeout(() => { unlocked = false; }, 4000);
+    });
+
+    // Dismiss when expanding a row
+    row.querySelector('.exp-row-header').addEventListener('click', dismiss);
+  });
+})();
+
+// Open-state logo — click to visit company site
+const logoUrls = {
+  'row-trainual':  'https://trainual.com',
+  'row-veho':      'https://shipveho.com',
+  'row-lessen':    'https://lessen.com',
+  'row-strongmind':'https://strongmind.com',
+  'row-pearson':   'https://pearson.com/en-us.html'
+};
+document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
+  wrap.addEventListener('click', e => {
+    e.stopPropagation();
+    const row = wrap.closest('.exp-row');
+    const href = row && logoUrls[row.id];
+    if (href) window.open(href, '_blank', 'noopener noreferrer');
+  });
+});
 
 </script>
 <script src="footer-easter-egg.js"></script>
