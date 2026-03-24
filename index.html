@@ -319,9 +319,8 @@ window.addEventListener('load', function() {
   padding: 7rem max(5rem, calc(50vw - 960px));
   background: var(--section-dark);
   color: white;
-  display: grid; grid-template-columns: 1fr 2fr; gap: 4rem;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 5rem;
 }
-.exp-heading { font-family: var(--serif); font-size: var(--font-section); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1rem; }
 .exp-subtext { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
 .exp-roles { display: flex; flex-direction: column; }
 
@@ -472,7 +471,6 @@ window.addEventListener('load', function() {
   min-width: 0; overflow: hidden;
 }
 .quote-carousel { min-width: 0; width: 100%; max-width: 100%; position: relative; }
-.skills-heading { font-family: var(--serif); font-size: var(--font-section); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 0.6rem; }
 .skills-sub { font-size: 0.9rem; color: var(--muted); line-height: 1.72; margin-bottom: 2rem; }
 .skills-chips { display: flex; flex-wrap: wrap; gap: 0.55rem; }
 .chip {
@@ -579,7 +577,6 @@ window.addEventListener('load', function() {
 }
 .interactive-inner { position: relative; z-index: 1; }
 .interactive-eyebrow { font-family: var(--mono); font-size: 0.75rem; letter-spacing: var(--tracking-widest); text-transform: uppercase; color: var(--sky); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; }
-.interactive-heading { font-family: var(--serif); font-size: var(--font-section); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.8rem; }
 .interactive-sub { font-size: 0.95rem; color: rgba(255,255,255,0.5); max-width: 480px; margin: 0 auto 3.5rem; line-height: 1.7; }
 
 
@@ -996,7 +993,7 @@ html.dark footer { background: var(--section-dark); }
 <section class="exp-strip" id="experience">
   <div class="reveal-left">
     <div class="section-label" style="color:var(--sky)">Where I've been</div>
-    <h2 class="exp-heading">10 years.<br>Real impact.</h2>
+    <h2 class="section-title" style="margin-bottom:1rem;color:#fff">10 years.<br>Real impact.</h2>
     <p class="exp-subtext">From seed-stage startups to scaling platforms, I've shipped work that creates real change for real people.</p>
     <p class="exp-subtext" style="margin-top:1.2rem;font-size:0.78rem;color:rgba(255,255,255,0.25)">↓ Tap any role to expand</p>
   </div>
@@ -1225,7 +1222,7 @@ html.dark footer { background: var(--section-dark); }
 <section class="skills-section">
   <div class="reveal-left">
     <div class="section-label">Toolkit</div>
-    <h2 class="skills-heading">What I bring.</h2>
+    <h2 class="section-title" style="margin-bottom:0.6rem">What I bring.</h2>
     <p class="skills-sub">I wear a lot of hats, sometimes literally, while building my fishing journal app solo as PM, designer, and engineer.</p>
     <div class="skills-chips">
       <span class="chip" data-key="product-design" data-proof="The core of every project: research, flows, prototypes, and polish.">Product Design</span>
@@ -1289,7 +1286,7 @@ html.dark footer { background: var(--section-dark); }
 <section class="interactive-section" id="fish-quiz">
   <div class="interactive-inner reveal" style="max-width:700px;margin:0 auto;">
     <div class="interactive-eyebrow"><svg viewBox="0 0 24 16" fill="currentColor" style="width:1.1em;height:0.75em;vertical-align:middle;margin-right:0.7em;margin-bottom:0.1em"><path d="M15 8c-1-2.5-4-5.5-11-4.5 0 0 3.5 4 0 9C11 13.5 14 10.5 15 8z"/><path d="M15 8l7-5.5v11L15 8z"/><circle cx="7" cy="7" r="1.3" fill="white"/></svg>Just for fun</div>
-    <h2 class="interactive-heading">What's your fish-nality?</h2>
+    <h2 class="section-title" style="margin-bottom:0.8rem">What's your fish-nality?</h2>
     <p class="interactive-sub">A personality quiz, but with fish! Four questions. One fish. No wrong answers. (Probably.)</p>
 
     <div id="quiz-wrap">
@@ -1369,7 +1366,7 @@ html.dark footer { background: var(--section-dark); }
 /* ── QUIZ ── */
 #fish-quiz { background: var(--section-dark); }
 #fish-quiz .interactive-eyebrow { color: var(--sky); }
-#fish-quiz .interactive-heading { color: #fff; }
+#fish-quiz .section-title { color: #fff; }
 #fish-quiz .interactive-sub { color: rgba(255,255,255,0.5); }
 .quiz-progress {
   height: 3px; background: rgba(255,255,255,0.1);
