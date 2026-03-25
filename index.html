@@ -3450,6 +3450,12 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
   var charCount  = document.getElementById('shCharCount');
   var MAX_CHARS  = 500;
 
+  if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+    document.querySelectorAll('#shReason option').forEach(function(opt) {
+      opt.textContent = opt.textContent.replace(/\s*[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]\s*$/u, '');
+    });
+  }
+
   var messages = {
     hi:       'Hey Dayne,\n\nJust wanted to reach out and say hi — love what you\'ve built.',
     hire:     'Hey Dayne,\n\nWe\'re looking for a product designer and your portfolio caught our eye. Would love to connect.',
@@ -3460,7 +3466,7 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
     feedback: 'Hey Dayne,\n\nI checked out your portfolio and wanted to share some thoughts:\n',
     question: 'Hey Dayne,\n\nQuick question for you:\n',
     wow:      'Lok\'tar ogar, Dayne.\n\nThe Horde has need of a designer. Report to Orgrimmar at once.',
-    longtest: 'Hey Dayne,\n\nI came across your portfolio and wanted to reach out. The depth of thinking in your case studies is refreshing — it is rare to see process documented so clearly. The HRIS Sync work especially stood out to me. The way you navigated complexity while keeping the user experience clean shows real craft. I would love to connect and learn more about your approach to product design. Your very close attention to small details and edge cases is exactly what our team is looking for right now.'
+    longtest: 'Hey Dayne,\n\nI came across your portfolio and wanted to reach out. The depth of thinking in your case studies is refreshing, and it is rare to see process documented so clearly. The HRIS Sync work especially stood out to me. The way you navigated complexity while keeping the user experience clean shows real craft. I would love to connect and learn more about your approach to product design. Your very close attention to small details and edge cases is exactly what our team is looking for right now.'
   };
   var subjects = {
     hi: 'Just saying hi', hire: 'Design role', project: 'Project inquiry',
