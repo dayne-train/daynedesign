@@ -669,9 +669,9 @@ html.dark .mmenu-work-wrap { border-color: rgba(255,255,255,0.07); }
   box-sizing: border-box;
 }
 .mcard {
-  background: rgba(255,255,255,0.055);
+  background: rgba(0,0,0,0.04);
   border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid rgba(0,0,0,0.08);
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
   transition: background 0.15s;
@@ -681,7 +681,7 @@ html.dark .mmenu-work-wrap { border-color: rgba(255,255,255,0.07); }
 /* Work card */
 .mcard-work { padding: 0.9rem; }
 .mcard-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.7rem; }
-.mcard-eyebrow { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+.mcard-eyebrow { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(0,0,0,0.35); }
 .mcard-see-all { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--sky); text-decoration: none; opacity: 0.85; }
 .mcard-see-all:active { opacity: 1; }
 .mcard-proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.45rem; }
@@ -707,9 +707,9 @@ html.dark .mmenu-work-wrap { border-color: rgba(255,255,255,0.07); }
 /* Stacked item cards (Home, Experience, Play, Say Hello) */
 .mcard-item {
   display: flex; align-items: center; gap: 0.85rem;
-  padding: 1rem 1.1rem; text-decoration: none; border: none;
-  background: rgba(255,255,255,0.055); cursor: pointer; font: inherit; width: 100%; box-sizing: border-box;
-  color: rgba(255,255,255,0.8);
+  padding: 1rem 1.1rem; text-decoration: none;
+  background: rgba(0,0,0,0.04); cursor: pointer; font: inherit; width: 100%; box-sizing: border-box;
+  color: var(--ink);
 }
 .mcard-item svg:first-child { width: 1.15rem; height: 1.15rem; opacity: 0.55; flex-shrink: 0; }
 .mcard-item-label { font-family: var(--sans); font-size: 0.95rem; font-weight: 700; letter-spacing: -0.015em; flex: 1; text-align: left; }
@@ -720,7 +720,7 @@ html.dark .mmenu-work-wrap { border-color: rgba(255,255,255,0.07); }
 /* Work expandable card */
 .mcard-work-wrap { padding: 0; }
 .mcard-work-wrap .mcard-item { background: none; }
-.mcard-work-btn { border-radius: 0; }
+.mcard-work-btn { border-radius: 0; border: none; }
 .mcard-plus { width: 0.9rem; height: 0.9rem; opacity: 0.3; flex-shrink: 0; }
 .mcard-plus-v { transition: transform 0.25s cubic-bezier(0.34,1.1,0.64,1); transform-origin: center; }
 .mcard-work-btn[aria-expanded="true"] .mcard-plus-v { transform: scaleY(0); }
@@ -734,7 +734,7 @@ html.dark .mmenu-work-wrap { border-color: rgba(255,255,255,0.07); }
   display: block; text-align: center; padding: 0.7rem;
   font-family: var(--mono); font-size: 0.75rem; letter-spacing: var(--tracking-wide); text-transform: uppercase;
   color: var(--sky); text-decoration: none; opacity: 0.8;
-  border-top: 1px solid rgba(255,255,255,0.07); margin: 0 0.9rem 0.9rem; border-radius: 999px;
+  border-top: 1px solid rgba(0,0,0,0.08); margin: 0 0.9rem 0.9rem; border-radius: 999px;
   background: rgba(74,158,221,0.08);
 }
 .mcard-see-all:active { opacity: 1; background: rgba(74,158,221,0.18); }
@@ -1163,6 +1163,11 @@ html.dark .nav-work-item:hover { background: rgba(74,158,221,0.12); color: rgba(
 html.dark .nav-work-all { color: var(--sky); }
 html.dark .nav-work-all:hover { background: rgba(74,158,221,0.12); }
 html.dark #mobileMenu { background: #0a1520; }
+html.dark .mcard { background: rgba(255,255,255,0.055); border-color: rgba(255,255,255,0.07); }
+html.dark .mcard-item { background: rgba(255,255,255,0.055); color: rgba(255,255,255,0.8); }
+html.dark .mcard-work-wrap .mcard-item { background: none; }
+html.dark .mcard-eyebrow { color: rgba(255,255,255,0.35); }
+html.dark .mcard-see-all { border-top-color: rgba(255,255,255,0.07); }
 html.dark footer { background: #070f18; }
 html.dark .study-hero { background: var(--off); border-bottom-color: var(--stone); }
 html.dark .tool-chip { background: #162030; border-color: var(--stone); }
