@@ -2417,6 +2417,13 @@ function toggleRow(id) {
     row.classList.add('open');
     const btn = row.querySelector('.exp-row-header');
     if (btn) btn.setAttribute('aria-expanded', 'true');
+    // On mobile: pin header below nav so drawer expands into view
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      setTimeout(function() {
+        var top = row.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }, 30);
+    }
   }
   // Spotlight: mark roles container when any row is open
   const roles = document.querySelector('.exp-roles');
