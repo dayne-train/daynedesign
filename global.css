@@ -656,6 +656,7 @@ html.dark .mmenu-work-wrap { border-color: rgba(255,255,255,0.07); }
 .mmenu-see-all:hover, .mmenu-see-all:active { background: var(--sky); color: #fff; }
 
 /* CTA row */
+.mmenu-cta .mmenu-arrow { width: 1.2rem; height: 1.2rem; }
 
 /* ── SAY HELLO MODAL ── */
 #sayHelloModal {
