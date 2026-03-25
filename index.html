@@ -2299,8 +2299,18 @@ window.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() { window.dispatchEvent(new Event('scroll')); }, 50);
   });
   menu.querySelectorAll('.mobile-link').forEach(function(link) {
-    if (link.getAttribute('href') && link.getAttribute('href').indexOf('mailto:') === 0) return;
-    link.addEventListener('click', closeMenu);
+    var href = link.getAttribute('href');
+    if (!href || href.indexOf('mailto:') === 0) return;
+    if (href.charAt(0) === '#' && href.length > 1) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeMenu();
+        var target = document.querySelector(href);
+        if (target) requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
+      });
+    } else {
+      link.addEventListener('click', closeMenu);
+    }
   });
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeMenu();
