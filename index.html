@@ -3318,23 +3318,63 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
 </script>
 <script src="footer-easter-egg.js"></script>
 
-<div id="mobileMenu">
-  <a class="mobile-link" href="index.html">Home</a>
-  <div>
-  <button class="mobile-work-btn" id="mobileWorkBtn" aria-expanded="false">Work <span class="mobile-work-chevron">▾</span></button>
-  <div class="mobile-work-sub" id="mobileWorkSub">
-    <a class="mobile-work-sub-link" href="hris-sync.html">HRIS Sync</a>
-    <a class="mobile-work-sub-link" href="lessen-pro.html">Lessen Pro</a>
-    <a class="mobile-work-sub-link" href="veho.html">Exception Handling</a>
-    <a class="mobile-work-sub-link" href="software-tools.html">Software &amp; Tools</a>
-    <a class="mobile-work-sub-link" href="rivet.html">Rivet</a>
-    <a class="mobile-work-sub-link" href="strongmind.html">StrongMind App</a>
-    <a class="mobile-work-sub-link mobile-work-see-all" href="#studies" id="mobileWorkSeeAll">Go to case studies</a>
+<div id="mobileMenu" class="mmenu-v2">
+  <div class="mmenu-inner">
+    <a class="mmenu-row mobile-link" href="index.html">
+      <span class="mmenu-label">Home</span>
+      <svg class="mmenu-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+    </a>
+    <div class="mmenu-work-wrap">
+      <button class="mmenu-row mmenu-work-btn mobile-work-btn" id="mobileWorkBtn" aria-expanded="false">
+        <span class="mmenu-label">Work</span>
+        <svg class="mmenu-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+      </button>
+      <div class="mmenu-work-sub mobile-work-sub" id="mobileWorkSub">
+        <div class="mmenu-project-grid">
+          <a class="mmenu-project-card mobile-link c-hris" href="hris-sync.html">
+            <div class="mmenu-project-bg"></div>
+            <span class="mmenu-project-name">HRIS Sync</span>
+          </a>
+          <a class="mmenu-project-card mobile-link c-lessen" href="lessen-pro.html">
+            <div class="mmenu-project-bg"></div>
+            <span class="mmenu-project-name">Lessen Pro</span>
+          </a>
+          <a class="mmenu-project-card mobile-link c-veho" href="veho.html">
+            <div class="mmenu-project-bg"></div>
+            <span class="mmenu-project-name">Exception Handling</span>
+          </a>
+          <a class="mmenu-project-card mobile-link c-sw" href="software-tools.html">
+            <div class="mmenu-project-bg"></div>
+            <span class="mmenu-project-name">Software &amp; Tools</span>
+          </a>
+          <a class="mmenu-project-card mobile-link c-rivet" href="rivet.html">
+            <div class="mmenu-project-bg"></div>
+            <span class="mmenu-project-name">Rivet</span>
+          </a>
+          <a class="mmenu-project-card mobile-link c-sm" href="strongmind.html">
+            <div class="mmenu-project-bg"></div>
+            <span class="mmenu-project-name">StrongMind</span>
+          </a>
+        </div>
+        <a class="mmenu-see-all mobile-link" href="#studies" id="mobileWorkSeeAll">
+          See all 14
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+        </a>
+      </div>
+    </div>
+    <a class="mmenu-row mobile-link" href="#experience">
+      <span class="mmenu-label">Experience</span>
+      <svg class="mmenu-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+    </a>
+    <a class="mmenu-row mobile-link" href="#fish-quiz">
+      <span class="mmenu-label">Play</span>
+      <svg class="mmenu-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+    </a>
+    <a class="mmenu-row mmenu-cta mobile-link" href="mailto:dayne@dayne.design">
+      <span class="mmenu-label">Say hello</span>
+      <svg class="mmenu-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg>
+    </a>
   </div>
-  </div>
-  <a class="mobile-link" href="#experience">Experience</a>
-  <a class="mobile-link" href="#fish-quiz">Play</a>
-  <a class="mobile-link mobile-link-cta" href="mailto:dayne@dayne.design">Say hello</a>
 </div>
 
 
