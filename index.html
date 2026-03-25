@@ -2239,7 +2239,7 @@ window.addEventListener('DOMContentLoaded', function() {
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
-    window.scrollTo(0, _menuScrollY);
+    window.scrollTo({ top: _menuScrollY, behavior: 'instant' });
     menu.removeEventListener('touchmove', preventMenuScroll);
     var mdb = document.querySelector('.mobile-dark-btn'); if (mdb) mdb.style.display = 'none';
     if (mobileWorkSub) { mobileWorkSub.classList.remove('open'); }
@@ -3503,7 +3503,7 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
-    window.scrollTo(0, _modalScrollY);
+    window.scrollTo({ top: _modalScrollY, behavior: 'instant' });
     setTimeout(function() { modal.style.display = 'none'; resetModal(); }, 450);
   }
 
