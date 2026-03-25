@@ -244,7 +244,6 @@ window.addEventListener('load', function() {
 }
 .study-card-bg {
   position: absolute; inset: 0;
-  border-radius: var(--radius-card);
   background-size: cover; background-position: center;
   opacity: 0.55;
   transition: opacity 0.4s ease, transform 0.55s ease;
@@ -262,7 +261,6 @@ window.addEventListener('load', function() {
 .study-card::after {
   content: '';
   position: absolute; inset: 0;
-  border-radius: var(--radius-card);
   background: linear-gradient(160deg, rgba(74,158,221,0.18) 0%, rgba(33,118,174,0.08) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -2234,6 +2232,21 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function() {
       var isDark = document.documentElement.classList.toggle('dark');
       localStorage.setItem('darkMode', isDark);
+      if (this.id === 'darkToggle') {
+        var b = this;
+        var sun = b.querySelector('.sun-icon');
+        var moon = b.querySelector('.moon-icon');
+        var outIcon = isDark ? sun : moon;
+        var inIcon  = isDark ? moon : sun;
+        b.classList.add('toggling');
+        outIcon.style.animation = 'toggle-cw-out 0.4s cubic-bezier(0.34,1.1,0.64,1) forwards';
+        inIcon.style.animation  = 'toggle-cw-in 0.4s cubic-bezier(0.34,1.1,0.64,1) forwards';
+        setTimeout(function() {
+          outIcon.style.animation = '';
+          inIcon.style.animation  = '';
+          b.classList.remove('toggling');
+        }, 420);
+      }
     });
   });
 });
@@ -2280,9 +2293,12 @@ window.addEventListener('DOMContentLoaded', function() {
     menu.classList.contains('open') ? closeMenu() : openMenu();
   });
   var logoLink = document.querySelector('.nav-logo');
-  if (logoLink) logoLink.addEventListener('click', function() { if (menu.classList.contains('open')) { _menuScrollY = 0; closeMenu(); } });
+  if (logoLink) logoLink.addEventListener('click', function() { if (menu.classList.contains('open')) { _menuScrollY = 0; closeMenu(); setTimeout(function() { window.dispatchEvent(new Event('scroll')); }, 50); } });
   var homeLink = menu.querySelector('a.mobile-link[href="#"]');
-  if (homeLink) homeLink.addEventListener('click', function() { _menuScrollY = 0; });
+  if (homeLink) homeLink.addEventListener('click', function() {
+    _menuScrollY = 0;
+    setTimeout(function() { window.dispatchEvent(new Event('scroll')); }, 50);
+  });
   menu.querySelectorAll('.mobile-link').forEach(function(link) {
     if (link.getAttribute('href') && link.getAttribute('href').indexOf('mailto:') === 0) return;
     link.addEventListener('click', closeMenu);
@@ -3504,6 +3520,21 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
       </a>
 
     </div>
+
+    <!-- Menu footer -->
+    <div class="mmenu-footer">
+      <div class="mmenu-footer-row">
+        <div class="mmenu-avail">
+          <span class="mmenu-avail-dot"></span>
+          Available for work
+        </div>
+        <a class="mmenu-resume-btn" href="Petera-Product-Design-Resume.pdf" download>
+          Download Resume
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
+        </a>
+      </div>
+    </div>
+
   </div>
 </div>
 

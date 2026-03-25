@@ -188,6 +188,21 @@ document.addEventListener('DOMContentLoaded', function() {
     b.addEventListener('click', function() {
       var d = document.documentElement.classList.toggle('dark');
       localStorage.setItem('darkMode', d);
+      if (this.id === 'darkToggle') {
+        var btn = this;
+        var sun = btn.querySelector('.sun-icon');
+        var moon = btn.querySelector('.moon-icon');
+        var outIcon = d ? sun : moon;
+        var inIcon  = d ? moon : sun;
+        btn.classList.add('toggling');
+        outIcon.style.animation = 'toggle-cw-out 0.4s cubic-bezier(0.34,1.1,0.64,1) forwards';
+        inIcon.style.animation  = 'toggle-cw-in 0.4s cubic-bezier(0.34,1.1,0.64,1) forwards';
+        setTimeout(function() {
+          outIcon.style.animation = '';
+          inIcon.style.animation  = '';
+          btn.classList.remove('toggling');
+        }, 420);
+      }
     });
   });
 });
