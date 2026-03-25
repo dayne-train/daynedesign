@@ -713,11 +713,11 @@ html.dark .sh-title { color: #fff; }
   background: rgba(0,0,0,0.06); border: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   color: var(--ink); flex-shrink: 0;
-  transition: background 0.15s, color 0.15s, transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1);
+  transition: background 0.15s, color 0.15s;
 }
 html.dark .sh-close { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
 .sh-close svg { width: 14px; height: 14px; }
-.sh-close:hover { background: white; color: var(--sky-mid); transform: scale(1.1); }
+.sh-close:hover { background: white; color: var(--sky-mid); }
 html.dark .sh-close:hover { background: white; color: var(--sky-mid); }
 .sh-body { display: flex; flex-direction: column; }
 .sh-label {
