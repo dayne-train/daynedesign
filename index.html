@@ -2215,12 +2215,14 @@ window.addEventListener('DOMContentLoaded', function() {
   var nav = document.getElementById('mainNav');
   if (!btn || !menu) return;
 
+  function preventMenuScroll(e) { e.preventDefault(); }
   function openMenu() {
     menu.classList.add('open');
     btn.classList.add('open');
     nav.classList.add('menu-open');
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
+    menu.addEventListener('touchmove', preventMenuScroll, { passive: false });
     var mdb = document.querySelector('.mobile-dark-btn'); if (mdb) mdb.style.display = 'flex';
   }
   var mobileWorkBtn = document.getElementById('mcardWorkBtn') || document.getElementById('mobileWorkBtn');
@@ -2233,6 +2235,7 @@ window.addEventListener('DOMContentLoaded', function() {
     nav.classList.remove('menu-open');
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
+    menu.removeEventListener('touchmove', preventMenuScroll);
     var mdb = document.querySelector('.mobile-dark-btn'); if (mdb) mdb.style.display = 'none';
     if (mobileWorkSub) { mobileWorkSub.classList.remove('open'); }
     if (mobileWorkBtn) mobileWorkBtn.setAttribute('aria-expanded', 'false');
@@ -3477,6 +3480,8 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
 
   messageTa.value = messages.hi;
   function openModal() {
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
     modal.style.display = 'flex';
     requestAnimationFrame(function() {
       requestAnimationFrame(function() {
@@ -3487,6 +3492,8 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
   }
   function closeModal() {
     modal.classList.remove('sh-open');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
     setTimeout(function() { modal.style.display = 'none'; resetModal(); }, 450);
   }
 
@@ -3524,6 +3531,7 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
   closeBtn.addEventListener('click', closeModal);
   cancelBtn.addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
+  backdrop.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
 
   // Drag-to-dismiss on mobile (handle + sheet header)
   var sheet = document.getElementById('shSheet');
