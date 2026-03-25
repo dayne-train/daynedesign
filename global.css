@@ -35,6 +35,16 @@
   /* tracking */
   --tracking-wide:    0.08em;
   --tracking-widest:  0.14em;
+  /* spacing scale */
+  --sp-1: 0.25rem;  /*  4px — micro: icon gaps, tight pairs */
+  --sp-2: 0.5rem;   /*  8px — xs: badge/chip padding */
+  --sp-3: 0.75rem;  /* 12px — sm: nav links, small gaps */
+  --sp-4: 1rem;     /* 16px — md: base unit, primary padding */
+  --sp-5: 1.5rem;   /* 24px — lg: component padding */
+  --sp-6: 2rem;     /* 32px — xl: section sub-spacing */
+  --sp-7: 3rem;     /* 48px — 2xl: section padding */
+  --sp-8: 4rem;     /* 64px — 3xl: nav horizontal, large sections */
+  --sp-9: 5rem;     /* 80px — 4xl: hero/footer horizontal */
   /* blur */
   --blur-sm: 16px;
   --blur-lg: 28px;
