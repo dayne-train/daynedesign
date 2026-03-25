@@ -583,8 +583,10 @@ html.dark .mmenu-row { color: #fff; border-color: rgba(255,255,255,0.07); }
 .mmenu-row:active { background: rgba(74,158,221,0.1); color: var(--sky); }
 .mmenu-label { font-family: var(--sans); font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; }
 .mmenu-arrow { width: 1rem; height: 1rem; flex-shrink: 0; opacity: 0.3; transition: opacity 0.15s, transform 0.2s; }
-.mmenu-chevron { width: 1rem; height: 1rem; flex-shrink: 0; opacity: 0.4; transition: transform 0.3s cubic-bezier(0.34,1.1,0.64,1), opacity 0.15s; }
-.mmenu-work-btn[aria-expanded="true"] .mmenu-chevron { transform: rotate(180deg); opacity: 0.8; }
+.mmenu-chevron { width: 1rem; height: 1rem; flex-shrink: 0; opacity: 0.4; transition: opacity 0.15s; }
+.mmenu-plus-v { transition: transform 0.25s cubic-bezier(0.34,1.1,0.64,1); transform-origin: center; }
+.mmenu-work-btn[aria-expanded="true"] .mmenu-chevron { opacity: 0.8; }
+.mmenu-work-btn[aria-expanded="true"] .mmenu-plus-v { transform: scaleY(0); }
 
 /* Work wrap */
 .mmenu-work-wrap { display: flex; flex-direction: column; border-bottom: 1px solid var(--stone); }
@@ -656,7 +658,6 @@ html.dark .mmenu-work-wrap { border-color: rgba(255,255,255,0.07); }
 .mmenu-see-all:hover, .mmenu-see-all:active { background: var(--sky); color: #fff; }
 
 /* CTA row */
-.mmenu-cta .mmenu-arrow { width: 1.2rem; height: 1.2rem; }
 
 /* ── SAY HELLO MODAL ── */
 #sayHelloModal {
