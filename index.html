@@ -3492,10 +3492,31 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
     var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(from);
     fromInput.classList.toggle('sh-input-error', !valid);
     if (!valid) { fromInput.focus(); return; }
-    var subject = encodeURIComponent((subjects[reasonSel.value] || 'Hello') + ' — ' + from);
-    var body    = encodeURIComponent(messageTa.value);
-    window.location.href = 'mailto:dayne@dayne.design?subject=' + subject + '&body=' + body;
-    setTimeout(closeModal, 200);
+    var subject = (subjects[reasonSel.value] || 'Hello') + ' — ' + from;
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending…';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: 'ecb19b03-7658-47d1-84e9-4b198ef922dd',
+        subject: subject,
+        from_name: from,
+        replyto: from,
+        message: messageTa.value
+      })
+    }).then(function(r) { return r.json(); }).then(function(data) {
+      if (data.success) {
+        sendBtn.textContent = 'Sent!';
+        setTimeout(closeModal, 800);
+      } else {
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send';
+      }
+    }).catch(function() {
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'Send';
+    });
   });
   fromInput.addEventListener('input', function() { fromInput.classList.remove('sh-input-error'); });
 })();
