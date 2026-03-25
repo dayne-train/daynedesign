@@ -293,20 +293,20 @@ a.nav-cta:hover { background: var(--sky-mid); color: #fff !important; transform:
 .related-home .related-card-title { color: var(--ink); margin-bottom: 0; font-size: 0.9rem; }
 html.dark .related-home { background: #0d1e2e; border-color: #1c3a52; }
 html.dark .related-home .related-card-title { color: #fff; }
-.c-hris       .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/hris-hero-lg.png'); }
-.c-lessen     .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/pro-hero.png?fit=1568%2C1045&ssl=1'); }
-.c-veho       .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2024/02/showcase.reg_.png?fit=1568%2C847&ssl=1'); }
-.c-rivet      .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/screenshot-2023-02-09-at-6.29.15-pm.png'); }
-.c-sw         .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/software-and-tools-hero-1.png?fit=1568%2C907&ssl=1'); }
-.c-sm         .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/splash.png?fit=1568%2C851&ssl=1'); }
-.c-lm         .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/artboard.png?fit=1568%2C1401&ssl=1'); }
-.c-realize    .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/realize1.png?fit=1150%2C750&ssl=1'); }
-.c-sprint     .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/sprint1.png'); }
-.c-k12        .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/k12_featured1.png'); }
-.c-scout      .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/scout_dashboard.png'); }
-.c-drive      .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/01/dive_mockup2.png'); }
-.c-easybridge .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/eb_front.png'); }
-.c-vlogger    .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_4.png'); }
+.c-hris       .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/hris-hero-lg.png?w=800&ssl=1'); }
+.c-lessen     .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/pro-hero.png?w=800&ssl=1'); }
+.c-veho       .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2024/02/showcase.reg_.png?w=800&ssl=1'); }
+.c-rivet      .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/screenshot-2023-02-09-at-6.29.15-pm.png?w=800&ssl=1'); }
+.c-sw         .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/software-and-tools-hero-1.png?w=800&ssl=1'); }
+.c-sm         .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/splash.png?w=800&ssl=1'); }
+.c-lm         .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/artboard.png?w=800&ssl=1'); }
+.c-realize    .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/realize1.png?w=800&ssl=1'); }
+.c-sprint     .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/sprint1.png?w=800&ssl=1'); }
+.c-k12        .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/k12_featured1.png?w=800&ssl=1'); }
+.c-scout      .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/scout_dashboard.png?w=800&ssl=1'); }
+.c-drive      .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/01/dive_mockup2.png?w=800&ssl=1'); }
+.c-easybridge .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/eb_front.png?w=800&ssl=1'); }
+.c-vlogger    .related-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_4.png?w=800&ssl=1'); }
 .study-card-badges { position: absolute; top: 1rem; left: 1rem; display: flex; gap: 0.4rem; z-index: 2; }
 .study-badge { display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(245,249,252,0.82); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); padding: 0.25rem 0.55rem 0.25rem 0.3rem; border-radius: 8px; font-family: var(--mono); font-size: var(--font-badge); letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink); white-space: nowrap; border: 1px solid rgba(28,43,58,0.1); }
 .study-badge img { width: 14px; height: 14px; border-radius: 4px; object-fit: contain; flex-shrink: 0; }
@@ -638,12 +638,12 @@ html.dark .mmenu-work-wrap { border-color: rgba(255,255,255,0.07); }
   z-index: 1;
   line-height: 1.3;
 }
-.mmenu-project-card.c-hris .mmenu-project-bg   { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/hris-hero-lg.png'); }
-.mmenu-project-card.c-lessen .mmenu-project-bg  { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/pro-hero.png?fit=1568%2C1045&ssl=1'); }
-.mmenu-project-card.c-veho .mmenu-project-bg    { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2024/02/showcase.reg_.png?fit=1568%2C847&ssl=1'); }
-.mmenu-project-card.c-rivet .mmenu-project-bg   { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/screenshot-2023-02-09-at-6.29.15-pm.png'); }
-.mmenu-project-card.c-sw .mmenu-project-bg      { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/software-and-tools-hero-1.png?fit=1568%2C907&ssl=1'); }
-.mmenu-project-card.c-sm .mmenu-project-bg      { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/splash.png?fit=1568%2C851&ssl=1'); }
+.mmenu-project-card.c-hris .mmenu-project-bg   { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/hris-hero-lg.png?w=800&ssl=1'); }
+.mmenu-project-card.c-lessen .mmenu-project-bg  { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/pro-hero.png?w=800&ssl=1'); }
+.mmenu-project-card.c-veho .mmenu-project-bg    { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2024/02/showcase.reg_.png?w=800&ssl=1'); }
+.mmenu-project-card.c-rivet .mmenu-project-bg   { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/screenshot-2023-02-09-at-6.29.15-pm.png?w=800&ssl=1'); }
+.mmenu-project-card.c-sw .mmenu-project-bg      { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/software-and-tools-hero-1.png?w=800&ssl=1'); }
+.mmenu-project-card.c-sm .mmenu-project-bg      { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/splash.png?w=800&ssl=1'); }
 
 /* See all */
 .mmenu-see-all {

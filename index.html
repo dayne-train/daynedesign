@@ -253,6 +253,11 @@ window.addEventListener('load', function() {
   opacity: 1;
   transform: scale(1.05);
 }
+/* When JS reveal active: fade bg in after card entrance so image pop-in is invisible */
+.js-reveal .study-card-bg { opacity: 0; transition: opacity 0.9s ease 0.5s, transform 0.55s ease; }
+.js-reveal .reveal-stagger.visible .study-card-bg { opacity: 0.55; }
+.js-reveal .study-card:hover .study-card-bg,
+.js-reveal .study-card.active .study-card-bg { opacity: 1; transition-delay: 0s; }
 /* blue tint overlay on hover */
 .study-card::after {
   content: '';
@@ -299,20 +304,20 @@ window.addEventListener('load', function() {
 .show-more-row { display: flex; justify-content: center; margin-top: 2.5rem; gap: 1rem; }
 
 /* card hero images from dayne.design */
-.c-hris   .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/hris-hero-lg.png'); }
-.c-sw     .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/software-and-tools-hero-1.png?fit=1568%2C907&ssl=1'); }
-.c-veho   .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2024/02/showcase.reg_.png?fit=1568%2C847&ssl=1'); }
-.c-lessen .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/pro-hero.png?fit=1568%2C1045&ssl=1'); }
-.c-rivet  .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/screenshot-2023-02-09-at-6.29.15-pm.png'); }
-.c-sm     .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/splash.png?fit=1568%2C851&ssl=1'); }
-.c-lm       .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/artboard.png?fit=1568%2C1401&ssl=1'); }
-.c-realize  .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/realize1.png?fit=1150%2C750&ssl=1'); }
-.c-sprint   .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/sprint1.png'); }
-.c-k12      .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/k12_featured1.png'); }
-.c-scout    .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/scout_dashboard.png'); }
-.c-drive    .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/01/dive_mockup2.png'); }
-.c-easybridge .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/eb_front.png'); }
-.c-vlogger  .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_4.png'); }
+.c-hris   .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/hris-hero-lg.png?w=800&ssl=1'); }
+.c-sw     .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/software-and-tools-hero-1.png?w=800&ssl=1'); }
+.c-veho   .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2024/02/showcase.reg_.png?w=800&ssl=1'); }
+.c-lessen .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/pro-hero.png?w=800&ssl=1'); }
+.c-rivet  .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/screenshot-2023-02-09-at-6.29.15-pm.png?w=800&ssl=1'); }
+.c-sm     .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/splash.png?w=800&ssl=1'); }
+.c-lm       .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/artboard.png?w=800&ssl=1'); }
+.c-realize  .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/realize1.png?w=800&ssl=1'); }
+.c-sprint   .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/sprint1.png?w=800&ssl=1'); }
+.c-k12      .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/k12_featured1.png?w=800&ssl=1'); }
+.c-scout    .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/scout_dashboard.png?w=800&ssl=1'); }
+.c-drive    .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/01/dive_mockup2.png?w=800&ssl=1'); }
+.c-easybridge .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/eb_front.png?w=800&ssl=1'); }
+.c-vlogger  .study-card-bg { background-image: url('https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2018/03/vlogger_4.png?w=800&ssl=1'); }
 
 /* decorative circle */
 
