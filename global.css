@@ -808,7 +808,7 @@ html.dark .sh-handle::after { background: rgba(255,255,255,0.12); }
 }
 .sh-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
 html.dark .sh-title { color: #fff; }
-.sh-subtitle { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); margin-top: 0.2rem; }
+.sh-subtitle { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); margin-top: 0.1rem; }
 .sh-close {
   width: 32px; height: 32px; border-radius: 999px;
   background: rgba(0,0,0,0.06); border: none; cursor: pointer;
@@ -897,6 +897,7 @@ html.dark .sh-cancel:hover { color: #fff; background: rgba(255,255,255,0.08); }
     border-radius: 16px;
     max-width: 760px;
     margin: 0 3rem;
+    padding-top: 1.75rem;
     transform: scale(0.94);
     opacity: 0;
     transition: transform 0.3s cubic-bezier(0.34, 1.1, 0.64, 1), opacity 0.22s ease;
