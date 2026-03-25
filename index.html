@@ -336,6 +336,7 @@ window.addEventListener('load', function() {
   border-top: 1px solid rgba(255,255,255,0.1);
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 80px;
   transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               border-radius 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
@@ -2417,12 +2418,9 @@ function toggleRow(id) {
     row.classList.add('open');
     const btn = row.querySelector('.exp-row-header');
     if (btn) btn.setAttribute('aria-expanded', 'true');
-    // On mobile: pin header below nav so drawer expands into view
+    // On mobile: scroll row to top so drawer expands into view below nav
     if (window.matchMedia('(max-width: 768px)').matches) {
-      setTimeout(function() {
-        var top = row.getBoundingClientRect().top + window.scrollY - 72;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      }, 30);
+      row.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
   // Spotlight: mark roles container when any row is open
