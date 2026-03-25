@@ -3674,6 +3674,7 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
   }
   function onDragMove(e) {
     if (dragStart === null) return;
+    e.preventDefault();
     var y = (e.touches ? e.touches[0].clientY : e.clientY) - dragStart;
     dragY = Math.max(0, y);
     sheet.style.transform = 'translateY(' + dragY + 'px)';
@@ -3693,7 +3694,7 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
     handle.addEventListener('touchstart', onDragStart, { passive: true });
     handle.addEventListener('mousedown', onDragStart);
   }
-  window.addEventListener('touchmove', onDragMove, { passive: true });
+  window.addEventListener('touchmove', onDragMove, { passive: false });
   window.addEventListener('touchend', onDragEnd);
   window.addEventListener('mousemove', onDragMove);
   window.addEventListener('mouseup', onDragEnd);
