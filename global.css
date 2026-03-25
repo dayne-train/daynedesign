@@ -305,11 +305,11 @@ html.dark .fmenu-track { background: rgba(255,255,255,0.2); }
   position: relative; overflow: hidden; text-decoration: none;
   display: flex; flex-direction: column; justify-content: flex-end;
   height: 200px; border-radius: var(--radius-card);
-  border: 1.5px solid var(--stone); background: var(--off);
-  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2);
+  box-shadow: 0 0 0 1.5px var(--stone); background: var(--off);
+  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.2s ease;
   will-change: transform;
 }
-.related-card:hover { transform: scale(1.03); box-shadow: 0 20px 48px rgba(28,43,58,0.15); border-color: var(--sky); }
+.related-card:hover { transform: scale(1.03); box-shadow: 0 0 0 1.5px var(--sky), 0 20px 48px rgba(28,43,58,0.15); }
 .related-card-bg {
   position: absolute; inset: 0;
   background-size: cover; background-position: center;
@@ -385,7 +385,7 @@ html.dark .study-badge { background: rgba(18,36,54,0.88); border-color: rgba(255
 }
 html.dark .related-work { border-top-color: rgba(255,255,255,0.06); }
 html.dark .related-heading { color: #e8f0f7; }
-html.dark .related-card { background: #0f1e2d; border-color: #1c3a52; }
+html.dark .related-card { background: #0f1e2d; box-shadow: 0 0 0 1.5px #1c3a52; }
 html.dark .related-card-info { background: rgba(10,21,34,0.82); border-top-color: rgba(255,255,255,0.06); }
 html.dark .related-card-title { color: #e8f0f7; }
 
@@ -1112,7 +1112,7 @@ footer {
 
 /* ── TOUCH — suppress hover effects that feel jarring on tap ── */
 @media (hover: none) and (pointer: coarse) {
-  .related-card:hover { transform: none; box-shadow: none; border-color: var(--stone); }
+  .related-card:hover { transform: none; box-shadow: 0 0 0 1.5px var(--stone); }
   .related-card:hover .related-card-bg { opacity: 0.55; transform: none; }
   .related-card:hover .related-chip { background: rgba(74,158,221,0.6); }
   .btn-primary:hover, .btn-outline:hover, .btn-ghost-dark:hover, a.nav-cta:hover { transform: none; box-shadow: none; }
