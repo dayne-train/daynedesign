@@ -2418,9 +2418,9 @@ function toggleRow(id) {
     row.classList.add('open');
     const btn = row.querySelector('.exp-row-header');
     if (btn) btn.setAttribute('aria-expanded', 'true');
-    // On mobile: scroll row to top so drawer expands into view below nav
+    // On mobile: scroll row into view only if needed
     if (window.matchMedia('(max-width: 768px)').matches) {
-      row.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
   // Spotlight: mark roles container when any row is open
