@@ -3458,6 +3458,7 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
   };
 
   messageTa.value = messages.hi;
+  var openedFromMenu = false;
 
   function openModal() {
     modal.style.display = 'flex';
@@ -3470,7 +3471,24 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
   }
   function closeModal() {
     modal.classList.remove('sh-open');
-    setTimeout(function() { modal.style.display = 'none'; }, 450);
+    var shouldReopenMenu = openedFromMenu;
+    openedFromMenu = false;
+    setTimeout(function() {
+      modal.style.display = 'none';
+      if (shouldReopenMenu) {
+        var mobileMenu = document.getElementById('mobileMenu');
+        var hamburger = document.getElementById('navHamburger');
+        var mainNav = document.getElementById('mainNav');
+        if (mobileMenu && hamburger) {
+          mobileMenu.classList.add('open');
+          hamburger.classList.add('open');
+          if (mainNav) mainNav.classList.add('menu-open');
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          var mdb = document.querySelector('.mobile-dark-btn'); if (mdb) mdb.style.display = 'flex';
+        }
+      }
+    }, 450);
   }
 
   reasonSel.addEventListener('change', function() {
@@ -3478,7 +3496,11 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
   });
 
   document.querySelectorAll('a[href="mailto:hello@dayne.design"]').forEach(function(a) {
-    a.addEventListener('click', function(e) { e.preventDefault(); openModal(); });
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (a.closest('#mobileMenu')) openedFromMenu = true;
+      openModal();
+    });
   });
 
   closeBtn.addEventListener('click', closeModal);
