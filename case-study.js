@@ -74,7 +74,6 @@ function updateProgress() {
   progressFill.style.width = pct + '%';
 }
 window.addEventListener('scroll', updateProgress, { passive: true });
-document.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
 // Lightbox

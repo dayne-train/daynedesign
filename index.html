@@ -2611,6 +2611,7 @@ function toggleStudies() { studiesMore(); } /* legacy alias */
 
   // Hover pause (desktop) — only the card track area, not the dots row
   const cardArea = document.querySelector('#quoteCarousel .quote-track-outer');
+  if (!cardArea) return;
   cardArea.addEventListener('mouseenter', () => {
     if (paused) return;
     hovered = true;
@@ -3332,7 +3333,7 @@ function triggerGalaga() {
   const card = document.getElementById('expPreview');
   const ctxEl = document.getElementById('epContext');
   const impEl = document.getElementById('epImpact');
-  if (!card) return;
+  if (!card || !ctxEl || !impEl) return;
   let showTimer, hideTimer, resetTimer, unlocked = false;
 
   function showCard(row) {
@@ -3663,7 +3664,6 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
   backdrop.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
 
   // Drag-to-dismiss on mobile (handle + sheet header)
-  var sheet = document.getElementById('shSheet');
   var handle = sheet && sheet.querySelector('.sh-handle');
   var dragStart = null, dragY = 0;
   function onDragStart(e) {
