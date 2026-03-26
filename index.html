@@ -234,7 +234,7 @@ window.addEventListener('load', function() {
   display: flex; flex-direction: column; justify-content: flex-end;
   border-radius: var(--radius-card);
   box-shadow: 0 0 0 1.5px var(--stone);
-  transition: transform 0.4s cubic-bezier(.22,.68,0,1.2), box-shadow 0.2s ease;
+  transition: transform 0.4s cubic-bezier(.22,.68,0,1), box-shadow 0.2s ease;
 }
 .study-card:hover {
   will-change: transform;
@@ -245,15 +245,15 @@ window.addEventListener('load', function() {
   position: absolute; inset: 0;
   background-size: cover; background-position: center;
   opacity: 0.55;
-  transition: opacity 0.4s ease, transform 0.55s ease;
+  transition: opacity 0.4s ease, transform 0.32s cubic-bezier(.22,.68,0,1);
 }
 .study-card:hover .study-card-bg {
   opacity: 1;
   transform: scale(1.05);
 }
 /* When JS reveal active: fade bg in after card entrance so image pop-in is invisible */
-.js-reveal .study-card-bg { opacity: 0; transition: opacity 0.9s ease 0.5s, transform 0.55s ease; }
-.js-reveal .reveal-stagger.visible .study-card-bg { opacity: 0.55; transition: opacity 0.4s ease, transform 0.55s ease; }
+.js-reveal .study-card-bg { opacity: 0; transition: opacity 0.9s ease 0.5s, transform 0.32s cubic-bezier(.22,.68,0,1); }
+.js-reveal .reveal-stagger.visible .study-card-bg { opacity: 0.55; transition: opacity 0.4s ease, transform 0.32s cubic-bezier(.22,.68,0,1); }
 .js-reveal .study-card:hover .study-card-bg,
 .js-reveal .study-card.active .study-card-bg { opacity: 1; }
 /* blue tint overlay on hover */
@@ -274,7 +274,11 @@ window.addEventListener('load', function() {
   border-top: 1px solid rgba(255,255,255,0.6);
   color: var(--ink);
   border-radius: 0 0 var(--radius-card) var(--radius-card);
+  transform: translateY(2.8rem);
+  transition: transform 0.32s cubic-bezier(.22,.68,0,1);
 }
+.study-card:hover .study-card-info,
+.study-card.active .study-card-info { transform: translateY(0); }
 .study-card-badges { position: absolute; top: 1rem; left: 1rem; display: flex; gap: 0.4rem; z-index: 2; }
 .study-badge { display: inline-flex; align-items: center; gap: 0.35rem; background: var(--glass-badge); backdrop-filter: blur(4px); padding: 0.25rem 0.55rem 0.25rem 0.3rem; border-radius: 8px; font-family: var(--mono); font-size: var(--font-badge); letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink); white-space: nowrap; border: 1px solid rgba(28,43,58,0.1); }
 .study-badge img { width: 14px; height: 14px; border-radius: 4px; object-fit: contain; flex-shrink: 0; }
@@ -286,11 +290,13 @@ window.addEventListener('load', function() {
   display: inline-flex; margin-top: 0.75rem;
   font-family: var(--mono); font-size: var(--font-label); letter-spacing: var(--tracking-wide);
   text-transform: uppercase; color: white; text-decoration: none;
-  background: rgba(74,158,221,0.6); backdrop-filter: blur(4px);
+  background: rgba(74,158,221,0.6);
   padding: 0.3rem 0.8rem; border-radius: var(--radius); gap: 0.3rem; align-items: center;
-  transition: background 0.2s;
+  opacity: 0;
+  transition: opacity 0.32s cubic-bezier(.22,.68,0,1), background 0.2s;
 }
-.study-card:hover .study-chip { background: var(--sky); }
+.study-card:hover .study-chip { background: var(--sky); opacity: 1; }
+.study-card.active .study-chip { opacity: 1; }
 .study-chip svg { width: 1.1em; height: 1.1em; flex-shrink: 0; }
 
 /* extra cards */
