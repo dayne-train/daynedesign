@@ -2085,7 +2085,9 @@ document.getElementById('viewStatsBtn').addEventListener('click', function() {
     // Higher k = lighter mass = snappier. Damping keeps it from oscillating forever.
     vx  += (tx - cx)  * 0.0008 - vx  * 0.91; cx  += vx;   // main — heaviest
     vy  += (ty - cy)  * 0.0008 - vy  * 0.91; cy  += vy;
-    dotX += (mouseX - dotX) * 0.2; dotY += (mouseY - dotY) * 0.2;
+    const dotTX = hovering ? mouseX : cx;
+    const dotTY = hovering ? mouseY : cy;
+    dotX += (dotTX - dotX) * 0.2; dotY += (dotTY - dotY) * 0.2;
     hero.style.setProperty('--dot-cx', dotX.toFixed(2) + '%');
     hero.style.setProperty('--dot-cy', dotY.toFixed(2) + '%');
     wx += (cx - wx) * 0.022; wy += (cy - wy) * 0.022;      // wake trails main
