@@ -13,7 +13,6 @@
     { label: '🖥️ View source (retro)', action: function() { triggerViewSource(); } },
     { label: '👾 Play Galaga',         action: function() { if (typeof triggerGalaga === 'function') triggerGalaga(); }, desktopOnly: true },
     { label: '🛷 Line Rider',          action: function() { triggerLineRider(); }, desktopOnly: true },
-    { get label() { return document.documentElement.classList.contains('dark') ? '☀️ Light mode' : '🌙 Dark mode'; }, action: function() { triggerDarkMode(); } },
   ];
 
   window.closeYearMenu = function() {
