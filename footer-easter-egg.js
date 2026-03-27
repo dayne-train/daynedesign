@@ -335,6 +335,29 @@
     var playBtn  = tbBtn('▶  Play');
     var clearBtn = tbBtn('⟳  Clear all');
 
+    var GRAVITY_PRESETS = [
+      { label: '↓ Normal', value: 0.38 },
+      { label: '↓ Low',    value: 0.14 },
+      { label: '↓ Moon',   value: 0.04 },
+    ];
+    var gravityIndex = 0;
+    var gravityBtn = tbBtn(GRAVITY_PRESETS[0].label);
+    gravityBtn.title = 'Cycle gravity';
+    function updateGravityBtn() {
+      var preset = GRAVITY_PRESETS[gravityIndex];
+      gravityBtn.textContent = preset.label;
+      GRAVITY = preset.value;
+      var isAlt = gravityIndex > 0;
+      gravityBtn._sky = isAlt;
+      gravityBtn.style.background   = isAlt ? 'rgba(74,158,221,0.25)' : 'rgba(255,255,255,0.07)';
+      gravityBtn.style.borderColor  = isAlt ? 'rgba(74,158,221,0.45)' : 'rgba(255,255,255,0.18)';
+      gravityBtn.style.color        = isAlt ? 'rgba(74,158,221,1)'    : 'rgba(255,255,255,0.75)';
+    }
+    gravityBtn.addEventListener('click', function() {
+      gravityIndex = (gravityIndex + 1) % GRAVITY_PRESETS.length;
+      updateGravityBtn();
+    });
+
     var sep = document.createElement('div');
     sep.style.cssText = 'width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 0.1rem;';
 
@@ -369,6 +392,7 @@
     toolbar.appendChild(titleEl);
     toolbar.appendChild(playBtn);
     toolbar.appendChild(clearBtn);
+    toolbar.appendChild(gravityBtn);
     toolbar.appendChild(sep);
     toolbar.appendChild(zoomOutBtn);
     toolbar.appendChild(zoomLabel);
