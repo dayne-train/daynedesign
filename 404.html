@@ -66,16 +66,25 @@ html.dark .four-oh-four::before {
   margin-bottom: 2rem;
 }
 
+/* Pendulum group — everything swings together from top center */
+.fof-pendulum {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform-origin: 0 0;
+  cursor: grab;
+}
+.fof-pendulum:active { cursor: grabbing; }
+
 /* Fishing line — rod tip to bobber */
 .fof-line {
   position: absolute;
   top: 0;
-  left: 50%;
+  left: 0;
   width: 1px;
   height: 120px;
   background: var(--stone);
-  transform-origin: top center;
-  animation: line-sway 3s ease-in-out infinite;
+  transform: translateX(-0.5px);
 }
 html.dark .fof-line { background: var(--slate); }
 
@@ -83,9 +92,8 @@ html.dark .fof-line { background: var(--slate); }
 .fof-bobber {
   position: absolute;
   top: 110px;
-  left: 50%;
+  left: 0;
   transform: translateX(-50%);
-  animation: bobber-bob 3s ease-in-out infinite;
 }
 .fof-bobber-shape {
   width: 14px;
@@ -108,7 +116,7 @@ html.dark .fof-bobber-shape {
 }
 html.dark .fof-bobber-stick { background: var(--slate); }
 
-/* Water surface line */
+/* Water surface line — stays fixed, not part of pendulum */
 .fof-water {
   position: absolute;
   top: 140px;
@@ -124,11 +132,12 @@ html.dark .fof-bobber-stick { background: var(--slate); }
 .fof-hook-line {
   position: absolute;
   top: 140px;
-  left: 50%;
+  left: 0;
   width: 1px;
   height: 40px;
   background: var(--stone);
   opacity: 0.5;
+  transform: translateX(-0.5px);
 }
 html.dark .fof-hook-line { background: var(--slate); }
 
@@ -136,9 +145,8 @@ html.dark .fof-hook-line { background: var(--slate); }
 .fof-hook {
   position: absolute;
   top: 175px;
-  left: 50%;
+  left: 0;
   transform: translateX(-50%);
-  animation: bobber-bob 3s ease-in-out infinite;
 }
 .fof-hook svg {
   width: 18px;
@@ -203,15 +211,6 @@ html.dark .fof-heading { color: #e8edf2; }
   margin-left: 0.25em;
 }
 
-/* ── ANIMATIONS ── */
-@keyframes line-sway {
-  0%, 100% { transform: rotate(-1deg); }
-  50% { transform: rotate(1deg); }
-}
-@keyframes bobber-bob {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
-}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
@@ -273,26 +272,29 @@ html.dark .fof-heading { color: #e8edf2; }
 
   <!-- Fishing scene -->
   <div class="fof-scene" aria-hidden="true">
-    <!-- Line from top to bobber -->
-    <div class="fof-line"></div>
-
-    <!-- Bobber -->
-    <div class="fof-bobber">
-      <div class="fof-bobber-stick"></div>
-      <div class="fof-bobber-shape"></div>
-    </div>
-
-    <!-- Water surface -->
+    <!-- Water surface — stays fixed -->
     <div class="fof-water"></div>
 
-    <!-- Line from bobber to hook (underwater) -->
-    <div class="fof-hook-line"></div>
+    <!-- Pendulum group — swings from top center -->
+    <div class="fof-pendulum" id="fofPendulum">
+      <!-- Line from rod tip to bobber -->
+      <div class="fof-line"></div>
 
-    <!-- Empty hook -->
-    <div class="fof-hook">
-      <svg viewBox="0 0 14 20">
-        <path d="M7 0v11c0 3-2 4.5-4 4.5S0 14 0 12.5s1.2-2.5 2.5-2.5S5 11 5.5 12.5"/>
-      </svg>
+      <!-- Bobber -->
+      <div class="fof-bobber">
+        <div class="fof-bobber-stick"></div>
+        <div class="fof-bobber-shape"></div>
+      </div>
+
+      <!-- Line from bobber to hook (underwater) -->
+      <div class="fof-hook-line"></div>
+
+      <!-- Empty hook -->
+      <div class="fof-hook">
+        <svg viewBox="0 0 14 20">
+          <path d="M7 0v11c0 3-2 4.5-4 4.5S0 14 0 12.5s1.2-2.5 2.5-2.5S5 11 5.5 12.5"/>
+        </svg>
+      </div>
     </div>
 
   </div>
@@ -330,6 +332,139 @@ html.dark .fof-heading { color: #e8edf2; }
 </footer>
 
 <script>
+/* ── PENDULUM PHYSICS ── */
+(function() {
+  var el = document.getElementById('fofPendulum');
+  if (!el) return;
+
+  var angle = 0;        // radians
+  var velocity = 0;     // radians/s
+  var gravity = 4.0;    // restoring force (spring-like gravity)
+  var damping = 0.97;   // velocity damping per frame
+  var maxAngle = 0.6;   // ~34 degrees max swing
+  var lastTime = 0;
+  var prevMouseX = null;
+  var idleTime = 0;     // track time since last interaction for idle sway
+  var running = false;
+
+  // Gentle idle sway
+  var idleAmplitude = 0.018; // radians (~1 degree)
+  var idleSpeed = 1.8;
+
+  function step(now) {
+    if (!lastTime) { lastTime = now; }
+    var dt = Math.min((now - lastTime) / 1000, 0.05); // cap dt
+    lastTime = now;
+    idleTime += dt;
+
+    // Spring physics: acceleration = -gravity * sin(angle)
+    var accel = -gravity * Math.sin(angle);
+    velocity += accel * dt;
+    velocity *= damping;
+    angle += velocity * dt;
+
+    // Clamp
+    if (angle > maxAngle) { angle = maxAngle; velocity *= -0.3; }
+    if (angle < -maxAngle) { angle = -maxAngle; velocity *= -0.3; }
+
+    // Blend in idle sway when nearly still
+    var energy = Math.abs(velocity) + Math.abs(angle);
+    var idleFactor = Math.max(0, 1 - energy * 8);
+    var idle = idleAmplitude * Math.sin(idleTime * idleSpeed) * idleFactor;
+
+    el.style.transform = 'rotate(' + (angle + idle) + 'rad)';
+
+    // Stop the loop if energy is very low and idle is handling it
+    if (energy < 0.001 && idleFactor > 0.9) {
+      running = false;
+      // Keep idle sway going with a slower loop
+      requestAnimationFrame(idleLoop);
+      return;
+    }
+    requestAnimationFrame(step);
+  }
+
+  function idleLoop(now) {
+    if (running) return; // physics loop took over
+    if (!lastTime) lastTime = now;
+    var dt = Math.min((now - lastTime) / 1000, 0.05);
+    lastTime = now;
+    idleTime += dt;
+
+    var idle = idleAmplitude * Math.sin(idleTime * idleSpeed);
+    el.style.transform = 'rotate(' + (angle + idle) + 'rad)';
+    requestAnimationFrame(idleLoop);
+  }
+
+  function startPhysics() {
+    if (!running) {
+      running = true;
+      lastTime = 0;
+      requestAnimationFrame(step);
+    }
+  }
+
+  // Kick off idle sway immediately
+  requestAnimationFrame(idleLoop);
+
+  // Mouse interaction — track horizontal movement and apply impulse
+  var scene = el.closest('.fof-scene');
+
+  scene.addEventListener('mousemove', function(e) {
+    if (prevMouseX !== null) {
+      var dx = e.clientX - prevMouseX;
+      // Only apply force if mouse is over the pendulum elements (generous hitbox)
+      var rect = el.getBoundingClientRect();
+      var mx = e.clientX;
+      var my = e.clientY;
+      // Expand hitbox a bit for easier interaction
+      if (mx > rect.left - 20 && mx < rect.right + 20 &&
+          my > rect.top - 10 && my < rect.bottom + 10) {
+        // Push proportional to mouse speed, in direction of mouse movement
+        var push = dx * 0.003;
+        velocity += push;
+        idleTime = 0;
+        startPhysics();
+      }
+    }
+    prevMouseX = e.clientX;
+  });
+
+  scene.addEventListener('mouseleave', function() {
+    prevMouseX = null;
+  });
+
+  // Touch support
+  scene.addEventListener('touchmove', function(e) {
+    var touch = e.touches[0];
+    if (prevMouseX !== null) {
+      var dx = touch.clientX - prevMouseX;
+      var rect = el.getBoundingClientRect();
+      if (touch.clientX > rect.left - 30 && touch.clientX < rect.right + 30 &&
+          touch.clientY > rect.top - 10 && touch.clientY < rect.bottom + 10) {
+        velocity += dx * 0.004;
+        idleTime = 0;
+        startPhysics();
+      }
+    }
+    prevMouseX = touch.clientX;
+  }, { passive: true });
+
+  scene.addEventListener('touchend', function() {
+    prevMouseX = null;
+  });
+
+  // Click/tap gives a solid whack
+  el.addEventListener('click', function(e) {
+    var rect = el.getBoundingClientRect();
+    var cx = rect.left + rect.width / 2;
+    var dir = e.clientX < cx ? 1 : -1;
+    velocity += dir * 1.5;
+    idleTime = 0;
+    startPhysics();
+  });
+})();
+
 /* ── NAV SCROLL SHADOW ── */
 (function() {
   var nav = document.getElementById('mainNav');
