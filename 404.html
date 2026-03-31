@@ -410,19 +410,12 @@ html.dark .fof-heading { color: #e8edf2; }
   // Mouse interaction — track horizontal movement and apply impulse
   var scene = el.closest('.fof-scene');
 
+  // Any mouse movement inside the scene pushes the pendulum
   scene.addEventListener('mousemove', function(e) {
     if (prevMouseX !== null) {
       var dx = e.clientX - prevMouseX;
-      // Only apply force if mouse is over the pendulum elements (generous hitbox)
-      var rect = el.getBoundingClientRect();
-      var mx = e.clientX;
-      var my = e.clientY;
-      // Expand hitbox a bit for easier interaction
-      if (mx > rect.left - 20 && mx < rect.right + 20 &&
-          my > rect.top - 10 && my < rect.bottom + 10) {
-        // Push proportional to mouse speed, in direction of mouse movement
-        var push = dx * 0.003;
-        velocity += push;
+      if (Math.abs(dx) > 0) {
+        velocity += dx * 0.004;
         idleTime = 0;
         startPhysics();
       }
@@ -434,15 +427,13 @@ html.dark .fof-heading { color: #e8edf2; }
     prevMouseX = null;
   });
 
-  // Touch support
+  // Touch support — any touch movement in scene
   scene.addEventListener('touchmove', function(e) {
     var touch = e.touches[0];
     if (prevMouseX !== null) {
       var dx = touch.clientX - prevMouseX;
-      var rect = el.getBoundingClientRect();
-      if (touch.clientX > rect.left - 30 && touch.clientX < rect.right + 30 &&
-          touch.clientY > rect.top - 10 && touch.clientY < rect.bottom + 10) {
-        velocity += dx * 0.004;
+      if (Math.abs(dx) > 0) {
+        velocity += dx * 0.005;
         idleTime = 0;
         startPhysics();
       }
@@ -455,8 +446,8 @@ html.dark .fof-heading { color: #e8edf2; }
   });
 
   // Click/tap gives a solid whack
-  el.addEventListener('click', function(e) {
-    var rect = el.getBoundingClientRect();
+  scene.addEventListener('click', function(e) {
+    var rect = scene.getBoundingClientRect();
     var cx = rect.left + rect.width / 2;
     var dir = e.clientX < cx ? 1 : -1;
     velocity += dir * 1.5;
