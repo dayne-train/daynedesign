@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="progress-bar" id="progressBar"></div>
-  <div class="slide-counter" id="slideCounter">1 / 14</div>
+  <div class="slide-counter" id="slideCounter">1 / 15</div>
   <div class="top-controls">
     <button class="top-btn reset-btn" id="resetBtn" title="Back to start (R)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -157,15 +157,14 @@
             <li>Worked with 1 PM and 7+ engineers. Rapid iteration with Maze testing and SUS scoring</li>
           </ul>
         </div>
-        <!-- Full wireframe map: shows the scope of the IA work -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;min-height:0;">
+          <div class="img-box">
+            <img src="images/lp-ia-flow.png" alt="Full information architecture and user flow diagram">
+            <span class="ph">IA flow diagram</span>
+          </div>
           <div class="img-box">
             <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/vinny_vendor_owner.png?w=1600&ssl=1" alt="Persona: Vinny, Vendor Owner">
             <span class="ph">Persona: Vinny</span>
-          </div>
-          <div class="img-box">
-            <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/pro_wires_2.png?w=1600&ssl=1" alt="Full wireframe map showing IA and feature scope">
-            <span class="ph">Wireframe map</span>
           </div>
         </div>
       </div>
@@ -180,29 +179,43 @@
           <h2>The messy middle</h2>
           <p class="slide-desc" style="margin-top:8px;">Rapid iteration and prototyping across the major flows. Each round incorporated feedback from usability testing, stakeholder reviews, and real field usage.</p>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px;flex:1;min-height:0;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;min-height:0;">
           <div class="img-box">
-            <img src="images/lp-iterations.png" alt="Wireframe iterations across multiple flows">
-            <span class="ph">Wireframe iterations</span>
+            <img src="images/lp-wo-iterations.png" alt="Work order detail screen across 7 design iterations">
+            <span class="ph">Work order iterations</span>
           </div>
           <div class="img-box">
-            <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/card_ideation_pro-1.png?w=1600&ssl=1" alt="Card component ideation">
-            <span class="ph">Card ideation</span>
-          </div>
-          <div class="img-box">
-            <img src="images/lp-figma-exploration.png" alt="Figma exploration with flows, sketches, and wireframes">
-            <span class="ph">Figma exploration (save screenshot to Desktop)</span>
-          </div>
-          <div class="img-box">
-            <img src="images/lp-maze-test.png" alt="Maze usability testing results">
-            <span class="ph">Maze test results</span>
+            <img src="images/lp-progression.png" alt="Design progression from wireframes to hi-fi to beta to final release">
+            <span class="ph">Wires → Hi-Fi → Beta → Final</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 7: FINAL DESIGN — 2x2 shipped screens -->
+    <!-- SLIDE 7: RESEARCH & TESTING -->
     <div class="slide" data-slide="7">
+      <div class="blob blob-sand" style="width:320px;height:320px;top:-60px;right:-40px;"></div>
+      <div class="slide-inner layout-stacked">
+        <div>
+          <span class="label">Research &amp; Testing</span>
+          <h2>Validating with real users</h2>
+          <p class="slide-desc" style="margin-top:8px;">Ran Maze usability tests after each major iteration. 90% average task success rate across 10 testers, with mission path analysis to identify friction points and misclick hotspots.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;flex:1;min-height:0;">
+          <div class="img-box">
+            <img src="images/lp-maze-report.png" alt="Maze usability test report showing 87 score">
+            <span class="ph">Maze test report</span>
+          </div>
+          <div class="img-box">
+            <img src="images/lp-maze-paths.png" alt="Mission paths showing 90% success rate and user navigation patterns">
+            <span class="ph">Mission paths</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: FINAL DESIGN — 2x2 shipped screens -->
+    <div class="slide" data-slide="8">
       <div class="blob blob-sand" style="width:400px;height:400px;bottom:-100px;left:-80px;"></div>
       <div class="slide-inner layout-stacked">
         <div>
@@ -230,27 +243,33 @@
       </div>
     </div>
 
-    <!-- SLIDE 8: CS1 OUTCOMES -->
-    <div class="slide" data-slide="8">
+    <!-- SLIDE 9: CS1 OUTCOMES -->
+    <div class="slide" data-slide="9">
       <div class="blob blob-rose" style="width:350px;height:350px;top:-60px;left:20%;"></div>
-      <div class="slide-inner layout-center">
-        <div>
-          <span class="label">Outcomes &amp; Impact</span>
-          <h2 style="margin-top:8px;">What changed</h2>
+      <div class="slide-inner layout-halves">
+        <div class="text-side" style="gap:24px;">
+          <div>
+            <span class="label">Outcomes &amp; Impact</span>
+            <h2 style="margin-top:8px;">What changed</h2>
+          </div>
+          <div class="stats-row" style="flex-wrap:wrap;gap:24px;justify-content:flex-start;">
+            <div class="stat" style="text-align:left;"><div class="stat-number" style="font-size:44px;">400+</div><p class="stat-label">Work orders per week</p></div>
+            <div class="stat" style="text-align:left;"><div class="stat-number" style="font-size:44px;">85%</div><p class="stat-label">Technician adoption</p></div>
+            <div class="stat" style="text-align:left;"><div class="stat-number" style="font-size:44px;">4.9</div><p class="stat-label">App store rating</p></div>
+            <div class="stat" style="text-align:left;"><div class="stat-number" style="font-size:44px;">900+</div><p class="stat-label">Downloads in 3 months</p></div>
+          </div>
+          <div class="divider"></div>
+          <p class="slide-desc" style="font-style:italic;">Building Lessen's first mobile app from zero taught me the value of designing scalable components early. The patterns we established here became the foundation for Rivet, the design system I built next.</p>
         </div>
-        <div class="stats-row">
-          <div class="stat"><div class="stat-number">400+</div><p class="stat-label">Work orders completed per week</p></div>
-          <div class="stat"><div class="stat-number">85%</div><p class="stat-label">Technician adoption (70% external, 100% internal)</p></div>
-          <div class="stat"><div class="stat-number">4.9</div><p class="stat-label">Average app rating on iOS &amp; Android</p></div>
-          <div class="stat"><div class="stat-number">900+</div><p class="stat-label">App downloads in first 3 months</p></div>
+        <div class="img-box">
+          <img src="images/lp-testimonials.png" alt="App store reviews and ratings showing 4.9 out of 5">
+          <span class="ph">User testimonials</span>
         </div>
-        <div class="divider"></div>
-        <p style="max-width:720px;font-size:20px;font-style:italic;">Building Lessen's first mobile app from zero taught me the value of designing scalable components early. The patterns we established here became the foundation for Rivet, the design system I built next.</p>
       </div>
     </div>
 
-    <!-- SLIDE 9: CS2 TITLE — Rivet intro with the Storybook welcome page -->
-    <div class="slide" data-slide="9">
+    <!-- SLIDE 10: CS2 TITLE — Rivet intro with the Storybook welcome page -->
+    <div class="slide" data-slide="10">
       <div class="blob blob-sand" style="width:400px;height:400px;top:-100px;left:-80px;"></div>
       <div class="slide-inner layout-halves">
         <div class="text-side">
@@ -273,17 +292,17 @@
       </div>
     </div>
 
-    <!-- SLIDE 10: CS2 PROBLEM — Colors page shows what consistency looks like -->
-    <div class="slide" data-slide="10">
+    <!-- SLIDE 11: CS2 PROBLEM — Colors page shows what consistency looks like -->
+    <div class="slide" data-slide="11">
       <div class="blob blob-sage" style="width:320px;height:320px;bottom:-80px;right:-40px;"></div>
       <div class="slide-inner layout-halves">
         <div class="text-side">
           <span class="label">Problem &amp; Approach</span>
           <h2>Context and how I tackled it</h2>
           <ul class="slide-desc">
-            <li>No shared component language. Teams rebuilding the same patterns differently across web and mobile</li>
-            <li>Positioned Rivet as an accelerator, not a library. Ship fast with quality and consistency baked in</li>
-            <li>Structured across Core (colors, type, styles), Web, Mobile, Copywriting, and Component Status</li>
+            <li>No shared component language. Teams were rebuilding the same patterns differently across web and&nbsp;mobile</li>
+            <li>Positioned Rivet as an accelerator, not a library. Ship fast with quality and consistency baked&nbsp;in</li>
+            <li>Structured across Core, Web, Mobile, Copywriting, and Component&nbsp;Status</li>
           </ul>
         </div>
         <!-- Color system: shows the foundation layer -->
@@ -294,8 +313,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 11: CS2 KEY WORK — Component exploration at scale -->
-    <div class="slide" data-slide="11">
+    <!-- SLIDE 12: CS2 KEY WORK — Component exploration at scale -->
+    <div class="slide" data-slide="12">
       <div class="blob blob-rose" style="width:300px;height:300px;top:-60px;left:-40px;"></div>
       <div class="slide-inner layout-stacked">
         <div>
@@ -311,8 +330,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 12: CS2 FINAL — Button docs + color system in Storybook -->
-    <div class="slide" data-slide="12">
+    <!-- SLIDE 13: CS2 FINAL — Button docs + color system in Storybook -->
+    <div class="slide" data-slide="13">
       <div class="blob blob-sand" style="width:380px;height:380px;bottom:-100px;right:-80px;"></div>
       <div class="slide-inner layout-stacked">
         <div>
@@ -336,8 +355,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 13: CS2 OUTCOMES -->
-    <div class="slide" data-slide="13">
+    <!-- SLIDE 14: CS2 OUTCOMES -->
+    <div class="slide" data-slide="14">
       <div class="blob blob-sage" style="width:350px;height:350px;top:-60px;right:15%;"></div>
       <div class="slide-inner layout-center">
         <div>
@@ -353,8 +372,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 14: THANK YOU -->
-    <div class="slide" data-slide="14">
+    <!-- SLIDE 15: THANK YOU -->
+    <div class="slide" data-slide="15">
       <div class="blob blob-sage" style="width:400px;height:400px;top:-80px;left:-60px;"></div>
       <div class="blob blob-sand" style="width:300px;height:300px;bottom:-80px;right:-40px;"></div>
       <div class="blob blob-rose" style="width:200px;height:200px;top:40%;left:60%;"></div>
