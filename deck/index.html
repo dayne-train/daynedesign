@@ -36,11 +36,23 @@
         <div>
           <h1>Dayne Petera</h1>
           <p style="font-size:24px;margin-top:8px;">Senior Product Designer</p>
-          <p style="font-size:18px;margin-top:4px;">Southern Oregon</p>
+          <span class="location-wrap" style="margin-top:4px;">
+            <span class="location-trigger">Medford, Oregon</span>
+            <span class="location-tip">
+              <span class="tip-row"><span class="tip-city">San Francisco</span><span class="tip-dist">362 mi</span></span>
+              <span class="tip-row"><span class="tip-city">Seattle</span><span class="tip-dist">446 mi</span></span>
+              <span class="tip-row"><span class="tip-city">Portland</span><span class="tip-dist">273 mi</span></span>
+              <span class="tip-row"><span class="tip-city">Phoenix</span><span class="tip-dist">1,060 mi</span></span>
+              <span class="tip-row"><span class="tip-city">New York</span><span class="tip-dist">2,998 mi</span></span>
+            </span>
+          </span>
         </div>
         <div class="divider"></div>
-        <p style="font-size:18px;font-style:italic;">Fun fact: I've read 12,000+ pages of Halo lore across 34 novels.</p>
-        <div class="book-ticker-wrap">
+        <div class="fun-fact" id="funFact">
+          <button class="fun-fact-btn" id="funFactBtn">Fun fact <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button>
+          <p class="fun-fact-text" id="funFactText">I've read 12,000+ pages of Halo lore across 34 novels.</p>
+        </div>
+        <div class="book-ticker-wrap" id="bookTicker">
           <div class="book-ticker-track">
             <span class="book-spine">The Fall of Reach</span><span class="book-spine">The Flood</span><span class="book-spine">First Strike</span><span class="book-spine">Ghosts of Onyx</span><span class="book-spine">Contact Harvest</span><span class="book-spine">The Cole Protocol</span><span class="book-spine">Cryptum</span><span class="book-spine">Glasslands</span><span class="book-spine">Primordium</span><span class="book-spine">The Thursday War</span><span class="book-spine">Silentium</span><span class="book-spine">Mortal Dictata</span><span class="book-spine">Broken Circle</span><span class="book-spine">New Blood</span><span class="book-spine">Hunters in the Dark</span><span class="book-spine">Last Light</span><span class="book-spine">Shadow of Intent</span><span class="book-spine">Smoke and Shadow</span><span class="book-spine">Envoy</span><span class="book-spine">Retribution</span><span class="book-spine">Legacy of Onyx</span><span class="book-spine">Bad Blood</span><span class="book-spine">Silent Storm</span><span class="book-spine">Renegades</span><span class="book-spine">Oblivion</span><span class="book-spine">Shadows of Reach</span><span class="book-spine">Point of Light</span><span class="book-spine">Divine Wind</span><span class="book-spine">The Rubicon Protocol</span><span class="book-spine">Outcasts</span><span class="book-spine">Epitaph</span><span class="book-spine">Evolutions</span><span class="book-spine">Fractures</span><span class="book-spine">Saint's Testimony</span>
             <span class="book-spine">The Fall of Reach</span><span class="book-spine">The Flood</span><span class="book-spine">First Strike</span><span class="book-spine">Ghosts of Onyx</span><span class="book-spine">Contact Harvest</span><span class="book-spine">The Cole Protocol</span><span class="book-spine">Cryptum</span><span class="book-spine">Glasslands</span><span class="book-spine">Primordium</span><span class="book-spine">The Thursday War</span><span class="book-spine">Silentium</span><span class="book-spine">Mortal Dictata</span><span class="book-spine">Broken Circle</span><span class="book-spine">New Blood</span><span class="book-spine">Hunters in the Dark</span><span class="book-spine">Last Light</span><span class="book-spine">Shadow of Intent</span><span class="book-spine">Smoke and Shadow</span><span class="book-spine">Envoy</span><span class="book-spine">Retribution</span><span class="book-spine">Legacy of Onyx</span><span class="book-spine">Bad Blood</span><span class="book-spine">Silent Storm</span><span class="book-spine">Renegades</span><span class="book-spine">Oblivion</span><span class="book-spine">Shadows of Reach</span><span class="book-spine">Point of Light</span><span class="book-spine">Divine Wind</span><span class="book-spine">The Rubicon Protocol</span><span class="book-spine">Outcasts</span><span class="book-spine">Epitaph</span><span class="book-spine">Evolutions</span><span class="book-spine">Fractures</span><span class="book-spine">Saint's Testimony</span>
@@ -233,7 +245,7 @@
           <div class="stat"><div class="stat-number">900+</div><p class="stat-label">App downloads in first 3 months</p></div>
         </div>
         <div class="divider"></div>
-        <p style="max-width:600px;font-size:20px;font-style:italic;">Building Lessen's first mobile app from zero taught me the value of designing scalable components early. The patterns we established here became the foundation for Rivet, the design system I built next.</p>
+        <p style="max-width:720px;font-size:20px;font-style:italic;">Building Lessen's first mobile app from zero taught me the value of designing scalable components early. The patterns we established here became the foundation for Rivet, the design system I built next.</p>
       </div>
     </div>
 
@@ -337,7 +349,7 @@
           <div class="stat"><div class="stat-number">45%</div><p class="stat-label">Product team adoption within first 6 months</p></div>
         </div>
         <div class="divider"></div>
-        <p style="max-width:600px;font-size:20px;font-style:italic;">Rivet is to this day one of my proudest achievements. It helped solve business needs, design issues, and increased collaboration across teams within the entire organization.</p>
+        <p style="max-width:750px;font-size:20px;font-style:italic;">Rivet is to this day one of my proudest achievements. It helped solve business needs, design issues, and increased collaboration across teams within the entire organization.</p>
       </div>
     </div>
 
@@ -354,7 +366,7 @@
           <p style="font-size:18px;">hello@dayne.design</p>
           <p style="font-size:18px;"><a href="https://dayne.design" style="color:var(--sky);text-decoration:none;border-bottom:1px solid var(--sky);">dayne.design</a></p>
         </div>
-        <p style="font-size:18px;font-style:italic;color:var(--text-muted);margin-top:16px;">Thanks for taking the time. I'm genuinely interested in the problems you're solving and would love to dig into how I can help.</p>
+        <p style="max-width:640px;font-size:18px;font-style:italic;color:var(--text-muted);margin-top:16px;">Thanks for taking the time. I'm genuinely interested in the problems you're solving and would love to dig into how I can help.</p>
       </div>
     </div>
 

@@ -59,6 +59,17 @@ goTo = function(index) {
 };
 goTo(0);
 
+// === FUN FACT REVEAL ===
+const funFact = document.getElementById('funFact');
+const funFactBtn = document.getElementById('funFactBtn');
+if (funFactBtn) {
+  funFactBtn.addEventListener('click', () => {
+    funFact.classList.toggle('revealed');
+    // Also toggle book ticker visibility on the slide-inner
+    funFact.closest('.slide-inner').classList.toggle('fun-fact-revealed');
+  });
+}
+
 // === LIGHTBOX ===
 const lb = document.getElementById('deckLightbox');
 const lbImg = document.getElementById('deckLbImg');

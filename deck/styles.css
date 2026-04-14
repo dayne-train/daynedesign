@@ -191,7 +191,7 @@ ul li + li { margin-top: 8px; }
 
 /* === BOOK TICKER === */
 .book-ticker-wrap {
-  width: 100%; max-width: 520px; overflow: hidden; opacity: 0.65;
+  width: 100%; max-width: 520px;
   margin-top: -12px;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -300,6 +300,87 @@ ul li + li { margin-top: 8px; }
 
 /* Make clickable images show zoom cursor */
 .img-box.zoomable { cursor: zoom-in; }
+
+/* === LOCATION TOOLTIP === */
+.location-wrap {
+  position: relative; display: block;
+  font-family: var(--font-body); font-size: 18px; color: var(--text-muted);
+}
+.location-trigger {
+  display: inline-block; position: relative;
+  cursor: default;
+  border-bottom: 1px dashed var(--stone);
+  transition: color 0.2s, border-color 0.2s;
+}
+.location-wrap:hover .location-trigger {
+  color: var(--sky); border-color: var(--sky);
+}
+.location-tip {
+  position: absolute; left: 50%; top: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px);
+  background: var(--text); color: #fff;
+  border-radius: 10px; padding: 10px 16px;
+  display: flex; flex-direction: column; gap: 5px;
+  white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 50;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.location-tip::before {
+  content: ''; position: absolute; top: -5px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid var(--text);
+}
+.location-wrap:hover .location-tip {
+  opacity: 1; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.tip-row {
+  display: flex; justify-content: space-between; gap: 24px;
+  font-size: 13px; line-height: 1.5;
+}
+.tip-city { font-family: var(--font-body); font-weight: 500; opacity: 0.85; }
+.tip-dist { font-family: var(--font-mono); font-size: 12px; color: var(--sky); }
+
+/* === FUN FACT === */
+.fun-fact {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+.fun-fact-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 14px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--sky); background: none; border: none;
+  cursor: pointer; padding: 4px 12px; border-radius: 999px;
+  transition: background 0.2s;
+}
+.fun-fact-btn:hover { background: rgba(74,158,221,0.08); }
+.fun-fact-btn svg {
+  width: 14px; height: 14px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.04, 0.64, 1);
+}
+.fun-fact.revealed .fun-fact-btn svg { transform: rotate(90deg); }
+.fun-fact-text {
+  font-size: 18px; font-style: italic; color: var(--text-muted);
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.35s ease, margin 0.4s ease;
+  margin-top: 0;
+}
+.fun-fact.revealed .fun-fact-text {
+  max-height: 60px; opacity: 1; margin-top: 6px;
+}
+
+/* Book ticker hidden until fun fact revealed */
+.book-ticker-wrap {
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.5s ease 0.15s, opacity 0.4s ease 0.2s;
+}
+.fun-fact-revealed .book-ticker-wrap {
+  max-height: 60px; opacity: 0.65;
+}
 
 /* === HEADSHOT === */
 .headshot {
