@@ -7,7 +7,12 @@ const progress = document.getElementById('progressBar');
 
 function goTo(index) {
   if (index < 0 || index >= total) return;
+  const goingBack = index < current;
   slides[current].classList.remove('active');
+  // Set direction hint before making active
+  slides[index].classList.toggle('going-back', goingBack);
+  // Force reflow so the starting transform applies before transition
+  void slides[index].offsetWidth;
   current = index;
   slides[current].classList.add('active');
   counter.textContent = `${current + 1} / ${total}`;
@@ -15,6 +20,9 @@ function goTo(index) {
 }
 
 document.addEventListener('keydown', (e) => {
+  // Don't navigate slides while lightbox is open
+  const lbEl = document.getElementById('deckLightbox');
+  if (lbEl && lbEl.classList.contains('open')) return;
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
     e.preventDefault();
     goTo(current + 1);
@@ -50,3 +58,37 @@ goTo = function(index) {
   resetBtn.classList.toggle('visible', current === total - 1);
 };
 goTo(0);
+
+// === LIGHTBOX ===
+const lb = document.getElementById('deckLightbox');
+const lbImg = document.getElementById('deckLbImg');
+const lbClose = document.getElementById('deckLbClose');
+
+function openLightbox(src, alt) {
+  lbImg.src = src;
+  lbImg.alt = alt || '';
+  lb.classList.add('open');
+}
+function closeLightbox() {
+  lb.classList.remove('open');
+}
+
+// Mark all img-boxes with real images as zoomable, attach click
+document.querySelectorAll('.img-box').forEach(box => {
+  const img = box.querySelector('img[src]:not([src=""])');
+  if (!img) return;
+  if (box.closest('.headshot')) return;
+  box.classList.add('zoomable');
+  box.addEventListener('click', () => openLightbox(img.src, img.alt));
+});
+
+lbClose.addEventListener('click', closeLightbox);
+lb.addEventListener('click', (e) => {
+  if (e.target === lb) closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lb.classList.contains('open')) {
+    closeLightbox();
+    e.stopPropagation();
+  }
+});
