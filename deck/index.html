@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dayne Petera | Portfolio Review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="slide-counter" id="slideCounter">1 / 14</div>
+  <div class="top-controls">
+    <button class="top-btn reset-btn" id="resetBtn" title="Back to start (R)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12a9 9 0 119 9"/><polyline points="3 7 3 12 8 12"/>
+      </svg>
+    </button>
+    <button class="top-btn" id="fullscreenBtn" title="Go fullscreen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/>
+      </svg>
+    </button>
+  </div>
+  <div class="deck" id="deck">
+
+    <!-- SLIDE 1: INTRO -->
+    <div class="slide active" data-slide="1">
+      <div class="blob blob-sage" style="width:400px;height:400px;top:-100px;right:-80px;"></div>
+      <div class="blob blob-sand" style="width:300px;height:300px;bottom:-60px;left:-40px;"></div>
+      <div class="slide-inner layout-center">
+        <div class="headshot"><img src="headshot.jpg" alt="Dayne Petera"></div>
+        <div>
+          <h1>Dayne Petera</h1>
+          <p style="font-size:24px;margin-top:8px;">Senior Product Designer</p>
+          <p style="font-size:18px;margin-top:4px;">Southern Oregon</p>
+        </div>
+        <div class="divider"></div>
+        <p style="font-size:18px;font-style:italic;">Fun fact: I've read 12,000+ pages of Halo lore across 34 novels.</p>
+        <div class="book-ticker-wrap">
+          <div class="book-ticker-track">
+            <span class="book-spine">The Fall of Reach</span><span class="book-spine">The Flood</span><span class="book-spine">First Strike</span><span class="book-spine">Ghosts of Onyx</span><span class="book-spine">Contact Harvest</span><span class="book-spine">The Cole Protocol</span><span class="book-spine">Cryptum</span><span class="book-spine">Glasslands</span><span class="book-spine">Primordium</span><span class="book-spine">The Thursday War</span><span class="book-spine">Silentium</span><span class="book-spine">Mortal Dictata</span><span class="book-spine">Broken Circle</span><span class="book-spine">New Blood</span><span class="book-spine">Hunters in the Dark</span><span class="book-spine">Last Light</span><span class="book-spine">Shadow of Intent</span><span class="book-spine">Smoke and Shadow</span><span class="book-spine">Envoy</span><span class="book-spine">Retribution</span><span class="book-spine">Legacy of Onyx</span><span class="book-spine">Bad Blood</span><span class="book-spine">Silent Storm</span><span class="book-spine">Renegades</span><span class="book-spine">Oblivion</span><span class="book-spine">Shadows of Reach</span><span class="book-spine">Point of Light</span><span class="book-spine">Divine Wind</span><span class="book-spine">The Rubicon Protocol</span><span class="book-spine">Outcasts</span><span class="book-spine">Epitaph</span><span class="book-spine">Evolutions</span><span class="book-spine">Fractures</span><span class="book-spine">Saint's Testimony</span>
+            <span class="book-spine">The Fall of Reach</span><span class="book-spine">The Flood</span><span class="book-spine">First Strike</span><span class="book-spine">Ghosts of Onyx</span><span class="book-spine">Contact Harvest</span><span class="book-spine">The Cole Protocol</span><span class="book-spine">Cryptum</span><span class="book-spine">Glasslands</span><span class="book-spine">Primordium</span><span class="book-spine">The Thursday War</span><span class="book-spine">Silentium</span><span class="book-spine">Mortal Dictata</span><span class="book-spine">Broken Circle</span><span class="book-spine">New Blood</span><span class="book-spine">Hunters in the Dark</span><span class="book-spine">Last Light</span><span class="book-spine">Shadow of Intent</span><span class="book-spine">Smoke and Shadow</span><span class="book-spine">Envoy</span><span class="book-spine">Retribution</span><span class="book-spine">Legacy of Onyx</span><span class="book-spine">Bad Blood</span><span class="book-spine">Silent Storm</span><span class="book-spine">Renegades</span><span class="book-spine">Oblivion</span><span class="book-spine">Shadows of Reach</span><span class="book-spine">Point of Light</span><span class="book-spine">Divine Wind</span><span class="book-spine">The Rubicon Protocol</span><span class="book-spine">Outcasts</span><span class="book-spine">Epitaph</span><span class="book-spine">Evolutions</span><span class="book-spine">Fractures</span><span class="book-spine">Saint's Testimony</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: BREADTH — Auto-scrolling carousel -->
+    <div class="slide" data-slide="2">
+      <div class="blob blob-rose" style="width:350px;height:350px;top:-80px;left:10%;"></div>
+      <div class="slide-inner layout-stacked">
+        <div>
+          <span class="label">Breadth of Work</span>
+          <h2>A range of products, platforms, and problems</h2>
+        </div>
+        <!-- Row 1: scrolls LEFT (from right) -->
+        <div class="carousel-wrap">
+          <div class="carousel-track carousel-left">
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-hris.png" alt="HRIS Sync"><span class="ph">HRIS Sync</span></div><div class="card-info"><p class="card-title">HRIS Sync</p><p class="card-meta">B2B SaaS | Trainual</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/lp-hero.png" alt="Lessen Pro"><span class="ph">Lessen Pro</span></div><div class="card-info"><p class="card-title">Lessen Pro</p><p class="card-meta">Mobile marketplace | Lessen</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-veho.png" alt="Exception Handling"><span class="ph">Exception Handling</span></div><div class="card-info"><p class="card-title">Exception Handling</p><p class="card-meta">Logistics ops | Veho</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-rivet.png" alt="Rivet"><span class="ph">Rivet</span></div><div class="card-info"><p class="card-title">Rivet</p><p class="card-meta">Design system | Lessen</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-riffle.png" alt="Riffle"><span class="ph">Riffle</span></div><div class="card-info"><p class="card-title">Riffle</p><p class="card-meta">GPS fishing tracker | Personal</p></div></div>
+            <!-- duplicate for loop -->
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-hris.png" alt="HRIS Sync"><span class="ph">HRIS Sync</span></div><div class="card-info"><p class="card-title">HRIS Sync</p><p class="card-meta">B2B SaaS | Trainual</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/lp-hero.png" alt="Lessen Pro"><span class="ph">Lessen Pro</span></div><div class="card-info"><p class="card-title">Lessen Pro</p><p class="card-meta">Mobile marketplace | Lessen</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-veho.png" alt="Exception Handling"><span class="ph">Exception Handling</span></div><div class="card-info"><p class="card-title">Exception Handling</p><p class="card-meta">Logistics ops | Veho</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-rivet.png" alt="Rivet"><span class="ph">Rivet</span></div><div class="card-info"><p class="card-title">Rivet</p><p class="card-meta">Design system | Lessen</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-riffle.png" alt="Riffle"><span class="ph">Riffle</span></div><div class="card-info"><p class="card-title">Riffle</p><p class="card-meta">GPS fishing tracker | Personal</p></div></div>
+          </div>
+        </div>
+        <!-- Row 2: scrolls RIGHT (from left) -->
+        <div class="carousel-wrap">
+          <div class="carousel-track carousel-right">
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-strongmind.png" alt="StrongMind"><span class="ph">StrongMind</span></div><div class="card-info"><p class="card-title">StrongMind App</p><p class="card-meta">EdTech mobile | StrongMind</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-realize.png" alt="Realize LMS"><span class="ph">Realize LMS</span></div><div class="card-info"><p class="card-title">Realize LMS</p><p class="card-meta">K-12 platform | Pearson</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-software-tools.png" alt="Software & Tools"><span class="ph">Software &amp; Tools</span></div><div class="card-info"><p class="card-title">Software &amp; Tools</p><p class="card-meta">Admin feature | Trainual</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-loudmouth.png" alt="LoudMouth"><span class="ph">LoudMouth</span></div><div class="card-info"><p class="card-title">LoudMouth</p><p class="card-meta">SMS nudge platform | StrongMind</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-rvlivemusic.png" alt="RV Live Music"><span class="ph">RV Live Music</span></div><div class="card-info"><p class="card-title">RV Live Music</p><p class="card-meta">Event discovery | Personal</p></div></div>
+            <!-- duplicate for loop -->
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-strongmind.png" alt="StrongMind"><span class="ph">StrongMind</span></div><div class="card-info"><p class="card-title">StrongMind App</p><p class="card-meta">EdTech mobile | StrongMind</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-realize.png" alt="Realize LMS"><span class="ph">Realize LMS</span></div><div class="card-info"><p class="card-title">Realize LMS</p><p class="card-meta">K-12 platform | Pearson</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-software-tools.png" alt="Software & Tools"><span class="ph">Software &amp; Tools</span></div><div class="card-info"><p class="card-title">Software &amp; Tools</p><p class="card-meta">Admin feature | Trainual</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-loudmouth.png" alt="LoudMouth"><span class="ph">LoudMouth</span></div><div class="card-info"><p class="card-title">LoudMouth</p><p class="card-meta">SMS nudge platform | StrongMind</p></div></div>
+            <div class="carousel-card"><div class="img-box"><img src="images/breadth-rvlivemusic.png" alt="RV Live Music"><span class="ph">RV Live Music</span></div><div class="card-info"><p class="card-title">RV Live Music</p><p class="card-meta">Event discovery | Personal</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: CS1 TITLE — Hero from portfolio site -->
+    <div class="slide" data-slide="3">
+      <div class="blob blob-sage" style="width:450px;height:450px;bottom:-120px;right:-100px;"></div>
+      <div class="slide-inner layout-stacked">
+        <div>
+          <span class="label">Case Study 01</span>
+          <h1 style="font-size:48px;">Lessen Pro</h1>
+          <p style="margin-top:4px;">Senior Product Designer | Lessen Inc. | iOS &amp; Android | 0 → 1</p>
+          <div class="divider" style="margin-top:12px;"></div>
+          <p style="margin-top:12px;">Getting work done quickly, efficiently, and reliably. Lessen was running $4MM/month in revenue through emails, spreadsheets, and pen &amp; paper. We built the platform to change that.</p>
+        </div>
+        <div class="img-box" style="flex:1;min-height:0;">
+          <img src="images/lp-hero.png" alt="Lessen Pro app screens overview">
+          <span class="ph">Lessen Pro hero</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: PROBLEM — Big story map diagram -->
+    <div class="slide" data-slide="4">
+      <div class="blob blob-sand" style="width:300px;height:300px;top:-60px;left:-60px;"></div>
+      <div class="slide-inner layout-stacked">
+        <div>
+          <span class="label">Problem &amp; Context</span>
+          <h2>What we were solving</h2>
+          <p style="margin-top:12px;">Lessen was running $4MM/month in revenue through emails, texts, PDFs, and pen &amp; paper. No transparency, variable costs, and no mobile platform for service professionals to manage their work.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;min-height:0;">
+          <div class="img-box">
+            <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/vendor_xp_story_map_1-2.png?w=1600&ssl=1" alt="Vendor experience story map">
+            <span class="ph">Vendor experience story map</span>
+          </div>
+          <div class="img-box">
+            <img src="images/lp-hmw.png" alt="How Might We exercises">
+            <span class="ph">How Might We's</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: PROCESS — Full wireframe map shows scope + IA thinking -->
+    <div class="slide" data-slide="5">
+      <div class="blob blob-rose" style="width:280px;height:280px;bottom:-80px;right:10%;"></div>
+      <div class="slide-inner layout-stacked">
+        <div>
+          <span class="label">Process &amp; Approach</span>
+          <h2>How I approached it</h2>
+          <ul style="margin-top:12px;">
+            <li>User journey maps, shadows, and interviews with vendor owners, operators, and technicians</li>
+            <li>Personas, competitive analysis, then full IA mapping across work orders, scope, invoicing, and settings</li>
+            <li>Worked with 1 PM and 7+ engineers. Rapid iteration with Maze testing and SUS scoring</li>
+          </ul>
+        </div>
+        <!-- Full wireframe map: shows the scope of the IA work -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;min-height:0;">
+          <div class="img-box">
+            <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/vinny_vendor_owner.png?w=1600&ssl=1" alt="Persona: Vinny, Vendor Owner">
+            <span class="ph">Persona: Vinny</span>
+          </div>
+          <div class="img-box">
+            <img src="images/lp-wireframes.png" alt="Full wireframe map showing IA and feature scope">
+            <span class="ph">Wireframe map</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: ITERATION — Multiple process artifacts -->
+    <div class="slide" data-slide="6">
+      <div class="blob blob-sage" style="width:350px;height:350px;top:-80px;right:-60px;"></div>
+      <div class="slide-inner layout-stacked">
+        <div>
+          <span class="label">Exploration &amp; Iteration</span>
+          <h2>The messy middle</h2>
+          <p style="margin-top:8px;">Rapid iteration and prototyping across the major flows. Each round incorporated feedback from usability testing, stakeholder reviews, and real field usage.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px;flex:1;min-height:0;">
+          <div class="img-box">
+            <img src="images/lp-iterations.png" alt="Wireframe iterations across multiple flows">
+            <span class="ph">Wireframe iterations</span>
+          </div>
+          <div class="img-box">
+            <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/card_ideation_pro-1.png?w=1600&ssl=1" alt="Card component ideation">
+            <span class="ph">Card ideation</span>
+          </div>
+          <div class="img-box">
+            <img src="images/lp-figma-exploration.png" alt="Figma exploration with flows, sketches, and wireframes">
+            <span class="ph">Figma exploration (save screenshot to Desktop)</span>
+          </div>
+          <div class="img-box">
+            <img src="images/lp-maze-test.png" alt="Maze usability testing results">
+            <span class="ph">Maze test results</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: FINAL DESIGN — 2x2 shipped screens -->
+    <div class="slide" data-slide="7">
+      <div class="blob blob-sand" style="width:400px;height:400px;bottom:-100px;left:-80px;"></div>
+      <div class="slide-inner layout-stacked">
+        <div>
+          <span class="label">Final Design</span>
+          <h2>The shipped product</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px;flex:1;min-height:0;">
+          <div style="display:flex;flex-direction:column;gap:6px;min-height:0;">
+            <div class="img-box" style="flex:1;min-height:0;"><img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/login-1.png?w=1600&ssl=1" alt="Login"><span class="ph">Login</span></div>
+            <p class="caption">Login and onboarding</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;min-height:0;">
+            <div class="img-box" style="flex:1;min-height:0;"><img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/main-view-2.png?w=1600&ssl=1" alt="Work order"><span class="ph">Work order</span></div>
+            <p class="caption">Work order detail with status and scope</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;min-height:0;">
+            <div class="img-box" style="flex:1;min-height:0;"><img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/scope-items.png?w=1600&ssl=1" alt="Scope"><span class="ph">Scope</span></div>
+            <p class="caption">Room-level scope and task management</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;min-height:0;">
+            <div class="img-box" style="flex:1;min-height:0;"><img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/comments-1.png?w=1600&ssl=1" alt="Comments"><span class="ph">Comments</span></div>
+            <p class="caption">In-app communication and updates</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: CS1 OUTCOMES -->
+    <div class="slide" data-slide="8">
+      <div class="blob blob-rose" style="width:350px;height:350px;top:-60px;left:20%;"></div>
+      <div class="slide-inner layout-center">
+        <div>
+          <span class="label">Outcomes &amp; Impact</span>
+          <h2 style="margin-top:8px;">What changed</h2>
+        </div>
+        <div class="stats-row">
+          <div class="stat"><div class="stat-number">400+</div><p class="stat-label">Work orders completed per week</p></div>
+          <div class="stat"><div class="stat-number">85%</div><p class="stat-label">Technician adoption (70% external, 100% internal)</p></div>
+          <div class="stat"><div class="stat-number">4.9</div><p class="stat-label">Average app rating on iOS &amp; Android</p></div>
+          <div class="stat"><div class="stat-number">900+</div><p class="stat-label">App downloads in first 3 months</p></div>
+        </div>
+        <div class="divider"></div>
+        <p style="max-width:600px;font-size:20px;font-style:italic;">Building Lessen's first mobile app from zero taught me the value of designing scalable components early. The patterns we established here became the foundation for Rivet, the design system I built next.</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: CS2 TITLE — Rivet intro with the Storybook welcome page -->
+    <div class="slide" data-slide="9">
+      <div class="blob blob-sand" style="width:400px;height:400px;top:-100px;left:-80px;"></div>
+      <div class="slide-inner layout-halves">
+        <div class="text-side">
+          <span class="label">Case Study 02</span>
+          <h1 style="font-size:48px;">Rivet</h1>
+          <p>Design System Lead | Lessen Inc.</p>
+          <div class="divider"></div>
+          <p>Guiding product decisions, one component at a time. Rivet was born from a need for consistency and reliability across the Lessen product ecosystem.</p>
+          <div class="tags">
+            <span class="tag">Design System</span>
+            <span class="tag">Web &amp; Mobile</span>
+            <span class="tag">Cross-Team</span>
+          </div>
+        </div>
+        <!-- Storybook welcome: shows the real shipped system -->
+        <div class="img-box">
+          <img src="images/rivet-welcome.png" alt="Rivet Design System in Storybook">
+          <span class="ph">Rivet hub</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: CS2 PROBLEM — Colors page shows what consistency looks like -->
+    <div class="slide" data-slide="10">
+      <div class="blob blob-sage" style="width:320px;height:320px;bottom:-80px;right:-40px;"></div>
+      <div class="slide-inner layout-halves">
+        <div class="text-side">
+          <span class="label">Problem &amp; Approach</span>
+          <h2>Context and how I tackled it</h2>
+          <ul>
+            <li>No shared component language. Teams rebuilding the same patterns differently across web and mobile</li>
+            <li>Positioned Rivet as an accelerator, not a library. Ship fast with quality and consistency baked in</li>
+            <li>Structured across Core (colors, type, styles), Web, Mobile, Copywriting, and Component Status</li>
+          </ul>
+        </div>
+        <!-- Color system: shows the foundation layer -->
+        <div class="img-box">
+          <img src="images/rivet-colors.png" alt="Rivet color token system">
+          <span class="ph">Color system</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: CS2 KEY WORK — Component exploration at scale -->
+    <div class="slide" data-slide="11">
+      <div class="blob blob-rose" style="width:300px;height:300px;top:-60px;left:-40px;"></div>
+      <div class="slide-inner layout-stacked">
+        <div>
+          <span class="label">Key Work</span>
+          <h2>From Figma to code</h2>
+          <p style="margin-top:8px;">Every Rivet component starts as a Figma component, gets refined for look, feel, and interaction, then is documented before being translated to a reusable coded component.</p>
+        </div>
+        <!-- Figma overview showing the full scope of components -->
+        <div class="img-box" style="flex:1;min-height:0;">
+          <img src="images/rivet-usage-sheets.png" alt="Rivet Figma component overview">
+          <span class="ph">Component overview</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: CS2 FINAL — Button docs + color system in Storybook -->
+    <div class="slide" data-slide="12">
+      <div class="blob blob-sand" style="width:380px;height:380px;bottom:-100px;right:-80px;"></div>
+      <div class="slide-inner layout-stacked">
+        <div>
+          <span class="label">Final Design</span>
+          <h2>The shipped system</h2>
+        </div>
+        <div class="img-row cols-3">
+          <div class="cell">
+            <div class="img-box"><img src="images/rivet-welcome.png" alt="Rivet welcome"></div>
+            <p class="caption">Storybook welcome and navigation</p>
+          </div>
+          <div class="cell">
+            <div class="img-box"><img src="images/rivet-button.png" alt="Button docs"></div>
+            <p class="caption">Button component with props and docs</p>
+          </div>
+          <div class="cell">
+            <div class="img-box"><img src="images/rivet-colors.png" alt="Color system"></div>
+            <p class="caption">Color tokens: brand, primary, and system</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: CS2 OUTCOMES -->
+    <div class="slide" data-slide="13">
+      <div class="blob blob-sage" style="width:350px;height:350px;top:-60px;right:15%;"></div>
+      <div class="slide-inner layout-center">
+        <div>
+          <span class="label">Outcomes &amp; Impact</span>
+          <h2 style="margin-top:8px;">What changed</h2>
+        </div>
+        <div class="stats-row">
+          <div class="stat"><div class="stat-number">140+</div><p class="stat-label">Reusable components with 1:1 design-to-code parity</p></div>
+          <div class="stat"><div class="stat-number">45%</div><p class="stat-label">Product team adoption within first 6 months</p></div>
+        </div>
+        <div class="divider"></div>
+        <p style="max-width:600px;font-size:20px;font-style:italic;">Rivet is to this day one of my proudest achievements. It helped solve business needs, design issues, and increased collaboration across teams within the entire organization.</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: THANK YOU -->
+    <div class="slide" data-slide="14">
+      <div class="blob blob-sage" style="width:400px;height:400px;top:-80px;left:-60px;"></div>
+      <div class="blob blob-sand" style="width:300px;height:300px;bottom:-80px;right:-40px;"></div>
+      <div class="blob blob-rose" style="width:200px;height:200px;top:40%;left:60%;"></div>
+      <div class="slide-inner layout-center">
+        <h1>Let's chat.</h1>
+        <div class="divider"></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+          <p style="font-size:22px;color:var(--text);">Dayne Petera</p>
+          <p style="font-size:18px;">hello@dayne.design</p>
+          <p style="font-size:18px;"><a href="https://dayne.design" style="color:var(--sky);text-decoration:none;border-bottom:1px solid var(--sky);">dayne.design</a></p>
+        </div>
+        <p style="font-size:18px;font-style:italic;color:var(--text-muted);margin-top:16px;">Thanks for taking the time. I'm genuinely interested in the problems you're solving and would love to dig into how I can help.</p>
+      </div>
+    </div>
+
+  </div>
+  <script src="deck.js"></script>
+</body>
+</html>
