@@ -219,26 +219,6 @@ html.dark .hero-actions .btn-outline:hover { background: rgba(22,32,48,0.88); }
   stroke: none;
 }
 
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 0.55rem;
-  background: var(--sky-lt); color: var(--sky-mid);
-  font-family: var(--mono); font-size: var(--font-label); letter-spacing: 0.1em;
-  text-transform: uppercase; padding: 0.45rem 1rem; border-radius: 8px;
-  box-shadow: none; cursor: pointer;
-  margin-bottom: 1.8rem;
-  opacity: 0; animation: fadeUp 0.7s 0.1s forwards;
-  width: fit-content;
-}
-.hero-badge-dot {
-  width: 7px; height: 7px; border-radius: 50%; background: var(--status-green);
-  box-shadow: 0 0 0 2px rgba(92,184,92,0.2);
-  flex-shrink: 0;
-  animation: pulse 2.4s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%,100% { box-shadow: 0 0 0 2px rgba(92,184,92,0.2); }
-  50%      { box-shadow: 0 0 0 5px rgba(92,184,92,0.0); }
-}
 
 /* ── PRINCIPLES ── */
 .principles {
@@ -886,7 +866,6 @@ html.dark {
   --glass-badge:rgba(18,36,54,0.88);
   --section-dark:#070f18;
 }
-html.dark .hero-badge,
 html.dark .exp-badge { color: var(--sky); }
 html.dark .hero-deco-svg { fill: rgba(74,158,221,0.05); }
 html.dark .study-card-info { border-top-color: rgba(255,255,255,0.08); }
@@ -951,7 +930,6 @@ html.dark footer { background: var(--section-dark); }
     </svg>
   </div>
   <div class="hero-left">
-    <div class="hero-badge"><span class="hero-badge-dot"></span>Available for work</div>
     <div class="hero-eyebrow">Senior Product Designer · Medford, Oregon</div>
     <h1 class="hero-title">
       Design that<br>
@@ -2889,7 +2867,7 @@ function triggerGalaga(skipIntro) {
 
   var lbl = document.createElement('div');
   lbl.style.cssText = 'font-family:"DM Mono",monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(74,158,221,0.75);margin-bottom:0.75rem;user-select:none;';
-  lbl.textContent = 'GALAGA · HIRE ME EDITION · [ESC TO CLOSE]';
+  lbl.textContent = 'GALAGA · PORTFOLIO EDITION · [ESC TO CLOSE]';
   overlay.appendChild(lbl);
 
   var CW = 740, CH = 620;
@@ -3292,7 +3270,7 @@ function triggerGalaga(skipIntro) {
       ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
       ctx.fillText('YOU WIN!', CW/2, CH/2-30); ctx.shadowBlur = 0;
       ctx.fillStyle = '#27ae60'; ctx.font = 'bold 15px "DM Mono",monospace';
-      ctx.fillText("You've saved the galaxy! Now please hire me...", CW/2, CH/2+8);
+      ctx.fillText("You've saved the galaxy!", CW/2, CH/2+8);
       ctx.fillStyle = 'rgba(255,255,255,0.75)'; ctx.font = '11px "DM Mono",monospace';
       ctx.fillText('SCORE ' + score + '   ·   SPACE TO PLAY AGAIN   ·   ESC TO CLOSE', CW/2, CH/2+36);
     }
@@ -3305,84 +3283,6 @@ function triggerGalaga(skipIntro) {
     update(); draw(); raf = requestAnimationFrame(loop);
   })();
 }
-
-/* ── BADGE EASTER EGG ── */
-(function() {
-  var badge = document.querySelector('.hero-badge');
-  if (!badge) return;
-  var phrases = [
-    'Available for work',
-    'Seriously, hire me',
-    'I work very hard I promise',
-    'Will design for coffee',
-    'My dog needs health insurance',
-    'Please. I have bills.',
-    'I\'ll bring donuts on day one',
-    'My mom thinks I\'m very talented',
-    'I once shipped a feature in 2 days',
-    'Something is about to happen...',
-    'Ok. You asked for it.',
-  ];
-  var clicks = 0, resetTimer = null, scrolledPast = false;
-  function setBadge(text) {
-    badge.innerHTML = '<span class="hero-badge-dot"></span>' + text;
-  }
-  function resetBadge() {
-    clicks = 0;
-    setBadge(scrolledPast ? 'Wait, where are you going?' : phrases[0]);
-    resetTimer = null;
-  }
-  function armTimer() {
-    if (resetTimer) clearTimeout(resetTimer);
-    resetTimer = setTimeout(resetBadge, 5000);
-  }
-  badge.addEventListener('click', function() {
-    var isMobile = window.innerWidth < 900 || 'ontouchstart' in window;
-    clicks++;
-    if (!isMobile && clicks === 11) {
-      if (resetTimer) clearTimeout(resetTimer);
-      triggerGalaga();
-      resetBadge();
-      return;
-    }
-    if (isMobile && clicks === 12) {
-      resetBadge();
-      return;
-    }
-    var text;
-    if (isMobile && clicks === 11) text = "What do you mean the easter egg doesn't work on mobile?";
-    else if (clicks < phrases.length) text = phrases[clicks];
-    if (text) setBadge(text);
-    armTimer();
-  });
-  /* scroll hook — "almost past it" = badge bottom within 60px of viewport top */
-  var returnTimer = null;
-  var badgeTicking = false;
-  window.addEventListener('scroll', function() {
-    if (badgeTicking) return;
-    badgeTicking = true;
-    requestAnimationFrame(function() {
-      badgeTicking = false;
-      var rect = badge.getBoundingClientRect();
-      var past = rect.bottom < 60;
-      if (past !== scrolledPast) {
-        scrolledPast = past;
-        if (past) {
-          if (returnTimer) { clearTimeout(returnTimer); returnTimer = null; }
-          if (resetTimer) { clearTimeout(resetTimer); resetTimer = null; }
-          clicks = 0;
-          setBadge('Wait, where are you going?');
-        } else if (clicks === 0) {
-          setBadge('Hello there!');
-          returnTimer = setTimeout(function() {
-            if (clicks === 0) setBadge(phrases[0]);
-            returnTimer = null;
-          }, 3000);
-        }
-      }
-    });
-  }, { passive: true });
-})();
 
 /* SKILL CHIPS */
 (function() {
@@ -3785,10 +3685,6 @@ document.querySelectorAll('.exp-logo-open-wrap').forEach(wrap => {
     <!-- Menu footer -->
     <div class="mmenu-footer">
       <div class="mmenu-footer-row">
-        <div class="mmenu-avail">
-          <span class="mmenu-avail-dot"></span>
-          Available for work
-        </div>
         <a class="mmenu-resume-btn" href="assets/Petera-Product-Design-Resume.pdf" target="_blank" rel="noopener noreferrer">
           Download Resume
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
