@@ -1,0 +1,129 @@
+# Media Library download list — exact filenames the site needs
+# 103 files still missing. Search each EXACT name; grab the original (no -WIDTHxHEIGHT suffix).
+# Filter the library by the month header to cut clutter.
+
+## 2017/01  (7)
+drive_mockup-e1491240476632.png
+ia.jpg
+sketching.jpg
+wire11-e1490729895261.png
+wire21-e1490729919985.png
+wire31-e1490730041954.png
+wire41-e1490729984689.png
+
+## 2017/04  (25)
+artboard-5-copy-21.png
+artboard-5-copy1.png
+artboard-51.png
+assessment_checklist.png
+eb_main_01.jpg
+eb_main_02.jpg
+lti-step_1.png
+lti-step_2.png
+lti-step_4.png
+media_ui.png
+ongoing_assessment.png
+realize1.png
+screen_1.png
+screen_2.png
+screen_3.png
+screen_4.png
+screen_6.png
+screen_7.png
+screen_8.png
+screen_9.png
+screencap.png
+screencapture-pearsonrealize-community-classes-3e08dc24034f49559e1e6647cd24d09f-assignments-1492470064384.png
+screencapture-pearsonrealize-community-data-06f8c022f81b423b9c4f565c92112328-overview-1492469712797.png
+screencapture-pearsonrealize-community-home-1492470016925.png
+to_do_ui.png
+
+## 2018/03  (23)
+affinity-mapped.jpg
+failure-areas.jpg
+first-run.jpg
+goals-failures-hmws-target.jpg
+goals.jpg
+img_1023.jpg
+img_1036.jpg
+img_1037.jpg
+img_1038.jpg
+img_1040.jpg
+img_1041.jpg
+img_1053.jpg
+img_1062.jpg
+prortyping.jpg
+sites.jpg
+sites2.jpg
+sprint1.png
+testing.jpg
+vlogger_1.png
+vlogger_3.png
+vlogger_4.png
+what-teacher-currently-does.jpg
+what-we-want-students-to-feel.jpg
+
+## 2020/06  (5)
+group-18-copy-10.png
+group-18.png
+group-27.png
+group-28.png
+powerbi_shot-1.png
+
+## 2020/09  (3)
+attendance400.5x.png
+content_feed400.5x.png
+overview.png
+
+## 2020/10  (10)
+artboard.png
+proto_2.png
+proto_example.gif
+proto_gif.gif
+pxl_20201004_185129612-1.jpg
+pxl_20201004_185232222-2.jpg
+student_1_drk.png
+student_1_wht.png
+student_overview_lockout_closed_mob_par.png
+student_overview_lockout_closed_mob_par4.png
+
+## 2023/01  (3)
+filters.png
+login-1.png
+start-complete-job.png
+
+## 2023/02  (9)
+main-feature-hero.png
+oliver_owner_operator.png
+rivet-design-approach.png
+rivet-molecule-accordion.png
+rivet-molecule-form.png
+rivet-standard-button.png
+rivet-toast.png
+rivet-type.png
+vinny_vendor_owner.png
+
+## 2024/02  (2)
+full_decision_tree.png
+problem-solve.gif
+
+## 2024/05  (1)
+main-feature-hero.png
+
+## 2026/02  (15)
+add-content.png
+add-owner.png
+add-tool.png
+chris-sketch.png
+flowchart-1.png
+group-tool-1.png
+new-edit-ux.gif
+profile-tool-1.png
+software-and-tools-hero-3.png
+software-populated-view.png
+software-sidebar01.png
+software-sidebar02.png
+tools-c1-1.png
+tools-v0.png
+tools-v2.png
+
