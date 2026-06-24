@@ -15,13 +15,13 @@
 <meta name="description" content="Observational assessment tool for teachers to track student progress, attach media, and keep centralized notes, all from an iPad.">
 <meta property="og:title" content="Scout – Dayne Petera">
 <meta property="og:description" content="Observational assessment tool for teachers to track student progress, attach media, and keep centralized notes, all from an iPad.">
-<meta property="og:image" content="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/scout_dashboard.png?fit=1200,630&ssl=1">
+<meta property="og:image" content="https://dayne.design/assets/images/wp/2017/04/scout_dashboard.png">
 <meta property="og:url" content="https://dayne.design/scout.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Scout – Dayne Petera">
 <meta name="twitter:description" content="Observational assessment tool for teachers to track student progress, attach media, and keep centralized notes, all from an iPad.">
-<meta name="twitter:image" content="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/scout_dashboard.png?fit=1200,630&ssl=1">
+<meta name="twitter:image" content="https://dayne.design/assets/images/wp/2017/04/scout_dashboard.png">
 <meta property="og:site_name" content="Dayne Petera">
 <link rel="canonical" href="https://dayne.design/scout.html">
 <script type="application/ld+json">
@@ -30,14 +30,13 @@
   "@type": "Article",
   "headline": "Scout",
   "description": "Observational assessment tool for teachers to track student progress, attach media, and keep centralized notes, all from an iPad.",
-  "image": "https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/scout_dashboard.png?fit=1200,630&ssl=1",
+  "image": "https://dayne.design/assets/images/wp/2017/04/scout_dashboard.png",
   "author": { "@type": "Person", "name": "Dayne Petera", "url": "https://dayne.design" },
   "publisher": { "@type": "Person", "name": "Dayne Petera", "url": "https://dayne.design" },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://dayne.design/scout.html" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="dns-prefetch" href="https://i0.wp.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 <link rel="stylesheet" href="global.css">
@@ -169,7 +168,7 @@
   </div>
   <div class="hero-img-wrap hero-animate">
     <div class="hero-loader"><div class="hero-spinner"></div><span class="hero-loader-text"></span></div>
-    <img fetchpriority="high" width="1828" height="1244" src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/scout_dashboard.png" alt="Scout dashboard">
+    <img fetchpriority="high" width="1828" height="1244" src="assets/images/wp/2017/04/scout_dashboard.png" alt="Scout dashboard">
   </div>
 </section>
 
@@ -207,13 +206,13 @@
       <h2 class="section-heading">Tested to <em>high usability scores</em></h2>
       <p class="body-text">The end product tested exceptionally well, scoring high across all usability testing metrics. Every major screen was designed with the classroom context in mind: teachers standing, moving, making quick decisions in real time.</p>
       <div class="img-2col">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/to_do_ui.png" alt="Add a new note" loading="lazy" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/ongoing_assessment.png" alt="Ongoing assessments" loading="lazy" class="study-img" style="margin:0">
+        <img src="assets/images/wp/2017/04/to_do_ui.png" alt="Add a new note" loading="lazy" class="study-img" style="margin:0">
+        <img src="assets/images/wp/2017/04/ongoing_assessment.png" alt="Ongoing assessments" loading="lazy" class="study-img" style="margin:0">
       </div>
       <p class="img-caption">Note creation and ongoing assessment views</p>
       <div class="img-2col">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/media_ui.png" alt="Media gallery" loading="lazy" class="study-img" style="margin:0">
-        <img src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2017/04/assessment_checklist.png" alt="Assessment checklist" loading="lazy" class="study-img" style="margin:0">
+        <img src="assets/images/wp/2017/04/media_ui.png" alt="Media gallery" loading="lazy" class="study-img" style="margin:0">
+        <img src="assets/images/wp/2017/04/assessment_checklist.png" alt="Assessment checklist" loading="lazy" class="study-img" style="margin:0">
       </div>
       <p class="img-caption">Media gallery items and assessment checklist editing</p>
     </section>
@@ -380,7 +379,7 @@ const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
 document.querySelectorAll('.study-img').forEach(img => {
   img.addEventListener('click', () => {
-    const fullSrc = img.src.replace(/^https:\/\/i\d+\.wp\.com\//, 'https://').split('?')[0];
+    const fullSrc = img.src;
     lightboxImg.src = fullSrc;
     lightboxImg.alt = img.alt;
     lightbox.classList.add('open');
@@ -540,12 +539,12 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
         </button>
         <div class="mcard-work-sub" id="mcardWorkSub">
           <div class="mcard-proj-grid">
-            <a class="mcard-proj mobile-link" href="hris-sync.html"><img width="150" height="72" src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/hris-hero-lg.png?w=300&ssl=1" alt="HRIS Sync" loading="lazy"><span class="mcard-proj-name">HRIS Sync</span></a>
-            <a class="mcard-proj mobile-link" href="lessen-pro.html"><img width="150" height="72" src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/01/pro-hero.png?w=300&ssl=1" alt="Lessen Pro" loading="lazy"><span class="mcard-proj-name">Lessen Pro</span></a>
-            <a class="mcard-proj mobile-link" href="veho.html"><img width="150" height="72" src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2024/02/showcase.reg_.png?w=300&ssl=1" alt="Exception Handling" loading="lazy"><span class="mcard-proj-name">Exception Handling</span></a>
-            <a class="mcard-proj mobile-link" href="software-tools.html"><img width="150" height="72" src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2026/02/software-and-tools-hero-1.png?w=300&ssl=1" alt="Software &amp; Tools" loading="lazy"><span class="mcard-proj-name">Software &amp; Tools</span></a>
-            <a class="mcard-proj mobile-link" href="rivet.html"><img width="150" height="72" src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2023/02/screenshot-2023-02-09-at-6.29.15-pm.png?w=300&ssl=1" alt="Rivet" loading="lazy"><span class="mcard-proj-name">Rivet</span></a>
-            <a class="mcard-proj mobile-link" href="strongmind.html"><img width="150" height="72" src="https://i0.wp.com/daynepetera.wordpress.com/wp-content/uploads/2020/10/splash.png?w=300&ssl=1" alt="StrongMind" loading="lazy"><span class="mcard-proj-name">StrongMind</span></a>
+            <a class="mcard-proj mobile-link" href="hris-sync.html"><img width="150" height="72" src="assets/images/wp/2026/02/hris-hero-lg.png" alt="HRIS Sync" loading="lazy"><span class="mcard-proj-name">HRIS Sync</span></a>
+            <a class="mcard-proj mobile-link" href="lessen-pro.html"><img width="150" height="72" src="assets/images/wp/2023/01/pro-hero.png" alt="Lessen Pro" loading="lazy"><span class="mcard-proj-name">Lessen Pro</span></a>
+            <a class="mcard-proj mobile-link" href="veho.html"><img width="150" height="72" src="assets/images/wp/2024/02/showcase.reg_.png" alt="Exception Handling" loading="lazy"><span class="mcard-proj-name">Exception Handling</span></a>
+            <a class="mcard-proj mobile-link" href="software-tools.html"><img width="150" height="72" src="assets/images/wp/2026/02/software-and-tools-hero-1.png" alt="Software &amp; Tools" loading="lazy"><span class="mcard-proj-name">Software &amp; Tools</span></a>
+            <a class="mcard-proj mobile-link" href="rivet.html"><img width="150" height="72" src="assets/images/wp/2023/02/screenshot-2023-02-09-at-6.29.15-pm.png" alt="Rivet" loading="lazy"><span class="mcard-proj-name">Rivet</span></a>
+            <a class="mcard-proj mobile-link" href="strongmind.html"><img width="150" height="72" src="assets/images/wp/2020/10/splash.png" alt="StrongMind" loading="lazy"><span class="mcard-proj-name">StrongMind</span></a>
           </div>
           <a class="mcard-see-all mobile-link" href="index.html#studies">Go to Work →</a>
         </div>
