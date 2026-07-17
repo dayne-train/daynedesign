@@ -514,10 +514,19 @@ html.dark .hero-actions .btn-outline:hover { background: rgba(22,32,48,0.88); }
   .exp-logo-open-wrap:hover .exp-logo-open-arrow svg { transform: rotate(0deg); }
 }
 
+/* optional lede above the type badges */
+.drawer-intro {
+  padding: 1.2rem 0 0;
+  max-width: 70ch;
+  font-size: 0.875rem; color: rgba(255,255,255,0.62); line-height: 1.68;
+}
+.drawer-intro strong { color: rgba(255,255,255,0.95); font-weight: 500; }
+
 .drawer-co-header {
   display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;
   padding: 1.2rem 0 1.1rem;
 }
+.drawer-intro + .drawer-co-header { padding-top: 0.9rem; }
 .drawer-type-badge {
   font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase;
   background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.55);
@@ -1179,7 +1188,7 @@ html.dark footer { background: var(--section-dark); }
   <div class="reveal-left">
     <div class="section-label" style="color:var(--sky)">Where I've been</div>
     <h2 class="section-title" style="margin-bottom:1rem;color:#fff">11 years.<br>Real impact.</h2>
-    <p class="exp-subtext">From seed-stage startups to scaling platforms, I've shipped work that creates real change for real people.</p>
+    <p class="exp-subtext">From seed-stage startups and scaling platforms to global corporations, I've shipped work that creates real change for real people.</p>
     <p class="exp-subtext exp-hint" style="margin-top:1.2rem;font-size:0.78rem;color:rgba(255,255,255,0.25)">Tap any role to expand <svg class="exp-hint-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></p>
   </div>
   <div class="exp-roles reveal-fade">
@@ -1210,6 +1219,7 @@ html.dark footer { background: var(--section-dark); }
       </button>
       <div class="exp-drawer" id="drawer-instructure">
         <div class="exp-drawer-inner">
+          <p class="drawer-intro"><strong>Parchment</strong> is the world's largest academic credential network, moving transcripts, diplomas, and verified records between schools. Instructure acquired it in 2024. I design its dual enrollment products, which help students earn college credit while still in high school.</p>
           <div class="drawer-co-header">
             <span class="drawer-type-badge">EdTech</span>
             <span class="drawer-type-badge">Dual Enrollment</span>
