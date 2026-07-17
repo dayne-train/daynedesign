@@ -1178,11 +1178,53 @@ html.dark footer { background: var(--section-dark); }
 <section class="exp-strip" id="experience">
   <div class="reveal-left">
     <div class="section-label" style="color:var(--sky)">Where I've been</div>
-    <h2 class="section-title" style="margin-bottom:1rem;color:#fff">10 years.<br>Real impact.</h2>
+    <h2 class="section-title" style="margin-bottom:1rem;color:#fff">11 years.<br>Real impact.</h2>
     <p class="exp-subtext">From seed-stage startups to scaling platforms, I've shipped work that creates real change for real people.</p>
     <p class="exp-subtext exp-hint" style="margin-top:1.2rem;font-size:0.78rem;color:rgba(255,255,255,0.25)">Tap any role to expand <svg class="exp-hint-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h10M8 4l4 4-4 4"/></svg></p>
   </div>
   <div class="exp-roles reveal-fade">
+
+    <!-- INSTRUCTURE -->
+    <div class="exp-row" id="row-instructure" data-preview-context="EdTech · Product Design" data-preview-impact="Designing dual enrollment products that help students earn college credit while still in high school, across students, high schools, and higher ed institutions.">
+      <button class="exp-row-header" onclick="toggleRow('instructure')" aria-expanded="false" aria-controls="drawer-instructure">
+        <div class="exp-logo-wrap">
+          <img class="exp-logo" src="assets/logos/instructure_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="exp-header-inner">
+          <div class="exp-logo-open-wrap">
+            <img class="exp-logo-open" src="assets/logos/instructure_logo.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+            <span class="exp-logo-open-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:0.5rem">
+              <div class="exp-company">Parchment (by Instructure)</div>
+              <span class="exp-badge">Most recent</span>
+            </div>
+            <div class="exp-role">Senior Product Designer</div>
+            <div class="exp-date"><span class="date-short">2026 – Present</span><span class="date-full">May 2026 – Present</span></div>
+          </div>
+        </div>
+        <div class="exp-row-right">
+          <div class="exp-toggle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></div>
+        </div>
+      </button>
+      <div class="exp-drawer" id="drawer-instructure">
+        <div class="exp-drawer-inner">
+          <div class="drawer-co-header">
+            <span class="drawer-type-badge">EdTech</span>
+            <span class="drawer-type-badge">Dual Enrollment</span>
+            <span class="drawer-type-badge">Higher Ed</span>
+          </div>
+          <div class="drawer-section-label">Key accomplishments</div>
+          <ul class="drawer-list">
+            <li><span class="dot"></span><span class="txt">Lead designer for <strong>dual enrollment</strong>, owning end-to-end design across complex multi-stakeholder workflows spanning students, high schools, and higher ed institutions.</span></li>
+            <li><span class="dot"></span><span class="txt">Driving <strong>AI-first design workflows</strong> to prototype and ship faster, building functional, interactive prototypes that compress validation cycles and reduce reliance on traditional handoff.</span></li>
+            <li><span class="dot"></span><span class="txt">Partnering across product and engineering to evolve established team processes toward a more agile, <strong>experiment-driven operating model</strong>.</span></li>
+            <li><span class="dot"></span><span class="txt">Contributing to strategic and system-level conversations, helping shape product direction and the patterns and frameworks that scale across the dual enrollment experience and the larger Parchment and Instructure ecosystem.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <!-- TRAINUAL -->
     <div class="exp-row" id="row-trainual" data-preview-context="SaaS · Product Design" data-preview-impact="HRIS Sync grew adoption 5%→30% in 2 months. Software &amp; Tools reached 7,000+ entries across customer orgs.">
@@ -1196,10 +1238,7 @@ html.dark footer { background: var(--section-dark); }
             <span class="exp-logo-open-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
           </div>
           <div>
-            <div style="display:flex;align-items:center;gap:0.5rem">
-              <div class="exp-company">Trainual</div>
-              <span class="exp-badge">Most recent</span>
-            </div>
+            <div class="exp-company">Trainual</div>
             <div class="exp-role">Senior Product Designer</div>
             <div class="exp-date"><span class="date-short">2024 – 2026</span><span class="date-full">Jul 2024 – Jan 2026</span></div>
           </div>
@@ -3607,6 +3646,7 @@ document.addEventListener('click', () => {
 
 // Open-state logo — click to visit company site
 const logoUrls = {
+  'row-instructure': 'https://parchment.com',
   'row-trainual':  'https://trainual.com',
   'row-veho':      'https://shipveho.com',
   'row-lessen':    'https://lessen.com',
